@@ -81,6 +81,20 @@ export function Footer() {
           </div>
         </div>
 
+        {/*
+          The registered entity, on the page on purpose. A broker deciding
+          whether to hand over his customers' phone numbers can verify a GSTIN
+          in about thirty seconds, and an AI company with no traceable legal
+          entity is exactly the thing he has been warned about.
+        */}
+        {BRAND.legal && (
+          <p className="mt-10 border-t border-[var(--border-subtle)] pt-6 text-[0.8125rem] leading-[1.7] text-[var(--text-3)]">
+            {BRAND.legal.entity} · GSTIN {BRAND.legal.gstin}
+            <br />
+            {BRAND.legal.addressLine}
+          </p>
+        )}
+
         <div className="mt-12 flex flex-col gap-4 border-t border-[var(--border-subtle)] pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[0.8125rem] text-[var(--text-3)]">
             © {year} {BRAND.name}. All rights reserved.

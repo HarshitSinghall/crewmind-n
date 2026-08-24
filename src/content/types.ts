@@ -21,6 +21,17 @@ export interface Brand {
   whatsapp: (message?: string) => string
   socials: { label: string; href: string }[]
   sisterSite?: { label: string; description: string; href: string }
+  /**
+   * The registered entity behind the brand. Named on the site on purpose: a
+   * broker deciding whether to hand over his customers' phone numbers can
+   * verify a GSTIN in about thirty seconds, and an AI company with no
+   * traceable legal entity is exactly the thing he has been warned about.
+   */
+  legal?: {
+    entity: string
+    gstin: string
+    addressLine: string
+  }
 }
 
 export interface Testimonial {

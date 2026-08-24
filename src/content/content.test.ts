@@ -12,6 +12,7 @@ import { AUTOMATIONS, AUTOMATIONS_HOME, AUTOMATIONS_PAGE, getAutomation } from '
 /* Routes the app actually serves. Keep in sync with App.tsx. */
 const STATIC_ROUTES = new Set([
   '/',
+  '/priya',
   '/pricing',
   '/about',
   '/enterprise',
@@ -111,6 +112,44 @@ describe('content integrity', () => {
 
   it('emphasises exactly one phrase in the hero headline', () => {
     expect(HOME.hero.headline.emphasis.trim().length).toBeGreaterThan(0)
+  })
+
+  it('carries the real brand facts, not the reference placeholders', () => {
+    expect(BRAND.url).toBe('https://crewmind.in')
+    expect(BRAND.email).toBe('hello@crewmind.in')
+    expect(BRAND.phoneHref).toBe('tel:+917017531825')
+    expect(BRAND.address.join(' ')).toMatch(/Gurugram/)
+
+    // calendly and socials are still placeholders on purpose — no real values
+    // for them exist yet, and they stay listed in CONTENT-SWAP.md. Everything
+    // a visitor could actually contact us on has to be real.
+    const contactable = JSON.stringify({
+      name: BRAND.name,
+      url: BRAND.url,
+      tagline: BRAND.tagline,
+      email: BRAND.email,
+      phone: BRAND.phone,
+      phoneHref: BRAND.phoneHref,
+      address: BRAND.address,
+      legal: BRAND.legal,
+    })
+    expect(contactable).not.toMatch(/example|Hong Kong|85228105510/i)
+  })
+
+  it('routes whatsapp at the real number', () => {
+    const url = new URL(BRAND.whatsapp('test'))
+    expect(url.pathname).toBe('/917017531825')
+  })
+
+  it('names the registered entity for verification', () => {
+    expect(BRAND.legal?.entity).toBe('Antimatter Technologies Private Limited')
+    expect(BRAND.legal?.gstin).toBe('37ABDCA0422F1Z8')
+  })
+
+  it('leads the nav with the flagship product and drops the geo deep link', () => {
+    expect(NAV_LINKS[0]).toEqual({ label: 'Priya', href: '/priya' })
+    expect(NAV_LINKS.some((l) => l.label === 'GEO')).toBe(false)
+    expect(FOOTER_LINKS[0].href).toBe('/priya')
   })
 })
 

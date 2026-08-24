@@ -4,6 +4,7 @@ import { Heading } from '@/components/ui/Heading'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Text } from '@/components/ui/Text'
 import { Reveal } from '@/components/ui/Reveal'
+import { cn } from '@/lib/cn'
 import type { PillarSet } from '@/content/types'
 
 interface PillarRowProps {
@@ -11,14 +12,26 @@ interface PillarRowProps {
   /** Anchor + aria-labelledby base. Must be unique on the page. */
   id: string
   divided?: boolean
+  /** Two for a paired statement, three for a set. Defaults to three. */
+  columns?: 2 | 3
 }
+
+const COLUMNS = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+} as const
 
 /**
  * Three short commitments in a row. Used for About's mission/vision/approach,
  * Enterprise's why-custom, and Enterprise's ownership band — same shape each
  * time, so it is one block rather than three near-identical ones.
  */
-export function PillarRow({ pillars, id, divided = true }: PillarRowProps) {
+export function PillarRow({
+  pillars,
+  id,
+  divided = true,
+  columns = 3,
+}: PillarRowProps) {
   const titleId = `${id}-title`
 
   return (
@@ -42,7 +55,7 @@ export function PillarRow({ pillars, id, divided = true }: PillarRowProps) {
           </Reveal>
         )}
 
-        <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className={cn('mt-12 grid gap-x-8 gap-y-10', COLUMNS[columns])}>
           {pillars.items.map((item, i) => (
             <Reveal as="li" key={item.id} index={i}>
               <div className="border-t border-[var(--border-strong)] pt-5">

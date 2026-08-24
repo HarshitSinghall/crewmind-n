@@ -4,6 +4,7 @@ import { Nav } from '@/components/blocks/Nav'
 import { Footer } from '@/components/blocks/Footer'
 import { WhatsAppFab } from '@/components/blocks/WhatsAppFab'
 import Home from '@/pages/Home'
+import Priya from '@/pages/Priya'
 import Pricing from '@/pages/Pricing'
 import About from '@/pages/About'
 import Enterprise from '@/pages/Enterprise'
@@ -54,6 +55,11 @@ export function App() {
       <main id="main">
         <Routes>
           <Route path="/" element={<Home />} />
+
+          {/* The flagship product. Eager, not lazy — it is the page the ads
+              point at, and a route-split spinner on the landing target is the
+              one place the split costs more than it saves. */}
+          <Route path="/priya" element={<Priya />} />
 
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<About />} />

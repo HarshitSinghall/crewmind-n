@@ -96,6 +96,33 @@ exist yet.
 - [ ] `faq.items` — five answers **written fresh, not transcribed** (see below)
 - [ ] `close`
 
+### `src/content/services.ts`
+- [ ] `SERVICES_INDEX` — seo, hero, close
+- [ ] All eight `SERVICES[]` entries — `title`, `description`, `features`,
+      `seo`, `hero`, every `sections[]` block, and `close`
+- [ ] **`geo` → `sections[1]` (stats)** — the AI visibility scores
+      (`38/100`, `38%`, `45%`, `53%`) are the reference's numbers, presented
+      as typical results. **Either measure your own or delete the block.**
+- [ ] **`ai-personal-assistants` → `sections[4]` (stats)** — "29 hrs returned
+      per week" and the "100+ setups completed" assurance are unverified
+- [ ] **`lead-gen-outreach` → `sections[3]` (stats)** — "1,000+ leads per day"
+      and "38 hrs automated per week" are unverified
+- [ ] **`ai-call-centers` → hero** — "74% of calls to small businesses go
+      unanswered" is an uncited statistic. Cite it or cut it.
+- [ ] Every `faq` answer across every service — **written fresh, not
+      transcribed** (see below)
+- [ ] The four thin services marked `TODO` — `social-media-automation`,
+      `ai-copywriting`, `ai-agent-team`, `custom-ai-solutions` — carry one
+      `checklist` section each and need real detail
+
+### `src/content/projects.ts`
+- [ ] `CATEGORIES` labels
+- [ ] **All 30 `PROJECTS[]` entries — none of this work was done by you.**
+      Every challenge, solution, metric and client descriptor came from the
+      reference. This is the single largest block of borrowed content on the
+      site. Replace wholesale or delete the page.
+- [ ] `PROJECTS_PAGE` — seo, hero, close, empty message
+
 ### `src/content/testimonials.ts`
 - [ ] `TESTIMONIALS` — **real reviews written by real named people about a
       different company.** These must go before launch; there is no version of
@@ -136,13 +163,41 @@ still placeholder — they just cannot be checked against the reference.
    written fresh and make claims about timelines, support windows and working
    practices that **nobody has agreed to**. Read them before launch.
 
-3. **`about.ts` → `team.members`** and **`enterprise.ts` → `cases.items`** —
+3. **All service FAQ answers** — same cause as the enterprise FAQ. Questions
+   are verbatim; every answer in `services.ts` is ours, and several make
+   specific commitments: setup timelines, a 30-day support window, spam and
+   deliverability practices, AI disclosure policy, and multilingual support.
+   **Nobody has agreed to any of them.** Read all of them before launch.
+
+4. **`about.ts` → `team.members`**, **`enterprise.ts` → `cases.items`**, and
+   **`projects.ts` → every `client` field** —
    deliberate departures from verbatim copying. The reference names seven real
-   people (with links to their real LinkedIn profiles) and one real named
-   client. Restaging real individuals as this company's staff, or another
-   agency's client as our own, is not something to ship even as placeholder
-   text. Structure was preserved; identities were not copied.
-   `content.test.ts` asserts those names never reappear.
+   people (with links to their real LinkedIn profiles), one real named
+   enterprise client, and nine named clients across the project catalogue —
+   several with links to their live Instagram accounts and websites.
+   Restaging real individuals as this company's staff, or another agency's
+   clients as our own, is not something to ship even as placeholder text.
+   Structure was preserved; identities were not copied. `content.test.ts`
+   asserts those names never reappear.
+
+5. **Vendor product names** — the reference hardcodes third-party product
+   names into its own service copy, which implies partnerships. `services.ts`
+   refers to them generically ("the assistant", "the outreach agent").
+   Replace with the tools you actually use.
+
+---
+
+## Theme
+
+The site ships dark-primary with a light theme (spec section 3.3, amended).
+Nothing here is placeholder, but two things are worth a look before launch:
+
+- [ ] `--text-3` is the one token that only just clears AA, in **both**
+      themes. It is restricted to 18px+ and non-essential meta by convention,
+      not by the compiler. The axe pass cannot check contrast in jsdom, so
+      this needs one manual sweep per theme.
+- [ ] `index.html` sets a `theme-color` per scheme (`#0c0e13` / `#fbfbfc`).
+      Update both if the canvas tokens change.
 
 ---
 
@@ -156,3 +211,4 @@ still placeholder — they just cannot be checked against the reference.
 - [ ] `public/opengraph.jpg` exists
 - [ ] Legal pages at `/privacy` and `/terms` have real content — they are
       still `Placeholder` stubs
+- [ ] Check the site in **both themes**, not just the one your OS is set to

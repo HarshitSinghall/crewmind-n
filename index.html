@@ -3,8 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#0c0e13" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0c0e13" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
+
+    <!--
+      Applies the stored theme before first paint. Without this the page
+      renders in the OS theme for a frame and then snaps to the saved choice,
+      which reads as a flash of the wrong colour scheme on every navigation.
+      Kept inline and tiny on purpose: it must run before the stylesheet
+      paints, so it cannot be a module import.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('crewmind-theme')
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored)
+          }
+        } catch (e) {
+          /* private mode, blocked storage — fall through to the OS theme */
+        }
+      })()
+    </script>
 
     <title>CrewMind | Custom AI Agents &amp; Automation For Your Business</title>
     <meta

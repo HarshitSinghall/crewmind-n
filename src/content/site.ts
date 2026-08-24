@@ -23,12 +23,11 @@ export const BRAND: Brand = {
   sisterSite: undefined,
 }
 
-/** `pending: true` marks routes that land in Phase 2/3. */
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Services', href: '/services', pending: true },
-  { label: 'GEO', href: '/services/geo', pending: true },
+  { label: 'Services', href: '/services' },
+  { label: 'GEO', href: '/services/geo' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'See Our Work', href: '/past-projects', pending: true },
+  { label: 'See Our Work', href: '/past-projects' },
   { label: 'Meet the Team', href: '/about' },
   { label: 'Enterprise', href: '/enterprise' },
 ]
@@ -39,9 +38,9 @@ export const PRIMARY_CTA = {
 } as const
 
 export const FOOTER_LINKS: NavLink[] = [
-  { label: 'Services', href: '/services', pending: true },
+  { label: 'Services', href: '/services' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Enterprise', href: '/enterprise' },
-  { label: 'See Our Work', href: '/past-projects', pending: true },
+  { label: 'See Our Work', href: '/past-projects' },
   { label: 'Meet the Team', href: '/about' },
 ]

@@ -37,8 +37,9 @@ export function CtaBand({ close, id = 'close' }: CtaBandProps) {
           <div className="relative overflow-hidden rounded-[var(--r-xl)] border border-[var(--border-subtle)] bg-[var(--surface-1)] px-6 py-14 text-center sm:px-12">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-[0.14] blur-[80px]"
+              className="pointer-events-none absolute inset-x-0 top-0 h-40 blur-[80px]"
               style={{
+                opacity: 'calc(0.14 * var(--bloom-opacity))',
                 background:
                   'radial-gradient(closest-side, var(--accent), transparent 70%)',
               }}

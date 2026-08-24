@@ -9,18 +9,20 @@ import { useSeo } from '@/lib/useSeo'
 
 interface PlaceholderProps {
   title: string
-  phase: 'Phase 2' | 'Phase 3'
   path: string
 }
 
 /**
- * Honest stub for routes that land in a later phase. Keeps every nav and
- * footer link resolving to a real page instead of a 404 or a dead "#".
+ * Honest stub for the two legal routes.
+ *
+ * Every marketing page is built; these need a lawyer, not a developer, which
+ * is a different kind of "not done" and says so. The routes exist so the
+ * footer links resolve to a real page rather than a 404 or a dead "#".
  */
-export default function Placeholder({ title, phase, path }: PlaceholderProps) {
+export default function Placeholder({ title, path }: PlaceholderProps) {
   useSeo({
     title,
-    description: `${title} — coming soon.`,
+    description: `${title} — not yet published.`,
     path,
   })
 
@@ -29,14 +31,15 @@ export default function Placeholder({ title, phase, path }: PlaceholderProps) {
       <Container width="narrow">
         <div className="pt-16 text-center">
           <div className="mb-6 flex justify-center">
-            <Eyebrow>{phase}</Eyebrow>
+            <Eyebrow>Not yet published</Eyebrow>
           </div>
           <Heading level={1} size="xl" className="mb-4">
             {title}
           </Heading>
           <Text size="lg" className="mx-auto max-w-[34rem]">
-            This page is scoped and specced — it lands in {phase} of the build.
-            The route exists now so navigation never dead-ends.
+            This page needs real legal copy before launch, not placeholder
+            text. The route exists so navigation never dead-ends — see
+            CONTENT-SWAP.md.
           </Text>
           <div className="mt-9 flex justify-center">
             <Button href="/" variant="secondary" size="lg">

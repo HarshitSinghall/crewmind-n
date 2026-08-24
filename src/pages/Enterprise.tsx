@@ -18,7 +18,12 @@ export default function Enterprise() {
       <PillarRow pillars={ENTERPRISE.why} id="why-custom" divided={false} />
       <CapabilityGrid capabilities={ENTERPRISE.capabilities} />
       <StackMarquee stack={ENTERPRISE.stack} />
-      <StepList process={ENTERPRISE.process} />
+      <StepList
+        eyebrow={ENTERPRISE.process.eyebrow}
+        title={ENTERPRISE.process.title}
+        sub={ENTERPRISE.process.sub}
+        steps={ENTERPRISE.process.steps}
+      />
       <EnterpriseCases cases={ENTERPRISE.cases} />
       <PillarRow pillars={ENTERPRISE.ownership} id="ownership" />
       <FAQ title={ENTERPRISE.faq.title} items={ENTERPRISE.faq.items} />

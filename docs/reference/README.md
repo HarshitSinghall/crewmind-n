@@ -15,3 +15,5 @@ is written. See `CONTENT-SWAP.md` for the swap checklist.
 | `autoploy-pricing.md` | https://autoploy.us/pricing | 2026-08-24 |
 | `autoploy-about.md` | https://autoploy.us/about | 2026-08-24 |
 | `autoploy-enterprise.md` | https://autoploy.us/enterprise | 2026-08-24 |
+| `autoploy-services.md` | https://autoploy.us/services + 4 detail pages | 2026-08-24 |
+| `autoploy-past-projects.md` | https://autoploy.us/past-projects | 2026-08-24 |

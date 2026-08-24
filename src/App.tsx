@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Nav } from '@/components/blocks/Nav'
 import { Footer } from '@/components/blocks/Footer'
@@ -7,8 +7,26 @@ import Home from '@/pages/Home'
 import Pricing from '@/pages/Pricing'
 import About from '@/pages/About'
 import Enterprise from '@/pages/Enterprise'
+import Services from '@/pages/Services'
+import PastProjects from '@/pages/PastProjects'
 import Placeholder from '@/pages/Placeholder'
 import NotFound from '@/pages/NotFound'
+
+/*
+  The eight service detail pages share one template but carry the largest
+  content module on the site. Splitting them keeps that weight off the
+  homepage bundle — nobody lands on /services/geo first.
+*/
+const ServiceDetail = lazy(() => import('@/pages/ServiceDetail'))
+
+/**
+ * Holds the page height while a lazy route loads, so the footer does not jump
+ * up to meet the nav and then drop again. Deliberately blank: a spinner that
+ * flashes for 80ms is worse than nothing.
+ */
+function RouteFallback() {
+  return <div aria-hidden="true" style={{ minHeight: '70vh' }} />
+}
 
 /** Reset scroll on navigation, but leave in-page anchors alone. */
 function ScrollToTop() {
@@ -40,30 +58,25 @@ export function App() {
           <Route path="/about" element={<About />} />
           <Route path="/enterprise" element={<Enterprise />} />
 
-          {/* Phase 3 */}
-          <Route
-            path="/services"
-            element={<Placeholder title="Services" phase="Phase 3" path="/services" />}
-          />
+          <Route path="/services" element={<Services />} />
           <Route
             path="/services/:slug"
-            element={<Placeholder title="Service" phase="Phase 3" path="/services" />}
-          />
-          <Route
-            path="/past-projects"
             element={
-              <Placeholder title="See Our Work" phase="Phase 3" path="/past-projects" />
+              <Suspense fallback={<RouteFallback />}>
+                <ServiceDetail />
+              </Suspense>
             }
           />
+          <Route path="/past-projects" element={<PastProjects />} />
 
-          {/* Legal — replaces the reference site's dead "#" links */}
+          {/* Legal — real routes, but they still need real legal copy. */}
           <Route
             path="/privacy"
-            element={<Placeholder title="Privacy Policy" phase="Phase 2" path="/privacy" />}
+            element={<Placeholder title="Privacy Policy" path="/privacy" />}
           />
           <Route
             path="/terms"
-            element={<Placeholder title="Terms of Service" phase="Phase 2" path="/terms" />}
+            element={<Placeholder title="Terms of Service" path="/terms" />}
           />
 
           <Route path="*" element={<NotFound />} />

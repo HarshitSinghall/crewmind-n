@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { Container } from '@/components/ui/Container'
 import { BRAND, NAV_LINKS, PRIMARY_CTA } from '@/content/site'
 import { cn } from '@/lib/cn'
@@ -80,6 +81,8 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
+
           {/*
             The primary CTA is deliberately absent until the hero scrolls
             past, so there is never more than one primary action on screen.

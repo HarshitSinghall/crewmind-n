@@ -15,14 +15,22 @@ import type { ComparisonSpec } from '@/content/types'
  * labelled so keyboard users can reach and scroll it too, which a plain
  * `overflow-x: auto` div does not allow.
  */
-export function ComparisonTable({ comparison }: { comparison: ComparisonSpec }) {
+interface ComparisonTableProps {
+  comparison: ComparisonSpec
+  /** Anchor + aria-labelledby base. Must be unique on the page. */
+  id?: string
+}
+
+export function ComparisonTable({ comparison, id = 'compare' }: ComparisonTableProps) {
+  const titleId = `${id}-title`
+
   return (
-    <Section id="compare" divided aria-labelledby="compare-title">
+    <Section id={id} divided aria-labelledby={titleId}>
       <Container>
         <Reveal>
           <div className="max-w-[42rem]">
             <Eyebrow className="mb-5">{comparison.eyebrow}</Eyebrow>
-            <Heading level={2} size="xl" id="compare-title" className="mb-4">
+            <Heading level={2} size="xl" id={titleId} className="mb-4">
               {comparison.title}
             </Heading>
             <Text size="lg">{comparison.sub}</Text>
@@ -34,7 +42,7 @@ export function ComparisonTable({ comparison }: { comparison: ComparisonSpec }) 
             className="scroll-x mt-12 rounded-[var(--r-lg)] border border-[var(--border-subtle)]"
             tabIndex={0}
             role="group"
-            aria-labelledby="compare-title"
+            aria-labelledby={titleId}
           >
             <table className="w-full min-w-[42rem] border-collapse text-left">
               <caption className="sr-only">{comparison.title}</caption>

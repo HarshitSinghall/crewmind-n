@@ -5,6 +5,8 @@ import { HOME } from './home'
 import { PRICING } from './pricing'
 import { ABOUT } from './about'
 import { ENTERPRISE } from './enterprise'
+import { SERVICES, SERVICES_INDEX, getService } from './services'
+import { CATEGORIES, PROJECTS, PROJECTS_PAGE } from './projects'
 
 /* Routes the app actually serves. Keep in sync with App.tsx. */
 const STATIC_ROUTES = new Set([
@@ -242,5 +244,180 @@ describe('enterprise content', () => {
   it('does not claim a named third-party client', () => {
     const blob = JSON.stringify(ENTERPRISE)
     expect(blob).not.toContain('Saludsa')
+  })
+})
+
+/* --- Phase 3 ------------------------------------------------------------- */
+
+describe('services content', () => {
+  it('has no duplicate slugs and every slug is url-safe', () => {
+    const slugs = SERVICES.map((s) => s.slug)
+    expect(new Set(slugs).size).toBe(slugs.length)
+    for (const slug of slugs) {
+      expect(slug, `slug ${slug}`).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/)
+    }
+  })
+
+  it('resolves every slug through the lookup the route uses', () => {
+    for (const service of SERVICES) {
+      expect(getService(service.slug)?.title, service.slug).toBe(service.title)
+    }
+    expect(getService('not-a-real-service')).toBeUndefined()
+    expect(getService(undefined)).toBeUndefined()
+  })
+
+  it('backs every homepage service card with a real detail page', () => {
+    // The homepage grid links to /services/<slug>. If a slug drifts, that
+    // link 404s and nothing else in the suite would notice.
+    for (const summary of HOME.services.items) {
+      expect(
+        getService(summary.slug),
+        `homepage links to /services/${summary.slug}, which has no content`,
+      ).toBeDefined()
+    }
+  })
+
+  it('points every service at a category that exists', () => {
+    const ids = new Set(CATEGORIES.map((c) => c.id))
+    for (const service of SERVICES) {
+      expect(ids.has(service.category), `${service.slug} → ${service.category}`).toBe(true)
+    }
+  })
+
+  it('gives every section a page-unique id', () => {
+    for (const service of SERVICES) {
+      const ids = service.sections.map((s) => s.id)
+      expect(new Set(ids).size, `${service.slug} has duplicate section ids`).toBe(
+        ids.length,
+      )
+    }
+  })
+
+  it('gives every service at least one section and a close', () => {
+    for (const service of SERVICES) {
+      expect(service.sections.length, `${service.slug} sections`).toBeGreaterThan(0)
+      expect(service.close.cta.primary.label.length).toBeGreaterThan(0)
+    }
+  })
+
+  it('resolves every service cta', () => {
+    for (const service of SERVICES) {
+      const hrefs = [
+        service.close.cta.primary.href,
+        service.close.cta.secondary.href,
+        ...(service.hero.cta
+          ? [service.hero.cta.primary.href, service.hero.cta.secondary.href]
+          : []),
+      ]
+      for (const href of hrefs) {
+        expect(resolves(href), `${service.slug}: ${href}`).toBe(true)
+      }
+    }
+  })
+
+  it('keeps every comparison section internally consistent', () => {
+    for (const service of SERVICES) {
+      for (const section of service.sections) {
+        if (section.kind !== 'comparison') continue
+        for (const row of section.spec.rows) {
+          expect(row.values, `${service.slug}/${row.id}`).toHaveLength(
+            section.spec.columns.length,
+          )
+        }
+      }
+    }
+  })
+
+  it('answers every service faq question', () => {
+    for (const service of SERVICES) {
+      for (const section of service.sections) {
+        if (section.kind !== 'faq') continue
+        for (const item of section.items) {
+          expect(item.question.endsWith('?'), `${service.slug}/${item.id}`).toBe(true)
+          expect(item.answer.length, `${service.slug}/${item.id}`).toBeGreaterThan(40)
+        }
+      }
+    }
+  })
+
+  it('resolves the services index ctas', () => {
+    expect(resolves(SERVICES_INDEX.close.cta.primary.href)).toBe(true)
+    expect(resolves(SERVICES_INDEX.close.cta.secondary.href)).toBe(true)
+  })
+})
+
+describe('projects content', () => {
+  it('has no duplicate project ids', () => {
+    const ids = PROJECTS.map((p) => p.id)
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('has no duplicate category ids', () => {
+    const ids = CATEGORIES.map((c) => c.id)
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('puts every project in a category that exists', () => {
+    const ids = new Set(CATEGORIES.map((c) => c.id))
+    for (const project of PROJECTS) {
+      expect(ids.has(project.category), `${project.id} → ${project.category}`).toBe(true)
+    }
+  })
+
+  it('maps every category onto a real service slug', () => {
+    // The filter chips deep-link from service pages, so a category with no
+    // service is a link into nothing.
+    const slugs = new Set(SERVICES.map((s) => s.slug))
+    for (const category of CATEGORIES) {
+      expect(slugs.has(category.id), `category ${category.id} has no service`).toBe(true)
+    }
+  })
+
+  it('tolerates a category with no projects yet', () => {
+    // GEO is the newest service and has no shipped case studies, so its
+    // category is legitimately empty. The catalogue keeps the category —
+    // it maps to a real service — and PastProjects hides the empty chip
+    // rather than rendering a filter that leads to nothing. That behaviour
+    // is asserted in PastProjects.test.tsx; this only records the fact.
+    const empty = CATEGORIES.filter(
+      (c) => !PROJECTS.some((p) => p.category === c.id),
+    ).map((c) => c.id)
+
+    expect(empty).toEqual(['geo'])
+  })
+
+  it('gives every project a challenge, a solution and an impact', () => {
+    for (const project of PROJECTS) {
+      expect(project.challenge.length, `${project.id} challenge`).toBeGreaterThan(40)
+      expect(project.solution.length, `${project.id} solution`).toBeGreaterThan(40)
+      expect(project.impact.length, `${project.id} impact`).toBeGreaterThan(0)
+      expect(project.tags.length, `${project.id} tags`).toBeGreaterThan(0)
+    }
+  })
+
+  it('resolves the projects page ctas', () => {
+    expect(resolves(PROJECTS_PAGE.close.cta.primary.href)).toBe(true)
+    expect(resolves(PROJECTS_PAGE.close.cta.secondary.href)).toBe(true)
+  })
+
+  it('carries no real third-party client identities', () => {
+    const blob = JSON.stringify({ PROJECTS, SERVICES })
+    for (const name of [
+      'totsyscan',
+      'La Truie',
+      'latruie',
+      'Prime1Sports',
+      'prime1sports',
+      'Zest Cleaning',
+      'cleanwithzest',
+      'SFG Capital',
+      'TONGAL',
+      'Dr. Bill',
+      'Dr. Steve',
+      'InjuryTrak',
+      'Autoploy',
+    ]) {
+      expect(blob, `reference identity ${name}`).not.toContain(name)
+    }
   })
 })

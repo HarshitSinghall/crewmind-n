@@ -1,8 +1,25 @@
 /* ---------------------------------------------------------------------------
    Design tokens — the single source of truth.
    Authored in oklch() for perceptually even ramps.
-   Dark is the only theme, defined on bare :root so nothing depends on the
-   visitor's OS setting.
+
+   THEMING
+   Dark is the primary theme and lives on bare :root, so it is what renders
+   with no JS, no OS preference, and no stored choice. Light is an override
+   applied in exactly two places:
+
+     1. @media (prefers-color-scheme: light) — guarded with
+        :root:not([data-theme='dark']) so an explicit dark choice still wins
+     2. :root[data-theme='light'] — the manual toggle
+
+   Every token that changes between themes must be redefined in BOTH light
+   blocks. A token defined only inside a media query has no value when the
+   toggle sets the attribute directly, which is the failure mode this
+   structure exists to prevent — tokens.test.ts asserts the two light blocks
+   stay in sync with each other.
+
+   Semantics, not literals: --surface-1 means "one step off the canvas", which
+   is lighter than --bg in dark and darker than it in light. Components ask
+   for the role and never care which direction that is.
 --------------------------------------------------------------------------- */
 
 :root {
@@ -92,10 +109,120 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
+  /* --- Decorative bloom: opacity multiplier for the accent glows ---------- */
+  --bloom-opacity: 1;
+
+  /* Tells the UA to render form controls and scrollbars for this theme. */
+  color-scheme: dark;
+
   /* --- Layout ------------------------------------------------------------ */
   --nav-h: 4.25rem;
   --container-max: 76rem;
   --container-pad: var(--space-5);
+}
+
+/* --- Light: OS preference, unless an explicit dark choice overrides it ---- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    /* --- Colour: canvas & surfaces ------------------------------------------
+       The ramp mirrors dark rather than copying a generic light palette: each
+       surface step moves FURTHER FROM the canvas, which means lighter in dark
+       and darker here. A card is one step off the page in both themes, so
+       every component keeps its elevation without a single conditional. */
+    --bg: oklch(0.99 0.002 250);
+    --surface-1: oklch(0.968 0.004 250);
+    --surface-2: oklch(0.942 0.006 250);
+    --surface-3: oklch(0.905 0.008 250);
+
+    /* --- Colour: borders ---------------------------------------------------- */
+    --border-subtle: oklch(0.885 0.008 250);
+    --border-strong: oklch(0.76 0.014 250);
+
+    /* --- Colour: text ------------------------------------------------------- */
+    --text-1: oklch(0.22 0.014 250);
+    --text-2: oklch(0.44 0.012 250);
+    /* Same rule as dark: large text (18px+) and meta only. */
+    --text-3: oklch(0.56 0.012 250);
+
+    /* --- Colour: identity accent (never on buttons) ------------------------- */
+    /* The dark teal is far too light to read on a near-white canvas, so the
+     accent darkens rather than shifting hue — same colour, different role. */
+    --accent: oklch(0.52 0.115 205);
+    --accent-dim: oklch(0.68 0.09 200);
+
+    /* --- Colour: the action (primary buttons ONLY) -------------------------- */
+    /* Amber survives the theme flip because it is a filled button with dark
+     text either way. It darkens on hover here, where dark mode lightens. */
+    --cta: oklch(0.79 0.16 72);
+    --cta-hover: oklch(0.73 0.16 72);
+    --cta-fg: oklch(0.24 0.04 72);
+
+    /* --- Colour: state ------------------------------------------------------ */
+    --success: oklch(0.52 0.13 155);
+    --warn: oklch(0.62 0.15 58);
+
+    /* --- Shadow: tighter and far weaker — light surfaces show every edge ---- */
+    --shadow-1: 0 1px 2px oklch(0.45 0.02 250 / 0.08),
+    0 1px 1px oklch(0.45 0.02 250 / 0.04);
+    --shadow-2: 0 4px 12px oklch(0.45 0.02 250 / 0.1),
+    0 1px 3px oklch(0.45 0.02 250 / 0.06);
+    --shadow-3: 0 16px 48px oklch(0.45 0.02 250 / 0.14),
+    0 4px 12px oklch(0.45 0.02 250 / 0.08);
+
+    /* --- Decorative bloom needs more presence on a light canvas ------------- */
+    --bloom-opacity: 0.5;
+
+    color-scheme: light;
+  }
+}
+
+/* --- Light: the manual toggle, which wins over the OS in both directions -- */
+:root[data-theme='light'] {
+  /* --- Colour: canvas & surfaces ------------------------------------------ */
+  --bg: oklch(0.99 0.002 250);
+  --surface-1: oklch(0.968 0.004 250);
+  --surface-2: oklch(0.942 0.006 250);
+  --surface-3: oklch(0.905 0.008 250);
+
+  /* --- Colour: borders ---------------------------------------------------- */
+  --border-subtle: oklch(0.885 0.008 250);
+  --border-strong: oklch(0.76 0.014 250);
+
+  /* --- Colour: text ------------------------------------------------------- */
+  --text-1: oklch(0.22 0.014 250);
+  --text-2: oklch(0.44 0.012 250);
+  /* Same rule as dark: large text (18px+) and meta only. */
+  --text-3: oklch(0.56 0.012 250);
+
+  /* --- Colour: identity accent (never on buttons) ------------------------- */
+  /* The dark teal is far too light to read on a near-white canvas, so the
+     accent darkens rather than shifting hue — same colour, different role. */
+  --accent: oklch(0.52 0.115 205);
+  --accent-dim: oklch(0.68 0.09 200);
+
+  /* --- Colour: the action (primary buttons ONLY) -------------------------- */
+  /* Amber survives the theme flip because it is a filled button with dark
+     text either way. It darkens on hover here, where dark mode lightens. */
+  --cta: oklch(0.79 0.16 72);
+  --cta-hover: oklch(0.73 0.16 72);
+  --cta-fg: oklch(0.24 0.04 72);
+
+  /* --- Colour: state ------------------------------------------------------ */
+  --success: oklch(0.52 0.13 155);
+  --warn: oklch(0.62 0.15 58);
+
+  /* --- Shadow: tighter and far weaker — light surfaces show every edge ---- */
+  --shadow-1: 0 1px 2px oklch(0.45 0.02 250 / 0.08),
+    0 1px 1px oklch(0.45 0.02 250 / 0.04);
+  --shadow-2: 0 4px 12px oklch(0.45 0.02 250 / 0.1),
+    0 1px 3px oklch(0.45 0.02 250 / 0.06);
+  --shadow-3: 0 16px 48px oklch(0.45 0.02 250 / 0.14),
+    0 4px 12px oklch(0.45 0.02 250 / 0.08);
+
+  /* --- Decorative bloom needs more presence on a light canvas ------------- */
+  --bloom-opacity: 0.5;
+
+  color-scheme: light;
 }
 
 /* Surface tokens into Tailwind's utility namespace. */

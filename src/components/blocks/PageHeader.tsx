@@ -77,8 +77,9 @@ function Backdrop() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-0 h-[26rem] opacity-[0.1] blur-[100px]"
+      className="pointer-events-none absolute inset-x-0 top-0 h-[26rem] blur-[100px]"
       style={{
+        opacity: 'calc(0.1 * var(--bloom-opacity))',
         background: 'radial-gradient(closest-side, var(--accent), transparent 70%)',
       }}
     />

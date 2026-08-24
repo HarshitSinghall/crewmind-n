@@ -98,7 +98,27 @@ Loaded from Google Fonts with `preconnect` + `display=swap`, weights subset to e
 - **Shadow:** 3 layered elevations, low-opacity and *tinted with the canvas hue* rather than black
 - **Motion:** `--dur-fast` 120ms / `--dur-base` 240ms / `--dur-slow` 480ms; `--ease-out-expo`, `--ease-spring`
 
-Dark is the primary and only theme. It is defined on bare `:root` — not inside a media query — so nothing depends on the visitor's OS setting.
+~~Dark is the primary and only theme. It is defined on bare `:root` — not inside a media query — so nothing depends on the visitor's OS setting.~~
+
+**AMENDED 2026-08-24 — a light theme was added at the user's request.** Dark
+remains the *primary* theme and still lives on bare `:root`, so it is what
+renders with no JS, no OS preference, and no stored choice. Light is an
+override applied in two places: a `prefers-color-scheme: light` media query
+guarded with `:root:not([data-theme='dark'])`, and `:root[data-theme='light']`
+for the manual toggle. Every token that changes must be redefined in both, and
+`src/styles/tokens.test.ts` fails the build if they drift apart.
+
+The light ramp mirrors dark rather than importing a generic light palette:
+each surface step moves *further from* the canvas, which means lighter in dark
+and darker in light. A `Card` therefore means "one step off the page" in both
+themes with no conditionals in any component. Two tokens genuinely invert:
+`--accent` darkens (the cyan-teal cannot carry text on near-white) and
+`--cta-hover` darkens where dark mode lightens. `--bloom-opacity` scales the
+decorative accent glows down for the light canvas.
+
+The toggle lives in the nav (`ui/ThemeToggle.tsx`, `lib/useTheme.ts`), stores
+the choice in `localStorage`, and is applied before first paint by a small
+inline script in `index.html` so there is no flash of the wrong theme.
 
 ---
 
@@ -225,6 +245,56 @@ Scaffold, tokens, global CSS, all `ui/` primitives, `Nav` / `Footer` / `WhatsApp
 
 **Phase 3 — Catalogue**
 `PastProjects` with URL-driven filtering, `Services` index, `ServicePage` template and all 8 service content entries.
+
+---
+
+## Delivery log
+
+- **Phase 1** — complete. Foundation, design system, homepage.
+- **Phase 2** — complete. Pricing, About, Enterprise. `CONTENT-SWAP.md`
+  shipped here rather than in Phase 1 (it was specced for Phase 1 and missed).
+- **Light theme** — added out of band, see the amendment in section 3.3.
+- **Phase 3** — complete. Services index, 8 detail pages via one template,
+  PastProjects with `?category=` filtering.
+
+### Departures from this spec, and why
+
+1. **No `motion` / framer-motion dependency.** Section 2 selects it. Every
+   motion requirement in section 6 was met with CSS transitions, the
+   `Reveal` intersection-observer wrapper, and a CSS keyframe marquee. The
+   two components that would have justified a spring library
+   (`AgentFlowDiagram`, the path-draw timeline) were not built — the
+   homepage timeline carries data visuals instead. Adding a runtime motion
+   dependency for nothing would have cost bundle weight against the
+   performance goal in section 1.
+
+2. **`vitest-axe` → `axe-core` directly.** Same coverage, one fewer
+   dependency. Contrast rules are disabled in jsdom because there is no
+   layout to measure; that check remains manual.
+
+3. **Third-party identities are not copied verbatim.** Section 1 says the
+   reference's copy is used verbatim as placeholder. That was followed
+   everywhere except named real people (About team), named client brands
+   (Enterprise and PastProjects case studies), and named vendor products
+   (service pages). Structure is preserved exactly; identities are replaced.
+   Staging real individuals as this company's staff, or another agency's
+   clients as our own, is not shippable even as placeholder text.
+   `content.test.ts` asserts those names never return.
+
+4. **All FAQ answers are written fresh.** The reference renders accordion
+   panels only on expand, so no answer text exists in the served markup.
+   Questions are verbatim; every answer is ours, and flagged in
+   `CONTENT-SWAP.md` as making claims nobody has agreed to.
+
+5. **`AgentFlowDiagram`, `Tabs`, `Divider`, `AvatarStack`-as-its-own-file**
+   were specced in section 4 and not built — no page needed them. `Stat`,
+   `Accordion`, `ProjectGrid`, `PageHeader`, `CtaBand`, `PillarRow`,
+   `ChecklistBlock`, `AudienceBlock`, `StatsBlock` and `StepList` were built
+   and are not in section 4's tree.
+
+6. **`geo` has no case studies.** The reference ships an empty filter chip.
+   Ours hides zero-count chips and omits the related-work block on that
+   service page rather than linking into an empty grid.
 
 ---
 

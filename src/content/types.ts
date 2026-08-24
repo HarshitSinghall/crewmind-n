@@ -7,8 +7,6 @@
 export interface NavLink {
   label: string
   href: string
-  /** Marks a route that is not built yet, so Nav can style it honestly. */
-  pending?: boolean
 }
 
 export interface Brand {
@@ -300,5 +298,113 @@ export interface EnterpriseContent {
   }
   ownership: PillarSet
   faq: { title: string; items: FaqItem[] }
+  close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
+}
+
+/* ---------------------------------------------------------------------------
+   Phase 3 — services and the project catalogue.
+--------------------------------------------------------------------------- */
+
+/**
+ * One block on a service detail page. Eight pages share a single template, so
+ * the shape of a page is data: reorder the array and the page reorders.
+ *
+ * Adding a `kind` means adding one case to ServicePage's switch — the compiler
+ * enforces that, which is the whole reason this is a discriminated union
+ * rather than a bag of optional fields.
+ */
+export type ServiceSection =
+  | {
+      kind: 'pillars'
+      id: string
+      eyebrow?: string
+      title: string
+      sub?: string
+      items: Pillar[]
+    }
+  | {
+      kind: 'checklist'
+      id: string
+      eyebrow?: string
+      title: string
+      sub?: string
+      items: string[]
+    }
+  | {
+      kind: 'audience'
+      id: string
+      eyebrow?: string
+      title: string
+      sub?: string
+      items: string[]
+    }
+  | {
+      kind: 'steps'
+      id: string
+      eyebrow?: string
+      title: string
+      sub?: string
+      steps: NumberedStep[]
+    }
+  | {
+      kind: 'stats'
+      id: string
+      eyebrow?: string
+      title: string
+      sub?: string
+      items: { value: string; label: string; body?: string }[]
+    }
+  | { kind: 'comparison'; id: string; spec: ComparisonSpec }
+  | { kind: 'faq'; id: string; title: string; items: FaqItem[] }
+
+export interface ServiceContent {
+  slug: string
+  /** Card + nav title. Mirrors the summary shown on the homepage grid. */
+  title: string
+  description: string
+  features: string[]
+  badge?: string
+  seo: { title: string; description: string }
+  hero: PageHero
+  /**
+   * Project category this service maps to. Drives the "see this work"
+   * link into /past-projects?category=… and is asserted to exist.
+   */
+  category: string
+  sections: ServiceSection[]
+  close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
+}
+
+export interface ProjectCategory {
+  id: string
+  label: string
+}
+
+export interface ProjectCase {
+  id: string
+  title: string
+  /** De-identified client descriptor, e.g. "Chiropractic Clinic". */
+  client: string
+  when: string
+  impact: string
+  /** Must match a ProjectCategory id. */
+  category: string
+  tags: string[]
+  challenge: string
+  solution: string
+}
+
+export interface ProjectsContent {
+  seo: { title: string; description: string }
+  hero: PageHero
+  filterLabel: string
+  allLabel: string
+  emptyMessage: string
+  close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
+}
+
+export interface ServicesIndexContent {
+  seo: { title: string; description: string }
+  hero: PageHero
   close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
 }

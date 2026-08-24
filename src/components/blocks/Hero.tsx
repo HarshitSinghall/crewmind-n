@@ -74,8 +74,9 @@ function HeroBackdrop() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
       <div
-        className="absolute left-1/2 top-[-14rem] h-[36rem] w-[64rem] -translate-x-1/2 rounded-[50%] opacity-[0.16] blur-[110px]"
+        className="absolute left-1/2 top-[-14rem] h-[36rem] w-[64rem] -translate-x-1/2 rounded-[50%] blur-[110px]"
         style={{
+          opacity: 'calc(0.16 * var(--bloom-opacity))',
           background:
             'radial-gradient(closest-side, var(--accent), transparent 72%)',
         }}

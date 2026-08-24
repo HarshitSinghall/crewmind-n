@@ -4,7 +4,16 @@ import { Heading } from '@/components/ui/Heading'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Text } from '@/components/ui/Text'
 import { Reveal } from '@/components/ui/Reveal'
-import type { EnterpriseContent } from '@/content/types'
+import type { NumberedStep } from '@/content/types'
+
+interface StepListProps {
+  title: string
+  steps: NumberedStep[]
+  eyebrow?: string
+  sub?: string
+  /** Anchor + aria-labelledby base. Must be unique on the page. */
+  id?: string
+}
 
 /**
  * Numbered process, one column, connected by a single rule.
@@ -13,26 +22,28 @@ import type { EnterpriseContent } from '@/content/types'
  * only, so it stays a list with a connector rather than reusing a component
  * built around visuals it would have to fake.
  */
-export function StepList({ process }: { process: EnterpriseContent['process'] }) {
+export function StepList({ title, steps, eyebrow, sub, id = 'process' }: StepListProps) {
+  const titleId = `${id}-title`
+
   return (
-    <Section id="process" divided aria-labelledby="process-title">
+    <Section id={id} divided aria-labelledby={titleId}>
       <Container>
         <Reveal>
           <div className="max-w-[42rem]">
-            <Eyebrow className="mb-5">{process.eyebrow}</Eyebrow>
-            <Heading level={2} size="xl" id="process-title" className="mb-4">
-              {process.title}
+            {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
+            <Heading level={2} size="xl" id={titleId} className="mb-4">
+              {title}
             </Heading>
-            <Text size="lg">{process.sub}</Text>
+            {sub && <Text size="lg">{sub}</Text>}
           </div>
         </Reveal>
 
         <ol className="mt-14 max-w-[46rem]">
-          {process.steps.map((step, i) => (
+          {steps.map((step, i) => (
             <Reveal as="li" key={step.step} index={i}>
               <div className="relative flex gap-6 pb-10 last:pb-0">
                 {/* Connector — stops at the last node instead of dangling. */}
-                {i < process.steps.length - 1 && (
+                {i < steps.length - 1 && (
                   <span
                     aria-hidden="true"
                     className="absolute left-[1.4375rem] top-12 bottom-2 w-px bg-[var(--border-subtle)]"

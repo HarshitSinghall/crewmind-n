@@ -4,6 +4,9 @@ import { Nav } from '@/components/blocks/Nav'
 import { Footer } from '@/components/blocks/Footer'
 import { WhatsAppFab } from '@/components/blocks/WhatsAppFab'
 import Home from '@/pages/Home'
+import Pricing from '@/pages/Pricing'
+import About from '@/pages/About'
+import Enterprise from '@/pages/Enterprise'
 import Placeholder from '@/pages/Placeholder'
 import NotFound from '@/pages/NotFound'
 
@@ -33,21 +36,9 @@ export function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          {/* Phase 2 */}
-          <Route
-            path="/pricing"
-            element={<Placeholder title="Pricing" phase="Phase 2" path="/pricing" />}
-          />
-          <Route
-            path="/about"
-            element={<Placeholder title="Meet the Team" phase="Phase 2" path="/about" />}
-          />
-          <Route
-            path="/enterprise"
-            element={
-              <Placeholder title="Enterprise AI Solutions" phase="Phase 2" path="/enterprise" />
-            }
-          />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/enterprise" element={<Enterprise />} />
 
           {/* Phase 3 */}
           <Route

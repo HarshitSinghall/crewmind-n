@@ -27,10 +27,10 @@ export const BRAND: Brand = {
 export const NAV_LINKS: NavLink[] = [
   { label: 'Services', href: '/services', pending: true },
   { label: 'GEO', href: '/services/geo', pending: true },
-  { label: 'Pricing', href: '/pricing', pending: true },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'See Our Work', href: '/past-projects', pending: true },
-  { label: 'Meet the Team', href: '/about', pending: true },
-  { label: 'Enterprise', href: '/enterprise', pending: true },
+  { label: 'Meet the Team', href: '/about' },
+  { label: 'Enterprise', href: '/enterprise' },
 ]
 
 export const PRIMARY_CTA = {
@@ -40,8 +40,8 @@ export const PRIMARY_CTA = {
 
 export const FOOTER_LINKS: NavLink[] = [
   { label: 'Services', href: '/services', pending: true },
-  { label: 'Pricing', href: '/pricing', pending: true },
-  { label: 'Enterprise', href: '/enterprise', pending: true },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Enterprise', href: '/enterprise' },
   { label: 'See Our Work', href: '/past-projects', pending: true },
-  { label: 'Meet the Team', href: '/about', pending: true },
+  { label: 'Meet the Team', href: '/about' },
 ]

@@ -148,11 +148,17 @@ export const PRICING: PricingContent = {
     note: 'Not sure which line you fall on? Book the call — scoping it is the call.',
   },
 
+  /*
+    Repointed at the flagship. The tiers above are still the reference's
+    placeholder band and are flagged in CONTENT-SWAP.md; Priya's price is
+    real, named in full, and one click away — so the page has at least one
+    honest number on it while those tiers wait to be rewritten.
+  */
   resource: {
-    eyebrow: 'Free Resource',
-    title: 'Free AI Tools & Resources',
-    body: 'Join our free community for tools, guides, and resources to start using AI in your business — no cost, no catch.',
-    cta: { label: 'Join the Free Community', href: 'https://www.skool.com/example' },
+    eyebrow: 'Flagship product',
+    title: 'Looking for Priya?',
+    body: 'Our lead-response product is priced separately and plainly: ₹30,000 one-time setup, then ₹12,000 a month with 500 leads included. Every enquiry called inside sixty seconds, in Hindi, at any hour.',
+    cta: { label: 'See the Priya plan', href: '/priya' },
   },
 
   proof: {

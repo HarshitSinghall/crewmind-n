@@ -8,6 +8,7 @@ import { ENTERPRISE } from './enterprise'
 import { SERVICES, SERVICES_INDEX, getService } from './services'
 import { CATEGORIES, PROJECTS, PROJECTS_PAGE } from './projects'
 import { AUTOMATIONS, AUTOMATIONS_HOME, AUTOMATIONS_PAGE, getAutomation } from './automations'
+import { PRIYA, PRIYA_HOME } from './priya'
 
 /* Routes the app actually serves. Keep in sync with App.tsx. */
 const STATIC_ROUTES = new Set([
@@ -537,5 +538,107 @@ describe('automations', () => {
     expect(getAutomation('ai-voice-receptionist')?.name).toBe('AI Voice Receptionist')
     expect(getAutomation('nope')).toBeUndefined()
     expect(getAutomation(undefined)).toBeUndefined()
+  })
+})
+
+/* --- Phase 5 ------------------------------------------------------------- */
+
+describe('priya content', () => {
+  it('resolves every cta', () => {
+    const hrefs = [
+      PRIYA.hero.cta!.primary.href,
+      PRIYA.hero.cta!.secondary.href,
+      PRIYA.deadLead.cta.href,
+      PRIYA.plan.tier.cta.href,
+      PRIYA.plan.tier.secondaryCta!.href,
+      PRIYA.close.cta.primary.href,
+      PRIYA.close.cta.secondary.href,
+      PRIYA_HOME.cta.href,
+    ]
+    for (const href of hrefs) {
+      expect(resolves(href), `cta ${href}`).toBe(true)
+    }
+  })
+
+  it('has no duplicate ids anywhere on the page', () => {
+    for (const ids of [
+      PRIYA.cause.items.map((p) => p.id),
+      PRIYA.followUp.items.map((p) => p.id),
+      PRIYA.limits.items.map((p) => p.id),
+      PRIYA.founding.items.map((p) => p.id),
+      PRIYA.mechanism.notes.map((p) => p.id),
+      PRIYA.deadLead.outcomes.map((p) => p.id),
+      PRIYA.call.turns.map((t) => t.id),
+      PRIYA.faq.items.map((f) => f.id),
+      PRIYA.comparison.rows.map((r) => r.id),
+      PRIYA.race.lanes.map((l) => l.id),
+    ]) {
+      expect(new Set(ids).size).toBe(ids.length)
+    }
+  })
+
+  it('gives every comparison row one value per column', () => {
+    for (const row of PRIYA.comparison.rows) {
+      expect(row.values, `row ${row.id}`).toHaveLength(
+        PRIYA.comparison.columns.length,
+      )
+    }
+  })
+
+  it('answers every faq question it asks', () => {
+    for (const item of PRIYA.faq.items) {
+      expect(item.question.endsWith('?'), `${item.id} is a question`).toBe(true)
+      expect(item.answer.length, `${item.id} answer`).toBeGreaterThan(40)
+    }
+  })
+
+  it('runs both race lanes to the same number of beats', () => {
+    const [slow, fast] = PRIYA.race.lanes
+    expect(fast.steps).toHaveLength(slow.steps.length)
+  })
+
+  it('tags every devanagari line as hindi and leaves hinglish untagged', () => {
+    const devanagari = /[ऀ-ॿ]/
+    for (const turn of PRIYA.call.turns) {
+      if (devanagari.test(turn.line)) {
+        expect(turn.lang, `turn ${turn.id}`).toBe('hi')
+      } else {
+        expect(turn.lang, `turn ${turn.id}`).toBeUndefined()
+      }
+    }
+  })
+
+  it('publishes no unmeasured market-audit statistics', () => {
+    // A previous version of this pitch published "31 brokerages tested,
+    // median callback 14h 20m, 9 never called" as a first-person measurement
+    // with a stated methodology. It was never run. It must never come back.
+    const blob = JSON.stringify(PRIYA)
+    for (const claim of ['31 brokerages', '14h 20m', 'never called']) {
+      expect(blob, `unmeasured claim: ${claim}`).not.toContain(claim)
+    }
+  })
+
+  it('ships no call recording until a real one exists', () => {
+    expect(PRIYA.call.recordingUrl).toBeNull()
+  })
+
+  it('keeps the limits that cost money', () => {
+    const ids = PRIYA.limits.items.map((l) => l.id)
+    expect(ids).toContain('accents')
+    expect(ids).toContain('volume')
+    expect(PRIYA.limits.items.length).toBeGreaterThanOrEqual(6)
+  })
+
+  it('claims no testimonial, rating or client count', () => {
+    const blob = JSON.stringify(PRIYA).toLowerCase()
+    for (const word of ['trustpilot', 'testimonial', 'clients trust', 'rated']) {
+      expect(blob, `unearned proof: ${word}`).not.toContain(word)
+    }
+  })
+
+  it('shares one lead card between the page and the homepage band', () => {
+    // Two cards drifting apart is exactly the defect the content-module rule
+    // exists to prevent.
+    expect(PRIYA_HOME.card).toBe(PRIYA.leadCard.card)
   })
 })

@@ -20,24 +20,52 @@ source these modules were transcribed from, and are not imported or built.
 
 `src/content/site.ts` — the whole brand identity, in one object.
 
-- [ ] `BRAND.name` — currently `CrewMind`, taken from the project directory
-- [ ] `BRAND.url` — currently `https://crewmind.example`; **the canonical and
-      every OG URL derive from this**
-- [ ] `BRAND.tagline`
-- [ ] `BRAND.email` — currently `hello@crewmind.example`
-- [ ] `BRAND.phone` / `BRAND.phoneHref` — currently a Hong Kong number carried
-      over from the reference
-- [ ] `BRAND.address` — currently the reference's Hong Kong address
-- [ ] `BRAND.calendly` — currently `https://calendly.com/example/discovery-call`
-- [ ] `WHATSAPP_NUMBER` (module constant, top of file) — currently the
-      reference's number, `85228105510`
-- [ ] `BRAND.socials` — currently `https://linkedin.com/company/example`
-- [ ] `NAV_LINKS` / `FOOTER_LINKS` labels
-- [ ] `PRIMARY_CTA.label`
+**Done.** This file now carries the real registered facts, sourced from the
+GST REG-06 certificate. `content.test.ts` asserts they stay real.
+
+- [x] `BRAND.name` — `CrewMind`
+- [x] `BRAND.url` — `https://crewmind.in`
+- [x] `BRAND.tagline`
+- [x] `BRAND.email` — `hello@crewmind.in`
+- [x] `BRAND.phone` / `BRAND.phoneHref` — `+91 70175 31825`
+- [x] `BRAND.address` — Gurugram, Delhi NCR
+- [ ] `BRAND.calendly` — still `https://calendly.com/example/discovery-call`.
+      **No real value for this exists yet.** Either create the booking link or
+      remove the field and the components that read it.
+- [x] `WHATSAPP_NUMBER` — `917017531825`
+- [ ] `BRAND.socials` — still `https://linkedin.com/company/example`. **No real
+      value for this exists yet.**
+- [x] `NAV_LINKS` / `FOOTER_LINKS` labels — lead with `Priya`; the `GEO` deep
+      link was dropped (still reachable at `/services/geo`)
+- [ ] `PRIMARY_CTA.label` — tied to `BRAND.calendly`, so it waits on that
 
 Also replace `public/favicon.svg` and add `public/opengraph.jpg` — `useSeo`
 points every page's OG image at `${BRAND.url}/opengraph.jpg`, which does not
 exist yet.
+
+---
+
+## What is NOT placeholder
+
+`src/content/priya.ts` is **real content** and must be left alone by the sweep
+described in the rest of this document. Every figure in it is a real price, a
+real measurement, or a real limitation.
+
+Three things are deliberately absent from it and must stay absent:
+
+- **Market-audit statistics.** "31 brokerages tested, median callback 14h 20m"
+  was published once as a first-person measurement and was never run. Checked
+  against the live database: zero tested rows. `content.test.ts` asserts those
+  strings never reappear.
+- **A call recording.** `PRIYA.call.recordingUrl` is `null`, so no player
+  renders and the transcript is labelled representative. When a real recording
+  is dropped at `public/audio/`, the transcript must be replaced with the
+  transcript **of that recording**.
+- **Testimonials, ratings and client counts.** There are none. The
+  founding-client block is the honest answer to "how many clients do you have".
+
+`src/content/site.ts` is also real now — the registered entity, GSTIN, phone,
+email and domain all come from the GST REG-06 certificate.
 
 ---
 
@@ -143,6 +171,14 @@ Every proof element on the site is currently borrowed:
 Either replace them with your own verified numbers or remove the components.
 `ProofBar`, `ReviewsBand` and `TestimonialRail` all degrade cleanly if the
 arrays behind them are emptied.
+
+**This got more urgent.** `ProofBar` and `TestimonialRail` now sit one scroll
+above the Priya band on the homepage — borrowed Trustpilot scores and reviews
+written by real people about a different company, directly above a product
+page whose entire argument is that we are the company in this market that
+tells the truth. Shipping those two things on the same page cancels the
+second one out. Remove them before launch, ahead of everything else on this
+list.
 
 ---
 

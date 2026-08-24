@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { computeFlip, isIdentity } from '@/lib/flip'
 import { useReducedMotion } from '@/lib/useReducedMotion'
 
 /**
- * A portrait card that opens into a detail panel.
+ * A portrait card that morphs into a detail panel when opened.
  *
  * Adapted from the `expandable-profile-card` item in the watermelon.sh shadcn
- * registry. Four things changed in the port, and all four were necessary:
+ * registry. Three things changed in the port:
  *
  *  1. COLOUR. The original is written against shadcn's semantic classes
  *     (`bg-card`, `text-foreground`, `border-border`, `text-primary`). None of
@@ -25,26 +26,39 @@ import { useReducedMotion } from '@/lib/useReducedMotion'
  *     image-led card would be a grid of empty rectangles. Without a portrait
  *     it falls back to initials on a token gradient, at the same size, so the
  *     grid does not reflow the day real headshots land.
- *  4. NO MOTION LIBRARY, AND NO SHARED-ELEMENT MORPH. The original pairs the
- *     trigger and the panel under one `layoutId` so the thumbnail appears to
- *     grow into the modal. That is the whole reason the component is
- *     interesting, and it did not survive the port.
  *
- * WHY THE MORPH IS GONE. With both nodes mounted under the same `layoutId`,
- * motion locked the panel to the trigger's measured box — it opened at the
- * card's 373x467 instead of expanding — left the trigger stuck at
- * `opacity: 0` after closing, and never called `safeToRemove`. That last one
- * mattered: the exiting `fixed inset-0` overlay stayed mounted with
- * `pointer-events: auto`, sitting invisibly over the whole page. It
- * reproduced portalled and inline, with and without a keyed motion root, and
- * with and without the nested `layoutId`s.
+ * THE MORPH IS HAND-ROLLED FLIP, NOT A LIBRARY.
  *
- * With the morph unavailable, a 44KB animation dependency was buying a spring
- * and a fade, which does not pay for itself — and this codebase has a
- * measured decision against animation libraries. So the enter is the same
- * mount-then-transition pattern `useReveal` already uses, on tokens, and the
- * close unmounts immediately. Nothing can be left behind, because there is
- * nothing to wait for.
+ * The original gets its shared-element effect from motion's `layoutId`. That
+ * was tried first and appeared badly broken — panel stuck at the trigger's
+ * measured box, trigger stranded at `opacity: 0`, exit never completing, so
+ * an invisible `position: fixed` overlay stayed over the page swallowing
+ * clicks. In fairness to motion, most of that was probably an artefact of
+ * where it was being tested: an automated browser tab reports
+ * `visibilityState: 'hidden'`, and Chrome pauses `requestAnimationFrame`
+ * entirely in hidden tabs, so any rAF-driven animation freezes on frame zero
+ * and never signals completion. motion may well behave correctly in a real
+ * foreground tab.
+ *
+ * FLIP is kept anyway, on its own merits: no dependency in a codebase that
+ * has a measured decision against animation libraries, maths that is pure and
+ * unit-tested (`@/lib/flip`), and — see the fallback timer below — an
+ * end state that is guaranteed even when rAF never runs at all. That last
+ * property is what the library version could not offer here.
+ *
+ * The technique: the panel lays out where it belongs, we measure both rects,
+ * apply the transform that makes the panel sit exactly on top of the card,
+ * then animate that transform away. Only `transform` and `opacity` animate,
+ * so it stays on the compositor.
+ *
+ * Two details that are load-bearing:
+ *
+ *  - `transform-origin: top left` on both the panel and its content wrapper.
+ *    The maths treats `dx`/`dy` as a corner-to-corner delta; a centre origin
+ *    makes the translation wrong by half the size difference.
+ *  - The content wrapper carries the INVERSE scale. Without it the panel's
+ *    text renders visibly condensed for the length of the animation, because
+ *    the container is squashed to roughly 0.45x horizontally on frame one.
  */
 
 interface ExpandableProfileCardProps {
@@ -64,6 +78,15 @@ interface ExpandableProfileCardProps {
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
 
+/**
+ * Morph duration. Defined here rather than as a token because the same number
+ * has to drive both the CSS transition and the JavaScript fallback timer, and
+ * two sources for one duration is how animations end up stuck half-finished.
+ */
+const MORPH_MS = 420
+
+type Phase = 'closed' | 'opening' | 'open' | 'closing'
+
 export function ExpandableProfileCard({
   id,
   title,
@@ -73,39 +96,141 @@ export function ExpandableProfileCard({
   children,
   className,
 }: ExpandableProfileCardProps) {
-  const [open, setOpen] = useState(false)
+  const [phase, setPhase] = useState<Phase>('closed')
   const reduced = useReducedMotion()
-  const panelRef = useRef<HTMLDivElement>(null)
+
   const triggerRef = useRef<HTMLButtonElement>(null)
-  // Derived from the caller's stable id, so the dialog's label survives
-  // re-renders and is legible in the DOM.
+  const panelRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  /** The card's rect at the moment the morph started. FLIP's "First". */
+  const firstRect = useRef<DOMRect | null>(null)
+
+  const mounted = phase !== 'closed'
   const headingId = `profile-${id}-title`
 
-  /*
-    Mount first at the "from" state, then flip to the "to" state on the next
-    frame so the browser has something to transition between. Same trick
-    useReveal uses. Under reduced motion it starts settled.
-  */
-  const [entered, setEntered] = useState(false)
+  const open = useCallback(() => {
+    firstRect.current = triggerRef.current?.getBoundingClientRect() ?? null
+    setPhase('opening')
+  }, [])
 
-  useEffect(() => {
-    if (!open) {
-      setEntered(false)
+  const close = useCallback(() => {
+    // Re-measure: the page may have scrolled while the panel was open, and
+    // morphing back to a stale rect sends the panel to where the card was.
+    firstRect.current = triggerRef.current?.getBoundingClientRect() ?? null
+    setPhase((p) => (p === 'closed' ? p : 'closing'))
+  }, [])
+
+  /* ---- The morph itself ------------------------------------------------- */
+
+  useLayoutEffect(() => {
+    if (phase !== 'opening' && phase !== 'closing') return
+
+    const panel = panelRef.current
+    const content = contentRef.current
+    const overlay = overlayRef.current
+    const settle = () => setPhase(phase === 'opening' ? 'open' : 'closed')
+
+    if (reduced || !panel || !content || !firstRect.current) {
+      settle()
       return
     }
-    if (reduced) {
-      setEntered(true)
+
+    // "Last": where the panel actually sits, with no transform applied.
+    panel.style.transition = 'none'
+    content.style.transition = 'none'
+    panel.style.transform = ''
+    content.style.transform = ''
+
+    const last = panel.getBoundingClientRect()
+    const flip = computeFlip(firstRect.current, last)
+
+    if (isIdentity(flip)) {
+      settle()
       return
     }
-    const frame = requestAnimationFrame(() => setEntered(true))
-    return () => cancelAnimationFrame(frame)
-  }, [open, reduced])
 
-  const close = useCallback(() => setOpen(false), [])
+    const opening = phase === 'opening'
+
+    // "Invert": snap the panel onto the card, untransitioned.
+    panel.style.transformOrigin = 'top left'
+    content.style.transformOrigin = 'top left'
+    panel.style.transform = opening ? flip.transform : 'none'
+    content.style.transform = opening ? flip.counterTransform : 'none'
+    content.style.opacity = opening ? '0' : '1'
+    if (overlay) {
+      overlay.style.transition = 'none'
+      overlay.style.opacity = opening ? '0' : '1'
+    }
+
+    // Flush the inverted state to the DOM, otherwise the browser coalesces it
+    // with the "Play" state below and nothing animates at all.
+    void panel.getBoundingClientRect()
+
+    /*
+      Armed BEFORE the frame is requested, not inside it.
+
+      requestAnimationFrame does not run in a background tab — Chrome pauses
+      it entirely when `document.visibilityState` is 'hidden'. If the fallback
+      is armed inside the callback, then a tab backgrounded between the invert
+      and the first frame never schedules it, and the panel is left frozen in
+      the inverted state: scaled down onto the card, with the real content
+      clipped inside it. setTimeout still fires when hidden (throttled to
+      about a second), so this is what guarantees the morph always ends.
+    */
+    let fallback = window.setTimeout(settle, MORPH_MS + 160)
+
+    const frame = requestAnimationFrame(() => {
+      // "Play".
+      const ease = 'var(--ease-out-expo)'
+      panel.style.transition = `transform ${MORPH_MS}ms ${ease}`
+      content.style.transition = `transform ${MORPH_MS}ms ${ease}, opacity ${Math.round(MORPH_MS * 0.6)}ms ease-out`
+      panel.style.transform = opening ? 'none' : flip.transform
+      content.style.transform = opening ? 'none' : flip.counterTransform
+      content.style.opacity = opening ? '1' : '0'
+      if (overlay) {
+        overlay.style.transition = `opacity ${MORPH_MS}ms ${ease}`
+        overlay.style.opacity = opening ? '1' : '0'
+      }
+
+      // Re-arm from the moment the animation actually starts. Never trust
+      // transitionend alone: an interrupted transition, or a property that
+      // does not end up changing, fires nothing at all.
+      window.clearTimeout(fallback)
+      fallback = window.setTimeout(settle, MORPH_MS + 80)
+    })
+
+    const onEnd = (e: TransitionEvent) => {
+      if (e.target !== panel || e.propertyName !== 'transform') return
+      window.clearTimeout(fallback)
+      settle()
+    }
+    panel.addEventListener('transitionend', onEnd)
+
+    return () => {
+      cancelAnimationFrame(frame)
+      window.clearTimeout(fallback)
+      panel.removeEventListener('transitionend', onEnd)
+    }
+  }, [phase, reduced])
+
+  /* Clear the inline styles once settled, so nothing is left mid-transform. */
+  useLayoutEffect(() => {
+    if (phase !== 'open') return
+    for (const el of [panelRef.current, contentRef.current, overlayRef.current]) {
+      if (!el) continue
+      el.style.transition = ''
+      el.style.transform = ''
+      el.style.transformOrigin = ''
+      el.style.opacity = ''
+    }
+  }, [phase])
+
+  /* ---- Modal behaviour -------------------------------------------------- */
 
   /* Escape closes, Tab stays inside. */
   useEffect(() => {
-    if (!open) return
+    if (!mounted) return
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -131,38 +256,43 @@ export function ExpandableProfileCard({
 
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [open, close])
+  }, [mounted, close])
 
   /* Lock the page behind the panel, and give focus to it. */
   useEffect(() => {
-    if (!open) return
+    if (!mounted) return
 
     const previous = document.body.style.overflow
     document.body.style.overflow = 'hidden'
 
-    const firstFocusable =
-      panelRef.current?.querySelector<HTMLElement>(FOCUSABLE) ?? null
-    firstFocusable?.focus()
+    panelRef.current?.querySelector<HTMLElement>(FOCUSABLE)?.focus()
 
     return () => {
       document.body.style.overflow = previous
       // Send focus back where it came from, not to the top of the document.
+      // The trigger is faded but never hidden, so it is still focusable.
       triggerRef.current?.focus()
     }
-  }, [open])
+  }, [mounted])
 
   return (
     <>
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={open}
         aria-haspopup="dialog"
         aria-label={`${title}, ${subtitle} — read more`}
         className={cn(
           'group relative block aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-[var(--r-lg)] border border-[var(--border-subtle)] bg-[var(--surface-1)] text-left shadow-[var(--shadow-1)] transition-all duration-[var(--dur-base)] ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-2)]',
           className,
         )}
+        style={{
+          // Faded rather than hidden while the panel stands in for it — a
+          // `visibility: hidden` element cannot take focus back on close.
+          opacity: mounted ? 0 : 1,
+          transitionDuration: mounted ? '120ms' : 'var(--dur-base)',
+        }}
       >
         <Portrait imageSrc={imageSrc} initials={initials} title={title} />
 
@@ -195,75 +325,63 @@ export function ExpandableProfileCard({
         Portalled to <body>. The card sits inside a grid <li> whose ancestors
         can establish a containing block, and a `position: fixed` panel then
         sizes against that ancestor rather than the viewport — it opened 312px
-        wide inside the card's own column. The portal is what makes `fixed`
-        mean the viewport.
+        wide inside the card's own column. FLIP is unaffected by the portal:
+        both rects are read in viewport coordinates.
       */}
       {typeof document !== 'undefined' &&
+        mounted &&
         createPortal(
-          open && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6">
             <div
-              className="fixed inset-0 z-[60] flex items-center justify-center p-4 transition-opacity ease-[var(--ease-out-expo)] sm:p-6"
-              style={{
-                opacity: entered ? 1 : 0,
-                transitionDuration: reduced
-                  ? 'var(--dur-fast)'
-                  : 'var(--dur-base)',
-              }}
+              ref={overlayRef}
+              onClick={close}
+              className="absolute inset-0 bg-[color-mix(in_oklch,var(--bg)_78%,transparent)] backdrop-blur-md"
+            />
+
+            <div
+              ref={panelRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={headingId}
+              className="relative z-10 flex max-h-[85vh] w-full max-w-[54rem] flex-col overflow-hidden rounded-[var(--r-xl)] border border-[var(--border-strong)] bg-[var(--surface-1)] shadow-[var(--shadow-3)] md:flex-row"
             >
-              <div
-                onClick={close}
-                className="absolute inset-0 bg-[color-mix(in_oklch,var(--bg)_78%,transparent)] backdrop-blur-md"
-              />
+              <div ref={contentRef} className="flex w-full flex-col md:flex-row">
+                <button
+                  type="button"
+                  onClick={close}
+                  className="absolute right-4 top-4 z-20 inline-flex h-8 w-8 items-center justify-center rounded-[var(--r-full)] border border-[var(--border-subtle)] bg-[var(--surface-2)] text-[var(--text-2)] transition-colors duration-[var(--dur-fast)] hover:border-[var(--border-strong)] hover:text-[var(--text-1)]"
+                >
+                  <X size={15} aria-hidden="true" />
+                  <span className="sr-only">Close</span>
+                </button>
 
-              <div
-                ref={panelRef}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby={headingId}
-                className="relative z-10 flex max-h-[85vh] w-full max-w-[54rem] flex-col overflow-hidden rounded-[var(--r-xl)] border border-[var(--border-strong)] bg-[var(--surface-1)] shadow-[var(--shadow-3)] transition-transform ease-[var(--ease-spring)] md:flex-row"
-                style={{
-                  transform: entered ? 'none' : 'translateY(12px) scale(0.97)',
-                  transitionDuration: reduced
-                    ? 'var(--dur-fast)'
-                    : 'var(--dur-base)',
-                }}
-              >
-                  <button
-                    type="button"
-                    onClick={close}
-                    className="absolute right-4 top-4 z-20 inline-flex h-8 w-8 items-center justify-center rounded-[var(--r-full)] border border-[var(--border-subtle)] bg-[var(--surface-2)] text-[var(--text-2)] transition-colors duration-[var(--dur-fast)] hover:border-[var(--border-strong)] hover:text-[var(--text-1)]"
+                <div className="relative h-56 w-full shrink-0 overflow-hidden md:h-auto md:w-[42%] md:self-stretch">
+                  <Portrait
+                    imageSrc={imageSrc}
+                    initials={initials}
+                    title={title}
+                    large
+                  />
+                </div>
+
+                <div className="flex w-full flex-col overflow-y-auto p-6 sm:p-8">
+                  <p className="mb-2.5 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[var(--accent)]">
+                    {subtitle}
+                  </p>
+                  <h3
+                    id={headingId}
+                    className="mb-6 border-b border-[var(--border-subtle)] pb-5 font-display text-step-3 font-semibold tracking-[-0.028em] text-[var(--text-1)]"
                   >
-                    <X size={15} aria-hidden="true" />
-                    <span className="sr-only">Close</span>
-                  </button>
+                    {title}
+                  </h3>
 
-                  <div className="relative h-56 w-full shrink-0 overflow-hidden md:h-auto md:w-[42%] md:self-stretch">
-                    <Portrait
-                      imageSrc={imageSrc}
-                      initials={initials}
-                      title={title}
-                      large
-                    />
+                  <div className="text-[0.9375rem] leading-[1.65] text-[var(--text-2)]">
+                    {children}
                   </div>
-
-                  <div className="flex w-full flex-col overflow-y-auto p-6 sm:p-8">
-                    <p className="mb-2.5 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[var(--accent)]">
-                      {subtitle}
-                    </p>
-                    <h3
-                      id={headingId}
-                      className="mb-6 border-b border-[var(--border-subtle)] pb-5 font-display text-step-3 font-semibold tracking-[-0.028em] text-[var(--text-1)]"
-                    >
-                      {title}
-                    </h3>
-
-                    <div className="text-[0.9375rem] leading-[1.65] text-[var(--text-2)]">
-                      {children}
-                    </div>
                 </div>
               </div>
             </div>
-          ),
+          </div>,
           document.body,
         )}
     </>

@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Home from './Home'
 import { HOME } from '@/content/home'
+import { PRIYA_HOME } from '@/content/priya'
 import { TESTIMONIALS } from '@/content/testimonials'
 
 function renderHome() {
@@ -68,5 +69,31 @@ describe('Home', () => {
   it('points the booking anchor at a real section', () => {
     const { container } = renderHome()
     expect(container.querySelector('#book')).toBeInTheDocument()
+  })
+
+  it('features the flagship product and links to its page', () => {
+    renderHome()
+    expect(screen.getByText(PRIYA_HOME.sub)).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: new RegExp(PRIYA_HOME.cta.label, 'i') }),
+    ).toHaveAttribute('href', '/priya')
+  })
+
+  it('labels the homepage lead card as a sample too', () => {
+    renderHome()
+    expect(screen.getAllByText(PRIYA_HOME.card.caption).length).toBeGreaterThan(0)
+  })
+
+  it('shows the flagship band above the service grid', () => {
+    const { container } = renderHome()
+    const flagship = container.querySelector('#flagship')
+    const services = container.querySelector('#services')
+    expect(flagship).toBeInTheDocument()
+    if (services) {
+      expect(
+        flagship!.compareDocumentPosition(services) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy()
+    }
   })
 })

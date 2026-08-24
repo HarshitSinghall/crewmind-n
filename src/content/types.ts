@@ -493,3 +493,157 @@ export interface AutomationsContent {
   catalogue: { eyebrow: string; title: string; sub: string }
   close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
 }
+
+/* ---------------------------------------------------------------------------
+   Phase 5 — Priya, the flagship product.
+
+   One page, one product. The shapes below exist because the argument this
+   page makes is structural: a measurement the reader runs himself, two
+   clocks side by side, a real conversation, and a list of things the product
+   does NOT do. None of those fit the service-page section union, and forcing
+   them into it would have cost more than these seven interfaces.
+--------------------------------------------------------------------------- */
+
+/** One speaker turn in the sample call. */
+export interface TranscriptTurn {
+  id: string
+  /** Speaker name, as it appears in the transcript. */
+  who: string
+  role: 'ai' | 'human'
+  line: string
+  /**
+   * BCP-47 tag for the line. Devanagari MUST carry 'hi' or a screen reader
+   * reads it with an English voice. Hinglish in Latin script must not.
+   */
+  lang?: 'hi'
+}
+
+/** One lane of the two-Tuesdays race. */
+export interface RaceLane {
+  id: string
+  label: string
+  /** `clock` is elapsed time, e.g. "00:00", "14:20". Empty on the closing beat. */
+  steps: { clock: string; text: string }[]
+}
+
+export interface LeadCardSpec {
+  name: string
+  /** Qualification track — "HOT". Display only. */
+  track: string
+  score: number
+  rows: { k: string; v: string }[]
+  /** The buyer's own sentence, in his own language. */
+  quote: string
+  quoteLang?: 'hi'
+  actions: string[]
+  time: string
+  /** Always shown. This is a facsimile and must be labelled as one. */
+  caption: string
+}
+
+export interface LeadMathSpec {
+  eyebrow: string
+  title: Headline
+  /** Starting values. The reader is invited to change all three. */
+  defaults: { leads: number; cpl: number; reached: number }
+  inputs: { leads: string; cpl: string; reached: string }
+  outputs: { spend: string; missed: string; wasted: string }
+  under: string
+  invite: string
+}
+
+export interface DeadLeadSpec {
+  eyebrow: string
+  title: Headline
+  /** Two paragraphs. The objection, then the offer. */
+  deck: string[]
+  outcomes: Pillar[]
+  close: string
+  cta: { label: string; href: string }
+}
+
+export interface PriyaContent {
+  seo: { title: string; description: string }
+  hero: PageHero & {
+    clock: {
+      label: string
+      /** Hour and minute in IST that the clock counts from. */
+      sinceHour: number
+      sinceMinute: number
+      foot: string
+    }
+    trust: string
+  }
+  sundayTest: {
+    eyebrow: string
+    title: string
+    sub: string
+    steps: NumberedStep[]
+    pullQuote: string
+  }
+  race: {
+    eyebrow: string
+    title: Headline
+    lanes: [RaceLane, RaceLane]
+    resolve: string
+    closing: string
+    /** Devanagari. Rendered with lang="hi". */
+    proverb: string
+  }
+  cause: PillarSet
+  call: {
+    eyebrow: string
+    title: string
+    sub: string
+    /**
+     * Path to a real recording under public/audio/. Stays null until one
+     * exists — see the spec's honesty constraints. While null the player does
+     * not render and `sub` labels the transcript as representative.
+     */
+    recordingUrl: string | null
+    turns: TranscriptTurn[]
+    caption: string
+  }
+  mechanism: {
+    eyebrow: string
+    title: string
+    sub: string
+    /** `step` carries the clock — "0s", "2s", "<10s". */
+    steps: NumberedStep[]
+    notes: Pillar[]
+  }
+  leadCard: {
+    eyebrow: string
+    title: Headline
+    card: LeadCardSpec
+    closing: string
+  }
+  followUp: PillarSet
+  math: LeadMathSpec
+  limits: PillarSet
+  deadLead: DeadLeadSpec
+  comparison: ComparisonSpec
+  plan: {
+    eyebrow: string
+    title: string
+    sub: string
+    tier: PricingTier
+    guarantee: { title: string; body: string }
+    disqualifier: string
+  }
+  founding: PillarSet
+  faq: { title: string; items: FaqItem[] }
+  close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
+}
+
+/** The homepage band that points at the product page. */
+export interface HeroProductContent {
+  eyebrow: string
+  title: Headline
+  sub: string
+  /** Three short proof chips under the copy. */
+  points: string[]
+  cta: { label: string; href: string }
+  clock: { label: string; sinceHour: number; sinceMinute: number }
+  card: LeadCardSpec
+}

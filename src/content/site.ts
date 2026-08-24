@@ -20,7 +20,16 @@ export const BRAND: Brand = {
   phone: '+91 70175 31825',
   phoneHref: 'tel:+917017531825',
   address: ['Gurugram', 'Delhi NCR', 'India'],
-  calendly: 'https://calendly.com/example/discovery-call',
+  /*
+    The real scheduling link. Public by design — it is the page invitees
+    book on, and it carries no credential.
+
+    Two things about this event live in Calendly's own settings and cannot be
+    fixed from here: the account timezone is still America/New_York (Calendly's
+    default), so availability is being offered in US Eastern rather than IST,
+    and the event is still called "30 Minute Meeting". Both show to invitees.
+  */
+  calendly: 'https://calendly.com/harshitsinghal822/30min',
   whatsapp: (message = "Hello I'd like to learn more about your services.") =>
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
   socials: [{ label: 'LinkedIn', href: 'https://linkedin.com/company/example' }],
@@ -43,9 +52,18 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Enterprise', href: '/enterprise' },
 ]
 
+/*
+  The nav CTA, which renders on every page.
+
+  It used to point at '#book', but that anchor only exists inside
+  BookingSection, and BookingSection only renders on the homepage — so the
+  button silently scrolled nowhere on /about, /pricing, /priya and the rest.
+  Pointing it straight at the scheduler works from anywhere. The homepage
+  still has its in-page path via the hero CTA, which keeps '#book'.
+*/
 export const PRIMARY_CTA = {
   label: 'Book a Free Discovery Call',
-  href: '#book',
+  href: BRAND.calendly,
 } as const
 
 export const FOOTER_LINKS: NavLink[] = [

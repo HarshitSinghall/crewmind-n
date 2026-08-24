@@ -115,6 +115,26 @@ describe('content integrity', () => {
     expect(HOME.hero.headline.emphasis.trim().length).toBeGreaterThan(0)
   })
 
+  it('ships a real scheduling link and no calendly credential', () => {
+    expect(BRAND.calendly).toMatch(/^https:\/\/calendly\.com\/[a-z0-9._-]+/i)
+    expect(BRAND.calendly).not.toContain('example')
+
+    // A Calendly personal access token is a JWT beginning "ey". This site is
+    // a static bundle: anything here is readable by every visitor, and a PAT
+    // carries write scopes over the whole account. The scheduling URL is
+    // public and is all the embed needs.
+    const blob = JSON.stringify({ ...BRAND, whatsapp: undefined })
+    expect(blob).not.toMatch(/eyJ[A-Za-z0-9_-]{20,}/)
+    expect(blob.toLowerCase()).not.toMatch(/bearer\s|access[_-]?token|calendly[_-]?token/)
+  })
+
+  it('resolves the nav cta from every page, not just the homepage', () => {
+    // '#book' only exists inside BookingSection, which only Home renders, so
+    // a hash here scrolls nowhere on the other eight routes.
+    expect(PRIMARY_CTA.href.startsWith('#')).toBe(false)
+    expect(resolves(PRIMARY_CTA.href)).toBe(true)
+  })
+
   it('carries the real brand facts, not the reference placeholders', () => {
     expect(BRAND.url).toBe('https://crewmind.in')
     expect(BRAND.email).toBe('hello@crewmind.in')

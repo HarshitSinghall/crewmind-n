@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import Home from './Home'
 import { HOME } from '@/content/home'
@@ -64,6 +65,28 @@ describe('Home', () => {
     for (const el of secondary) {
       expect(el.className).not.toContain('bg-[var(--cta)]')
     }
+  })
+
+  it('requests nothing from calendly until the scheduler is asked for', async () => {
+    const user = userEvent.setup()
+    const { container } = renderHome()
+
+    // The whole point of the click-to-load facade: no iframe, so no external
+    // request and no third-party cookie for a visitor who never books.
+    expect(container.querySelector('iframe')).toBeNull()
+
+    await user.click(screen.getByRole('button', { name: /load the scheduler/i }))
+
+    const frame = container.querySelector('iframe')
+    expect(frame).toBeInTheDocument()
+    expect(frame).toHaveAttribute('src', expect.stringContaining('calendly.com'))
+  })
+
+  it('always offers a way through to the scheduler without the embed', () => {
+    renderHome()
+    const direct = screen.getByRole('link', { name: /open the scheduler directly/i })
+    expect(direct).toHaveAttribute('href', expect.stringContaining('calendly.com'))
+    expect(direct).toHaveAttribute('rel', expect.stringContaining('noopener'))
   })
 
   it('points the booking anchor at a real section', () => {

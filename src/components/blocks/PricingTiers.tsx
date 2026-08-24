@@ -20,7 +20,18 @@ export function PricingTiers({ tiers, guarantee }: PricingTiersProps) {
           Engagement options
         </h2>
 
-        <ul className="grid items-start gap-4 lg:grid-cols-2">
+        {/*
+          Two columns for the agency's paired engagements. A single tier gets
+          one centred, width-capped column instead — a lone card in a two-up
+          grid sits in the left half with a hole beside it, which reads as a
+          missing option rather than as the only one.
+        */}
+        <ul
+          className={cn(
+            'grid items-start gap-4',
+            tiers.length > 1 ? 'lg:grid-cols-2' : 'mx-auto max-w-[34rem]',
+          )}
+        >
           {tiers.map((tier, i) => (
             <Reveal as="li" key={tier.id} index={i} className="flex">
               <TierCard tier={tier} guarantee={tier.featured ? guarantee : undefined} />

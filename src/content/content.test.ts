@@ -7,6 +7,7 @@ import { ABOUT } from './about'
 import { ENTERPRISE } from './enterprise'
 import { SERVICES, SERVICES_INDEX, getService } from './services'
 import { CATEGORIES, PROJECTS, PROJECTS_PAGE } from './projects'
+import { AUTOMATIONS, AUTOMATIONS_HOME, AUTOMATIONS_PAGE, getAutomation } from './automations'
 
 /* Routes the app actually serves. Keep in sync with App.tsx. */
 const STATIC_ROUTES = new Set([
@@ -15,6 +16,7 @@ const STATIC_ROUTES = new Set([
   '/about',
   '/enterprise',
   '/services',
+  '/automations',
   '/past-projects',
   '/privacy',
   '/terms',
@@ -419,5 +421,82 @@ describe('projects content', () => {
     ]) {
       expect(blob, `reference identity ${name}`).not.toContain(name)
     }
+  })
+})
+
+describe('automations', () => {
+  const slugs = new Set(SERVICES.map((s) => s.slug))
+
+  it('ships exactly seven', () => {
+    expect(AUTOMATIONS).toHaveLength(7)
+  })
+
+  it('has no duplicate ids', () => {
+    const ids = AUTOMATIONS.map((a) => a.id)
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('numbers the rail 01 through 07 in order', () => {
+    AUTOMATIONS.forEach((automation, i) => {
+      expect(automation.index, automation.id).toBe(String(i + 1).padStart(2, '0'))
+    })
+  })
+
+  it('maps every automation onto a real service', () => {
+    for (const automation of AUTOMATIONS) {
+      expect(slugs.has(automation.service), `${automation.id} -> ${automation.service}`).toBe(
+        true,
+      )
+    }
+  })
+
+  it('gives every automation a pipeline the canvas can render', () => {
+    for (const automation of AUTOMATIONS) {
+      expect(automation.trigger, `${automation.id} trigger`).toBeTruthy()
+      expect(automation.outcome, `${automation.id} outcome`).toBeTruthy()
+      // Three is the floor for a pipeline to read as one; past five the
+      // canvas stops fitting on a laptop without scrolling.
+      expect(automation.steps.length, `${automation.id} steps`).toBeGreaterThanOrEqual(3)
+      expect(automation.steps.length, `${automation.id} steps`).toBeLessThanOrEqual(5)
+      expect(automation.stack.length, `${automation.id} stack`).toBeGreaterThan(0)
+    }
+  })
+
+  it('keeps every metric an integer so the count-up can animate it', () => {
+    for (const automation of AUTOMATIONS) {
+      expect(Number.isInteger(automation.metric.value), `${automation.id} metric`).toBe(true)
+      expect(automation.metric.value, `${automation.id} metric`).toBeGreaterThan(0)
+    }
+  })
+
+  it('states the before and after as distinct claims', () => {
+    for (const automation of AUTOMATIONS) {
+      expect(automation.before, automation.id).not.toBe(automation.after)
+    }
+  })
+
+  it('carries the caveat on both cuts of the showcase', () => {
+    expect(AUTOMATIONS_PAGE.showcase.note).toBeTruthy()
+    expect(AUTOMATIONS_HOME.note).toBeTruthy()
+  })
+
+  it('resolves every automations-page cta', () => {
+    const hrefs = [
+      AUTOMATIONS_PAGE.hero.cta!.primary.href,
+      AUTOMATIONS_PAGE.hero.cta!.secondary.href,
+      AUTOMATIONS_PAGE.close.cta.primary.href,
+      AUTOMATIONS_PAGE.close.cta.secondary.href,
+      AUTOMATIONS_HOME.cta!.href,
+      ...AUTOMATIONS.map((a) => `/services/${a.service}`),
+    ]
+    for (const href of hrefs) {
+      expect(resolves(href), `cta ${href}`).toBe(true)
+    }
+  })
+
+  it('looks up by id and misses cleanly', () => {
+    expect(getAutomation('ai-voice-receptionist')?.name).toBe('AI Voice Receptionist')
+    expect(getAutomation('nope')).toBeUndefined()
+    expect(getAutomation(undefined)).toBeUndefined()
   })
 })

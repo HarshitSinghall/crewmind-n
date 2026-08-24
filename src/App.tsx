@@ -8,6 +8,7 @@ import Pricing from '@/pages/Pricing'
 import About from '@/pages/About'
 import Enterprise from '@/pages/Enterprise'
 import Services from '@/pages/Services'
+import Automations from '@/pages/Automations'
 import PastProjects from '@/pages/PastProjects'
 import Placeholder from '@/pages/Placeholder'
 import NotFound from '@/pages/NotFound'
@@ -57,6 +58,8 @@ export function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<About />} />
           <Route path="/enterprise" element={<Enterprise />} />
+
+          <Route path="/automations" element={<Automations />} />
 
           <Route path="/services" element={<Services />} />
           <Route

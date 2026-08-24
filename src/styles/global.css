@@ -175,6 +175,44 @@
   }
 }
 
+/* AutomationShowcase — the cycle clock, drawn under the selected tab. */
+@keyframes showcase-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* A packet falling down the wire between two pipeline nodes. */
+@keyframes signal-drop {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* The heartbeat on a node that is currently executing. */
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.72);
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Reduced motion — belt and braces. useReveal handles the JS side; this
    catches any component that forgets. Uses !important, so it wins from
@@ -199,5 +237,16 @@
   .marquee-track {
     animation: none !important;
     transform: none !important;
+  }
+
+  /*
+    The showcase drives its node sequence from JS (useRunSequence jumps
+    straight to complete under reduced motion), but the three decorative
+    keyframes above are pure CSS and would still tick. Stop them here.
+  */
+  [style*='showcase-progress'],
+  [style*='signal-drop'],
+  [style*='node-pulse'] {
+    animation: none !important;
   }
 }

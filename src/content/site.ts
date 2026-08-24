@@ -25,6 +25,7 @@ export const BRAND: Brand = {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Services', href: '/services' },
+  { label: 'Automations', href: '/automations' },
   { label: 'GEO', href: '/services/geo' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'See Our Work', href: '/past-projects' },
@@ -39,6 +40,7 @@ export const PRIMARY_CTA = {
 
 export const FOOTER_LINKS: NavLink[] = [
   { label: 'Services', href: '/services' },
+  { label: 'Automations', href: '/automations' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Enterprise', href: '/enterprise' },
   { label: 'See Our Work', href: '/past-projects' },

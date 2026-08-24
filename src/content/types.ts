@@ -408,3 +408,77 @@ export interface ServicesIndexContent {
   hero: PageHero
   close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
 }
+
+/* ---------------------------------------------------------------------------
+   Phase 4 — the automation catalogue.
+
+   These are the seven automations the market actually asks for by name. They
+   are NOT a ninth service: each one maps onto an existing service slug, and
+   exists to answer the question a service page cannot — "what does the thing
+   do, step by step, when it runs?"
+--------------------------------------------------------------------------- */
+
+/** Icon key, resolved to a component through a map in AutomationShowcase. */
+export type AutomationIcon =
+  | 'phone'
+  | 'send'
+  | 'inbox'
+  | 'support'
+  | 'document'
+  | 'calendar'
+  | 'content'
+
+export interface AutomationStep {
+  /** Verb-led node label. Kept under ~28 chars so nodes never wrap twice. */
+  label: string
+  /** One line on what the model is actually doing at this step. */
+  detail: string
+}
+
+export interface Automation {
+  id: string
+  /** Ordinal shown in the rail — '01'…'07'. Display only. */
+  index: string
+  name: string
+  /** One-line promise, shown under the name in the rail. */
+  tagline: string
+  icon: AutomationIcon
+  /** The event that starts a run. Rendered as the first node in the canvas. */
+  trigger: string
+  /** The pipeline. Three to five steps — more than that stops reading. */
+  steps: AutomationStep[]
+  /** What lands when the run finishes. Rendered as the terminal node. */
+  outcome: string
+  /**
+   * The headline number. `value` counts up from zero when the panel opens,
+   * so it must be a plain integer — the unit goes in `suffix`.
+   */
+  metric: { value: number; suffix: string; label: string }
+  /** The manual reality this replaces. */
+  before: string
+  /** The same job, once this is running. */
+  after: string
+  /** Tools it plugs into. Chips only — no logos, no partnership claims. */
+  stack: string[]
+  /** Existing service slug this maps to. Asserted in content.test.ts. */
+  service: string
+}
+
+/** The showcase block. Reused verbatim on the homepage with its own copy. */
+export interface ShowcaseBlock {
+  eyebrow: string
+  title: Headline
+  sub: string
+  /** Sits under the canvas — the honest caveat about the numbers. */
+  note: string
+  /** Homepage only: the way through to the full catalogue. */
+  cta?: { label: string; href: string }
+}
+
+export interface AutomationsContent {
+  seo: { title: string; description: string }
+  hero: PageHero
+  showcase: ShowcaseBlock
+  catalogue: { eyebrow: string; title: string; sub: string }
+  close: { eyebrow: string; title: string; sub: string; cta: CtaPair }
+}

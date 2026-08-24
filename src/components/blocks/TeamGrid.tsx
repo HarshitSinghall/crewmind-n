@@ -4,8 +4,8 @@ import { Section } from '@/components/ui/Section'
 import { Heading } from '@/components/ui/Heading'
 import { Text } from '@/components/ui/Text'
 import { Badge } from '@/components/ui/Badge'
-import { Avatar } from '@/components/ui/Avatar'
 import { Reveal } from '@/components/ui/Reveal'
+import { ExpandableProfileCard } from '@/components/ui/ExpandableProfileCard'
 import type { AboutContent, TeamMember } from '@/content/types'
 
 export function TeamGrid({ team }: { team: AboutContent['team'] }) {
@@ -36,46 +36,45 @@ export function TeamGrid({ team }: { team: AboutContent['team'] }) {
   )
 }
 
+/**
+ * A portrait tile that opens into the full bio.
+ *
+ * The bio used to sit on the face of a flat card, which meant every tile was
+ * as tall as its longest paragraph and the grid never lined up. Moving the
+ * detail behind an expand gives the row a single shape and gives the bio more
+ * room than it had before.
+ */
 function MemberCard({ member }: { member: TeamMember }) {
   return (
-    <article className="flex w-full flex-col gap-4 rounded-[var(--r-lg)] border border-[var(--border-subtle)] bg-[var(--surface-1)] p-6 transition-colors duration-[var(--dur-base)] hover:border-[var(--border-strong)]">
-      <div className="flex items-center gap-3.5">
-        {/*
-          A real photo when there is one, initials when there isn't. Both
-          paths are the same fixed size, so the row never reflows when a
-          headshot is swapped in.
-        */}
-        <Avatar initials={member.initials} name={member.name} src={member.avatar} />
-        <div className="min-w-0">
-          <h3 className="truncate font-display text-[1rem] font-semibold tracking-[-0.018em] text-[var(--text-1)]">
-            {member.name}
-          </h3>
-          <p className="text-[0.8125rem] text-[var(--text-3)]">{member.role}</p>
-        </div>
+    <ExpandableProfileCard
+      id={member.id}
+      title={member.name}
+      subtitle={member.role}
+      initials={member.initials}
+      imageSrc={member.avatar}
+    >
+      <div className="flex flex-col gap-6">
+        <p>{member.bio}</p>
+
+        {member.links.length > 0 && (
+          <ul className="flex flex-wrap gap-3 border-t border-[var(--border-subtle)] pt-5">
+            {member.links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[0.8125rem] text-[var(--text-2)] transition-colors duration-[var(--dur-fast)] hover:text-[var(--accent)]"
+                >
+                  {link.label}
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                  <span className="sr-only">, {member.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-
-      <p className="flex-1 text-[0.875rem] leading-[1.62] text-[var(--text-2)]">
-        {member.bio}
-      </p>
-
-      {member.links.length > 0 && (
-        <ul className="flex flex-wrap gap-3 border-t border-[var(--border-subtle)] pt-4">
-          {member.links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[0.8125rem] text-[var(--text-2)] transition-colors duration-[var(--dur-fast)] hover:text-[var(--accent)]"
-              >
-                {link.label}
-                <ArrowUpRight size={13} aria-hidden="true" />
-                <span className="sr-only">, {member.name}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </article>
+    </ExpandableProfileCard>
   )
 }

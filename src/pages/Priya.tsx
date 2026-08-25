@@ -3,6 +3,8 @@ import { StepList } from '@/components/blocks/StepList'
 import { TimeRace } from '@/components/blocks/TimeRace'
 import { PillarRow } from '@/components/blocks/PillarRow'
 import { CallTranscript } from '@/components/blocks/CallTranscript'
+import { JobLoop } from '@/components/blocks/JobLoop'
+import { CommodityNote } from '@/components/blocks/CommodityNote'
 import { LeadCard } from '@/components/blocks/LeadCard'
 import { LeadMath } from '@/components/blocks/LeadMath'
 import { DeadLeadOffer } from '@/components/blocks/DeadLeadOffer'
@@ -22,10 +24,11 @@ import { useSeo } from '@/lib/useSeo'
 /**
  * The flagship product page.
  *
- * Fifteen blocks, and the order is the argument: he measures his own gap
+ * Seventeen blocks, and the order is the argument: he measures his own gap
  * (Sunday test) before he is shown ours (race), hears the thing work
- * (transcript) before he is told how (mechanism), and reads what it does NOT
- * do (limits) before he is offered a price. Reordering this weakens it.
+ * (transcript) before he is told how (mechanism), sees the whole job before he
+ * is told why a cheap dialler is not it (commodity), and reads what she does
+ * NOT do (limits) before he is offered a price. Reordering this weakens it.
  */
 export default function Priya() {
   useSeo({ ...PRIYA.seo, path: '/priya' })
@@ -65,6 +68,20 @@ export default function Priya() {
         pillars={{ items: PRIYA.mechanism.notes }}
         divided={false}
       />
+
+      {/*
+        Zoom out. The mechanism above is the first sixty seconds; this is the
+        whole job, and it is what separates the product from a dialler.
+      */}
+      <JobLoop job={PRIYA.job} />
+
+      {/*
+        Immediately after the job description, because the job description is
+        the answer to it. Raising the cheap-dialler objection ourselves, at the
+        point where we have just shown why we are not one, is stronger than
+        waiting for him to raise it on the call.
+      */}
+      <CommodityNote commodity={PRIYA.commodity} />
 
       <LeadCard leadCard={PRIYA.leadCard} />
       <PillarRow id="follow-up" pillars={PRIYA.followUp} />

@@ -45,6 +45,36 @@ exist yet.
 
 ---
 
+## Positioning
+
+The whole site now runs on one line:
+
+> What would you make five employees do if they never slept, never resigned,
+> and cost 80% less?
+
+Two rules fall out of that and are enforced in the content files themselves:
+
+1. **No roster.** We do not name colleagues Priya does not have. She is the one
+   employee we have built and run; everything else is described as a job we
+   build to order. The homepage hero's three placeholder faces were removed for
+   this reason.
+2. **The 80% is never asserted.** `HOME.payroll` is a calculator that runs on
+   the reader's own headcount, salaries and loading. Its CrewMind side is driven
+   by Priya's real published pricing, and `PayrollMath.test.tsx` fails if the
+   homepage and the product page ever quote different numbers.
+
+Priya is positioned as a **sales employee**, not an AI voice agent — see the
+FRAMING note in `priya.ts`. `PRIYA.job` (fourteen stages) and `PRIYA.commodity`
+exist because "an AI that makes phone calls" is already a commodity in India at
+roughly ₹2,000/month plus ₹3/minute. The product cannot be sold as that, and
+the site does not try.
+
+`PRIYA.commodity` quotes that market price range but **deliberately names no
+competitor.** Their prices move and comparative advertising invites an argument
+we do not need.
+
+---
+
 ## What is NOT placeholder
 
 `src/content/priya.ts` is **real content** and must be left alone by the sweep
@@ -100,15 +130,15 @@ email and domain all come from the GST REG-06 certificate.
 - [ ] `close`
 
 ### `src/content/about.ts`
-- [ ] `seo`
-- [ ] `hero`
+- [x] `seo`
+- [x] `hero`
 - [ ] `team.members` — **all seven are invented placeholders** (`Placeholder
       One` … `Placeholder Seven`) with empty `links`. Replace with the real
       team: names, roles, bios, `initials`, and `avatar` image paths.
 - [ ] `team.note` — currently "Founded in late 2025"
-- [ ] `story.paragraphs` — a founding story that is not yours
-- [ ] `pillars` — mission, vision, approach
-- [ ] `close`
+- [x] `story.paragraphs` — rewritten as why the company exists at all
+- [x] `pillars` — mission/vision/approach replaced with three commitments
+- [x] `close`
 
 ### `src/content/enterprise.ts`
 - [ ] `seo`
@@ -125,23 +155,40 @@ email and domain all come from the GST REG-06 certificate.
 - [ ] `close`
 
 ### `src/content/services.ts`
-- [ ] `SERVICES_INDEX` — seo, hero, close
-- [ ] All eight `SERVICES[]` entries — `title`, `description`, `features`,
-      `seo`, `hero`, every `sections[]` block, and `close`
-- [ ] **`geo` → `sections[1]` (stats)** — the AI visibility scores
-      (`38/100`, `38%`, `45%`, `53%`) are the reference's numbers, presented
-      as typical results. **Either measure your own or delete the block.**
-- [ ] **`ai-personal-assistants` → `sections[4]` (stats)** — "29 hrs returned
-      per week" and the "100+ setups completed" assurance are unverified
-- [ ] **`lead-gen-outreach` → `sections[3]` (stats)** — "1,000+ leads per day"
-      and "38 hrs automated per week" are unverified
-- [ ] **`ai-call-centers` → hero** — "74% of calls to small businesses go
-      unanswered" is an uncited statistic. Cite it or cut it.
-- [ ] Every `faq` answer across every service — **written fresh, not
-      transcribed** (see below)
-- [ ] The four thin services marked `TODO` — `social-media-automation`,
-      `ai-copywriting`, `ai-agent-team`, `custom-ai-solutions` — carry one
-      `checklist` section each and need real detail
+- [x] `SERVICES_INDEX` — seo, hero, close
+- [x] All eight `SERVICES[]` entries — `title`, `description` and `features`
+      recast as job titles, kept identical to the matching homepage card so a
+      card and the page it opens cannot contradict each other
+- [x] Every `SERVICES[].seo`, `hero` and `sections[]` block — rewritten onto
+      the employee positioning. Each page is now shaped as a job description:
+      *when nobody has this job → what is in the job description → how you hire
+      one → what is NOT in it → the questions people actually ask.*
+- [x] **`geo`** — the AI visibility scores (`38/100`, `38%`, `45%`, `53%`)
+      are **gone**. The page now promises a transcript of what the assistants
+      actually say rather than a score we invented.
+- [x] **`ai-personal-assistants`** — "29 hrs returned per week" and the
+      "100+ setups completed" assurance are **gone**. The stats block now
+      carries only commitments we control (coverage, support window,
+      ownership).
+- [x] **`lead-gen-outreach`** — "1,000+ leads per day" and "38 hrs automated
+      per week" are **gone**. Volume is explicitly declined on the page: it is
+      sized against the client's real ICP during scoping instead.
+- [x] **`ai-call-centers` → hero** — the uncited "74% of calls to small
+      businesses go unanswered" has been cut. The page now asks him to look at
+      his own call log instead.
+- [x] Every `faq` answer across every service — written fresh
+- [x] The four previously-thin services — `social-media-automation`,
+      `ai-copywriting`, `ai-agent-team`, `custom-ai-solutions` — now carry a
+      problem section, a job description, a process and their own limits
+
+**Two invariants are now asserted in `content.test.ts`:**
+
+- Every homepage card's `title`, `description` and `features` must equal the
+  detail page's. A card saying "Your receptionist" that opens a page called
+  "24/7 AI Call Centers" is a lie told by the navigation.
+- Every service must ship a `limits` section. Publishing the limits before the
+  price is a brand commitment (see the `about.ts` pillars), not a layout
+  choice, and this stops a capabilities-only page quietly shipping.
 
 ### `src/content/projects.ts`
 - [ ] `CATEGORIES` labels

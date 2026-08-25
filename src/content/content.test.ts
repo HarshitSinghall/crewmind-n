@@ -339,6 +339,47 @@ describe('services content', () => {
     }
   })
 
+  it('keeps the homepage card and the detail page telling the same story', () => {
+    // The card copy is duplicated between home.ts and services.ts. A visitor
+    // who clicks a card titled "Your receptionist" and lands on a page about
+    // "24/7 AI Call Centers" has been lied to by the navigation, and nothing
+    // else in the suite would catch the drift.
+    for (const summary of HOME.services.items) {
+      const detail = getService(summary.slug)
+      expect(detail, summary.slug).toBeDefined()
+      expect(
+        {
+          title: detail!.title,
+          description: detail!.description,
+          features: detail!.features,
+        },
+        `homepage card for ${summary.slug} has drifted from its detail page`,
+      ).toEqual({
+        title: summary.title,
+        description: summary.description,
+        features: summary.features,
+      })
+    }
+  })
+
+  it('publishes the limits on every service page', () => {
+    // The limits section is a brand commitment, not a layout choice — see the
+    // header of services.ts and the "limits before the price" pillar in
+    // about.ts. A page that only lists capabilities is off-brand, and this is
+    // the assertion that stops one quietly shipping.
+    for (const service of SERVICES) {
+      const limits = service.sections.find((section) => section.id === 'limits')
+      expect(limits, `${service.slug} has no limits section`).toBeDefined()
+      expect(limits!.kind, `${service.slug} limits`).toBe('pillars')
+      if (limits!.kind === 'pillars') {
+        expect(
+          limits!.items.length,
+          `${service.slug} limits are empty`,
+        ).toBeGreaterThan(0)
+      }
+    }
+  })
+
   it('points every service at a category that exists', () => {
     const ids = new Set(CATEGORIES.map((c) => c.id))
     for (const service of SERVICES) {

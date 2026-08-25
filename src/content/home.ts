@@ -3,38 +3,54 @@ import { RATINGS } from './testimonials'
 import type { HomeContent } from './types'
 
 /* ---------------------------------------------------------------------------
-   PLACEHOLDER CONTENT — see CONTENT-SWAP.md
-   Every user-facing string on the homepage lives in this file.
+   The homepage, written around one question.
+
+   "What would you make five employees do if they never slept, never resigned,
+   and cost 80% less?"
+
+   Two rules govern this file:
+
+   1. The page sells a JOB, not a technology. Every heading below names work
+      somebody currently does by hand, or fails to. The words "agent",
+      "workflow" and "automation" are deliberately rare — the visitor does not
+      have an agent-shaped problem, he has a nobody-called-the-lead-back
+      problem.
+
+   2. There is no roster. We do not name four colleagues Priya does not have.
+      Priya is the one employee we have actually built and run, and she carries
+      the proof for the whole page; everything else is described as work we
+      build to order, in the language of a job description.
+
+   The 80% is not asserted. It is shown as arithmetic in `payroll`, using the
+   only real prices we have — Priya's — and the note under it says so.
+
+   PLACEHOLDER, still: `proof.ratings`, `hero.video`, and `work.items`. See
+   CONTENT-SWAP.md. Everything else on this page is now ours.
 --------------------------------------------------------------------------- */
 
 export const HOME: HomeContent = {
   seo: {
-    title: 'Custom AI Agents & Automation For Your Business',
+    title: 'AI Employees, Built To Your Job Description',
     description:
-      'We build AI teams that handle your calls, leads, emails, and operations 24/7. No monthly fees. You own everything. Book a free strategy call today.',
+      'What would you make five employees do if they never slept, never resigned, and cost 80% less? Tell us the jobs. We build them, wire them into your tools, and hand them over working.',
   },
 
   hero: {
-    eyebrow: 'AI Transformation Partner',
-    avatars: [
-      { name: 'Sarah', initials: 'SA' },
-      { name: 'James', initials: 'JA' },
-      { name: 'Aisha', initials: 'AI' },
-    ],
+    eyebrow: 'Built to your job description',
     headline: {
-      lead: 'Build the AI infrastructure to',
-      emphasis: 'win the next decade',
-      trail: '.',
+      lead: 'What would you do with five people who never sleep, never quit, and cost',
+      emphasis: '80% less',
+      trail: '?',
     },
-    sub: 'We build AI agents, automations, and full operating systems that run your business in the background, so you and your team can focus on the work that actually matters.',
-    videoPrompt: 'Start here — watch the 2 minute overview',
+    sub: 'Answer that honestly and you have just described your next five hires. We build them as AI employees, wire them into the tools you already use, and hand them over working. Priya — the first one we built — calls every new lead inside sixty seconds, in Hindi, at 2am.',
+    videoPrompt: 'Two minutes on how one gets built',
     video: {
       duration: '2:14',
-      label: 'How we build your AI infrastructure',
+      label: 'From job description to first shift',
     },
     cta: {
-      primary: { label: 'Book a Free Strategy Call', href: '#book' },
-      secondary: { label: 'Message us on WhatsApp', href: BRAND.whatsapp() },
+      primary: { label: 'Book a free hiring call', href: '#book' },
+      secondary: { label: 'Meet Priya', href: '/priya' },
     },
   },
 
@@ -43,141 +59,181 @@ export const HOME: HomeContent = {
     ratings: RATINGS,
   },
 
+  /*
+    The 80% claim, handed to the reader to check.
+
+    An asserted ratio is worthless here — every competitor asserts one. So
+    this takes his headcount, his salaries, the loading he knows he carries,
+    and his lead volume, and computes the gap on his own numbers. If it comes
+    out small, he should not buy from us, and `caveat` says so.
+
+    The CrewMind side is driven by Priya's real published pricing rather than
+    a number invented for this page.
+  */
+  payroll: {
+    eyebrow: 'Run it on your own numbers',
+    title: {
+      lead: 'What does calling and chasing your leads',
+      emphasis: 'already cost you',
+      trail: '?',
+    },
+    sub: 'Not your whole sales floor — just the job of getting to every enquiry and staying on it. Put your real figures in. The gap either opens up or it does not, and both of those are worth knowing before you talk to us.',
+    defaults: { people: 3, salary: 30000, loading: 40, leads: 600 },
+    inputs: {
+      people: 'People on calling and follow-up',
+      salary: 'Salary each, per month',
+      loading: 'On top of salary — incentives, management, hiring, training, leave, attrition',
+      leads: 'Leads a month, all sources',
+    },
+    outputs: {
+      human: 'What that job costs you now',
+      crewmind: 'What it costs with an AI employee',
+      gap: 'The difference, every month',
+    },
+    price: { base: 12000, includedLeads: 500, perExtraLead: 25 },
+    resolve:
+      'The percentage is whatever your own numbers make it. We are not going to put a universal ratio on a website and ask you to believe it.',
+    caveat:
+      'This prices one job: calling every lead and staying on it. It is not your sales floor and it does not pretend to be — an AI employee does not close, negotiate or do site visits, and your closers still do all of that. The loading figure is the part most people underestimate; 40% is conservative once you count the month a seat sits empty.',
+    invite:
+      'Every figure above starts as a guess about your business. Change them. If the gap closes on your real numbers, we would rather you found that out here than three months into an engagement.',
+  },
+
   booking: {
     prompt: 'Step 2',
-    title: 'Book your free AI strategy call',
-    sub: "On this call we'll map out exactly how to implement an AI system for your business — what to automate first, what it takes, and what it's worth. No deck, no pitch.",
+    title: 'Book your free hiring call',
+    sub: "Bring one job — the one your team keeps dropping. We'll tell you whether it can be staffed this way, what it would take, and what it would cost. If the answer is that you don't need us, we'll say that instead. No deck, no pitch.",
   },
 
   services: {
-    eyebrow: 'What we build',
-    title: "Pick your problem. We've solved it.",
-    sub: 'Every service is done for you, installed, integrated, and handed over working. Not a template. Not a tutorial.',
+    eyebrow: 'The jobs people hand over first',
+    title: 'Seven roles. Pick your five.',
+    sub: 'Each one is built around your business, wired into the tools you already run, and handed over working. Not a template, not a tutorial, not another login for someone to forget.',
     items: [
       {
-        slug: 'social-media-automation',
-        title: 'Social Media Automation Systems',
+        slug: 'ai-call-centers',
+        title: 'Your receptionist',
         description:
-          'AI content generation built for your brand, custom dashboard, algorithm-aligned calendar, hook engineering, and every piece routed back to your mission.',
-        features: ['AI video generation', 'Content dashboard & calendar', 'Hook & retention engineering'],
-        badge: 'New',
-      },
-      {
-        slug: 'geo',
-        title: 'GEO — Get Recommended by AI',
-        description:
-          "We make AI recommend your business. When your customers ask ChatGPT, Gemini, or Perplexity a question, we make sure you're the answer they get.",
-        features: ['AI visibility audit', 'LLM optimisation', 'Competitive AI positioning'],
-      },
-      {
-        slug: 'ai-personal-assistants',
-        title: 'AI Agents & Assistants',
-        description:
-          'Done-for-you setup of two powerful agent frameworks that handle your inbox, outreach, scheduling, and ops 24/7.',
-        features: ['Personal AI assistant', 'Autonomous outreach agent', 'CRM & tool integrations'],
+          'Answers every call, at any hour, in the language it was made in. Books the appointment, takes the details, and never puts anyone on hold or lets it ring out.',
+        features: ['Human-like voice', 'Live appointment booking', 'CRM syncing'],
       },
       {
         slug: 'lead-gen-outreach',
-        title: 'Lead Gen & Outreach Systems',
+        title: 'Your prospector',
         description:
-          'We find leads matching your exact target audience, populate a live sheet, and automatically send outreach via email, LinkedIn, and SMS.',
-        features: ['ICP-based lead discovery', 'Live sheet feed', 'Email & LinkedIn automation'],
+          'Finds the people who match your buyer, puts them in a live sheet you can watch fill up, and opens the conversation over email, LinkedIn and SMS.',
+        features: ['ICP-based lead discovery', 'Live sheet feed', 'Email & LinkedIn outreach'],
       },
       {
-        slug: 'ai-call-centers',
-        title: '24/7 AI Receptionist',
+        slug: 'ai-personal-assistants',
+        title: 'Your executive assistant',
         description:
-          'AI phone agents for bookings, customer support, and lead qualification. Never miss a call again.',
-        features: ['Human-like voices', 'Live appointment booking', 'CRM syncing'],
+          'Runs the inbox, the calendar and the chasing — the four hours a day that sit between you and the work you are actually paid for.',
+        features: ['Inbox & calendar management', 'Autonomous follow-up', 'CRM & tool integrations'],
+      },
+      {
+        slug: 'social-media-automation',
+        title: 'Your content marketer',
+        description:
+          'Posts every day in your brand voice, without a Sunday night scramble. Video, captions, and a calendar built around the algorithm instead of around guessing.',
+        features: ['AI video generation', 'Content calendar & dashboard', 'Hook & retention engineering'],
+        badge: 'New',
       },
       {
         slug: 'ai-copywriting',
-        title: 'AI Copywriting Systems',
+        title: 'Your copywriter',
         description:
-          'Websites, landing pages, sales emails, and case studies — AI trained on your brand voice, your existing materials, and refined until it converts.',
+          'Landing pages, sales emails, case studies. Trained on your voice and the material you have already written, then rewritten against what actually converts.',
         features: ['Brand voice training', 'Landing page & website copy', 'Sales email sequences'],
       },
       {
-        slug: 'ai-agent-team',
-        title: 'Custom AI Agent Team',
+        slug: 'geo',
+        title: 'Your AI-search specialist',
         description:
-          'A complete AI operating system — a dedicated team of specialised agents, each one focused on helping your business achieve its mission.',
-        features: ['Dedicated agent roles', 'Mission-aligned output', 'Full team coordination'],
+          'Your buyers now ask ChatGPT and Perplexity who to use before they ask anyone else. This is the job of making sure the answer that comes back is you.',
+        features: ['AI visibility audit', 'LLM optimisation', 'Competitive AI positioning'],
+      },
+      {
+        slug: 'ai-agent-team',
+        title: 'The rest of the org chart',
+        description:
+          'Several of the above at once, built to hand work to each other rather than sit in separate tabs. A department, not a hire.',
+        features: ['Defined roles per employee', 'Work handed between them', 'One place to watch it run'],
       },
     ],
     enterprise: {
       eyebrow: 'Enterprise',
       badge: 'New',
-      title: 'Need a fully custom AI system built for enterprise scale?',
-      body: 'We partner with enterprise teams to design and build from scratch — RAG pipelines, private LLM deployments, AI agents, and workflow automation. All on your infrastructure. All IP yours.',
-      tags: ['RAG systems', 'AI agents', 'Private LLMs', 'Open source', 'Full IP ownership'],
+      title: 'Need the whole department, on your own infrastructure?',
+      body: 'We design and build from scratch for teams who cannot send their data anywhere — RAG pipelines, private model deployments, and multi-role systems that run inside your walls. Your infrastructure, your IP, no seat licences.',
+      tags: ['RAG systems', 'Private LLMs', 'Multi-role systems', 'Open source', 'Full IP ownership'],
       cta: { label: 'Explore enterprise', href: '/enterprise' },
     },
   },
 
   positioning: {
-    eyebrow: 'What actually happens',
+    eyebrow: 'Tool, or worker',
     title: {
-      lead: 'Most AI agencies sell decks.',
-      emphasis: 'We ship things that run.',
+      lead: 'Most AI companies sell you a tool.',
+      emphasis: 'We hand you a worker.',
     },
-    sub: 'No six-week discovery sprints. No "AI strategy" PDFs. We get on a call, understand your workflow, and hand you a working system — usually within a week.',
+    sub: 'A tool sits there until somebody remembers to open it, which is why the last three you bought are still unused. A worker has a job, a shift, and one thing it is accountable for. That is the whole difference, and it is why this page talks about salaries instead of licences.',
   },
 
   process: {
-    title: 'How it works',
+    title: 'How you hire one',
     steps: [
       {
         step: '01',
-        title: 'Book a strategy call',
-        body: 'Tell us what you need automated. We plan your agents, integrations, and workflows. Free, no commitment.',
+        title: 'Write the job description',
+        body: 'Not a spec — a job. What the person would do, when, and what "done" looks like. Fifteen minutes on a call is usually enough. These four are the ones we get asked for most, with the rough week each one takes off a team.',
         visual: {
           kind: 'timeSaved',
           rows: [
-            { label: 'Email & inbox management', value: '8h/wk' },
-            { label: 'Lead outreach & follow-up', value: '10h/wk' },
-            { label: 'Manual data entry & CRM', value: '6h/wk' },
-            { label: 'Scheduling & calendar', value: '5h/wk' },
+            { label: 'Calling new leads back', value: '10h/wk' },
+            { label: 'Inbox and follow-up', value: '8h/wk' },
+            { label: 'CRM and data entry', value: '6h/wk' },
+            { label: 'Scheduling and reminders', value: '5h/wk' },
           ],
-          total: '29 hrs/week returned to you',
+          total: 'About 29 hours a week that stop being anyone’s job',
         },
       },
       {
         step: '02',
-        title: 'We build everything for you',
-        body: 'Custom AI agents, automations, and integrations, built around your exact tools and workflows. You sit back.',
+        title: 'We build the employee',
+        body: 'Your voice, your rules, your tools. It learns what it is allowed to say, what it must never invent, and who to hand a live conversation to. You do nothing during this part.',
         visual: {
           kind: 'flow',
-          from: 'Your business',
-          nodes: ['AI agents', 'Automations', 'Integrations'],
-          to: 'Running',
+          from: 'Your job description',
+          nodes: ['Voice & script', 'Your tools', 'The rules'],
+          to: 'On shift',
         },
       },
       {
         step: '03',
-        title: 'We launch & hand over',
-        body: 'Everything tested, live, and documented. We walk you through it and make sure it runs exactly as planned.',
+        title: 'First shift',
+        body: 'Tested against real cases before it touches a real customer, then live. We walk your team through what it does, what it refuses to do, and how to take over a conversation halfway through.',
         visual: {
           kind: 'schedule',
           items: [
-            { label: 'Call', when: 'Day 1' },
+            { label: 'Hiring call', when: 'Day 1' },
             { label: 'Build', when: 'Day 2–4' },
-            { label: 'Test', when: 'Day 5' },
-            { label: 'Live', when: 'Day 6' },
+            { label: 'Test runs', when: 'Day 5' },
+            { label: 'First shift', when: 'Day 6' },
           ],
         },
       },
       {
         step: '04',
-        title: 'Real support, real humans',
-        body: '30-day support on every build. Message us and the person who built your system responds — not a ticket queue.',
+        title: 'It does not resign',
+        body: 'No notice period, no handover, no retraining in month seven because somebody left. Thirty days of support on every build, and the person who built it answers you — not a ticket queue.',
         visual: {
           kind: 'stats',
           items: [
-            { value: '24/7', label: 'Always running' },
+            { value: '24/7', label: 'On shift' },
             { value: '30d', label: 'Support included' },
-            { value: '0', label: 'Code required' },
-            { value: 'Yours', label: 'You own it' },
+            { value: '0', label: 'Days notice to stop' },
+            { value: 'Yours', label: 'Recordings & data' },
           ],
         },
       },
@@ -185,60 +241,60 @@ export const HOME: HomeContent = {
   },
 
   work: {
-    title: 'See our work in action',
+    title: 'Roles we have already built',
     items: [
       {
-        id: 'reels-growth',
-        title: 'AI Social Media Content System',
-        impact: '85K+ followers from a fully automated short-form pipeline',
-        tags: ['Social Media', 'AI Video', 'Short-Form'],
+        id: 'bizdev-setter',
+        title: 'The setter',
+        impact: 'Lead response time cut from hours to sixty seconds',
+        tags: ['Sales', 'Lead response'],
         href: '/past-projects',
       },
       {
         id: 'sales-pipeline',
-        title: 'Sales Pipeline Autopilot',
-        impact: '24/7 autonomous prospecting, zero manual outreach',
-        tags: ['AI Assistants', 'Sales', 'Prospecting'],
+        title: 'The prospector',
+        impact: 'Prospecting that ran overnight, with nobody sending outreach by hand',
+        tags: ['Sales', 'Outreach'],
         href: '/past-projects',
       },
       {
         id: 'chief-of-staff',
-        title: 'AI Chief of Staff + Sales Engine',
-        impact: '2-agent system running inbox, calendar, and outreach',
-        tags: ['AI Assistants', 'Executive AI'],
+        title: 'The chief of staff',
+        impact: 'Inbox, calendar and outreach handled by two roles working together',
+        tags: ['Executive support'],
+        href: '/past-projects',
+      },
+      {
+        id: 'reels-growth',
+        title: 'The content marketer',
+        impact: '85K+ followers from a posting pipeline nobody had to staff',
+        tags: ['Marketing', 'Short-form video'],
         href: '/past-projects',
       },
       {
         id: 'marketing-team',
-        title: 'Full AI Marketing Team',
-        impact: '6-agent team running autonomously across 8 clients',
-        tags: ['Multi-Agent', 'Marketing', 'Agency'],
-        href: '/past-projects',
-      },
-      {
-        id: 'bizdev-setter',
-        title: 'BizDev Setter Agent',
-        impact: 'Lead response time cut from hours to 60 seconds',
-        tags: ['Lead Generation', 'CRM'],
+        title: 'The marketing department',
+        impact: 'Six roles running across eight clients at once',
+        tags: ['Multi-role', 'Agency'],
         href: '/past-projects',
       },
       {
         id: 'content-team',
-        title: 'Discord AI Content Team',
-        impact: 'Publication-ready content in under 20 minutes',
-        tags: ['Multi-Agent', 'Content'],
+        title: 'The content desk',
+        impact: 'Brief to publication-ready draft in under twenty minutes',
+        tags: ['Multi-role', 'Content'],
         href: '/past-projects',
       },
     ],
-    cta: { label: 'View all projects', href: '/past-projects' },
+    cta: { label: 'See all of them', href: '/past-projects' },
   },
 
   close: {
     eyebrow: 'We keep the roster small on purpose',
-    title: 'We only work with a handful of clients at a time.',
-    sub: "Not a sales tactic — it's how we keep the quality high. If you're serious about getting AI working in your business, book a call and let's see if we're a fit.",
+    title: 'We only staff a handful of companies at a time.',
+    sub: 'Not a scarcity tactic. Every employee we build is tuned to one company’s calls, tools and objections, and that work does not run in parallel. If you already know which job you would hand over first, book the call and describe it.',
     cta: {
-      primary: { label: 'Book a Free Strategy Call', href: '#book' },
+      primary: { label: 'Book a free hiring call', href: '#book' },
       secondary: { label: 'Message us on WhatsApp', href: BRAND.whatsapp() },
     },
   },

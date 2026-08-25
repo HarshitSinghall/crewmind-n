@@ -2,46 +2,69 @@ import type { ServiceContent, ServicesIndexContent } from './types'
 import { BRAND } from './site'
 
 /* ---------------------------------------------------------------------------
-   PLACEHOLDER CONTENT — see CONTENT-SWAP.md
-   Transcribed from docs/reference/autoploy-services.md and the four service
-   detail pages captured alongside it.
+   The roles we build.
+
+   Rewritten onto the employee positioning. Each entry is a JOB, not a product
+   category, and every page below is shaped like a job description rather than
+   a brochure:
+
+     what happens when nobody has this job
+     → what is in the job description
+     → how you hire one
+     → what is NOT in the job description
+     → the questions people actually ask
+
+   The limits section is not decoration and must not be dropped to make a page
+   read stronger. It is the same commitment the Priya page makes and the same
+   one `about.ts` puts in its pillars: the limits are published before the
+   price. A page here that only lists capabilities is off-brand.
+
+   FIGURES REMOVED IN THIS PASS. The reference's numbers were being presented
+   as our typical results and none of them were ours:
+     - geo: the "38/100 / 38% / 45% / 53%" AI visibility scores
+     - ai-personal-assistants: "29 hrs returned per week", "100+ setups"
+     - lead-gen-outreach: "1,000+ leads per day", "38 hrs automated per week"
+     - ai-call-centers: "74% of calls to small businesses go unanswered"
+   Do not put any of them back without a measurement behind them. Where a
+   `stats` section survives, its values are commitments we control (support
+   window, coverage, channel count) rather than outcomes we do not.
 
    Two named third-party products in the reference ("OpenClaw", "Hermes
-   Agent", "Retell AI", "Higgsfield") are referred to generically here. They
-   are another vendor's stack choices, and hardcoding them into our copy
-   claims a partnership nobody has.
+   Agent", "Retell AI", "Higgsfield") are referred to generically. They are
+   another vendor's stack choices, and hardcoding them claims a partnership
+   nobody has.
 
-   COVERAGE, per spec section 10: four services carry full detail (geo,
-   ai-personal-assistants, lead-gen-outreach, ai-call-centers). The other four
-   have thinner `sections` arrays — they render correctly and completely, they
-   simply carry less copy. Those are marked TODO below.
+   The `title`, `description` and `features` of every entry are duplicated on
+   the homepage grid in `home.ts`. They must stay identical — a card and the
+   page it opens contradicting each other is the defect this note exists to
+   prevent.
 --------------------------------------------------------------------------- */
 
-const bookCta = { label: 'Book a Free Strategy Call', href: BRAND.calendly }
+const bookCta = { label: 'Book a free hiring call', href: BRAND.calendly }
 
 const whatsappCta = (topic: string) => ({
-  label: 'Message Us on WhatsApp',
-  href: BRAND.whatsapp(`Hello, I'd like to learn more about ${topic}.`),
+  label: 'Message us on WhatsApp',
+  href: BRAND.whatsapp(`Hello, I'd like to talk about ${topic}.`),
 })
 
 export const SERVICES_INDEX: ServicesIndexContent = {
   seo: {
-    title: 'Services',
+    title: 'The Roles We Build',
     description:
-      'From AI assistants to workflow automation and 24/7 voice agents, we build custom AI systems that run your business while you sleep. One-time setup, no subscriptions.',
+      'Eight jobs you can hand to an AI employee — reception, prospecting, executive support, content, copy, AI search, and whole departments. Built to your business and handed over working.',
   },
   hero: {
-    eyebrow: 'What we offer',
+    eyebrow: 'The roles we build',
     headline: {
-      lead: 'End-to-end AI automation,',
-      emphasis: 'built to your workflow',
+      lead: 'Eight jobs you can stop',
+      emphasis: 'doing by hand',
     },
-    sub: 'Eight services, every one done for you — scoped, built, integrated, and handed over working. Pick the problem you actually have.',
+    sub: 'Each one is a role, not a piece of software — built around your business, wired into the tools you already run, and handed over working. Start with the job your team keeps dropping.',
   },
   close: {
     eyebrow: 'Not sure which one',
-    title: 'Describe the problem. We will name the service.',
-    sub: 'Most engagements start with a process someone is doing by hand. Bring that, and we will tell you what it maps to.',
+    title: 'Describe the job. We will tell you if it can be staffed.',
+    sub: 'Most engagements start with something someone is doing by hand at eleven at night. Bring that, and we will tell you which role it is — or that it is not one, if that is the honest answer.',
     cta: {
       primary: bookCta,
       secondary: { label: 'See our work', href: '/past-projects' },
@@ -51,495 +74,629 @@ export const SERVICES_INDEX: ServicesIndexContent = {
 
 export const SERVICES: ServiceContent[] = [
   /* ======================================================================
-     1. GEO — full detail
+     1. AI search — the job of being the answer
   ====================================================================== */
   {
     slug: 'geo',
-    title: 'GEO — Get Recommended by AI',
+    title: 'Your AI-search specialist',
     description:
-      "We make AI recommend your business. When your customers ask ChatGPT, Gemini, or Perplexity a question, we make sure you're the answer they get.",
+      'Your buyers now ask ChatGPT and Perplexity who to use before they ask anyone else. This is the job of making sure the answer that comes back is you.',
     features: ['AI visibility audit', 'LLM optimisation', 'Competitive AI positioning'],
     category: 'geo',
     seo: {
-      title: 'GEO — Get Recommended by AI',
+      title: 'Your AI-Search Specialist',
       description:
-        "We make AI recommend your business. When your customers ask an AI assistant for a recommendation, we make sure you're the answer they get.",
+        'Your buyers ask ChatGPT and Perplexity who to use before they ask anyone else. This is the job of making sure the answer that comes back is you.',
     },
     hero: {
-      eyebrow: 'Generative Engine Optimisation',
+      eyebrow: 'AI search · the job of being the answer',
       headline: {
-        lead: 'We make AI',
-        emphasis: 'recommend your service',
+        lead: 'Your buyer asked an AI who to use.',
+        emphasis: 'It named someone else',
       },
-      sub: "When your customers ask AI a question, we make sure you're the recommended answer — not your competitor.",
-      cta: { primary: bookCta, secondary: whatsappCta('your GEO service') },
+      sub: 'Nobody on your team has the job of being findable inside ChatGPT, Gemini or Perplexity. It is not marketing and it is not SEO — it is somebody watching what the assistants say about your category and doing something about it.',
+      cta: { primary: bookCta, secondary: whatsappCta('the AI-search role') },
       assurances: ['ChatGPT', 'Gemini', 'Perplexity', 'Claude'],
     },
     sections: [
       {
         kind: 'pillars',
         id: 'problem',
-        eyebrow: 'The problem',
-        title: 'Search moved into the chatbox.',
-        sub: "AI now answers the questions buyers used to type into a search engine. If it can't see you, you're not in the conversation.",
+        eyebrow: 'When nobody has this job',
+        title: 'Search moved into the chatbox, and nobody was reassigned.',
+        sub: 'Your buyers now ask an assistant the questions they used to type into a search engine. The shortlist gets decided before anyone visits a website.',
         items: [
           {
             id: 'discovery',
-            title: 'Buyers ask AI first',
-            body: 'Before they visit a site or read a review, your customers ask AI who to choose. That answer becomes their shortlist.',
+            title: 'They ask an AI first',
+            body: 'Before the site, before the reviews, before the call. Whatever comes back becomes the three names they actually consider.',
           },
           {
             id: 'risk',
-            title: 'AI names your competitors',
-            body: "If AI doesn't know enough about you, it confidently recommends someone else — by name, in your category.",
+            title: 'It answers with a competitor',
+            body: 'When an assistant does not know enough about you, it does not hedge. It confidently recommends somebody else, by name, in your category.',
           },
           {
             id: 'blind-spot',
             title: 'You never see it happen',
-            body: "It never shows in your analytics. The lost sale looks like it never happened. That's the part that costs the most.",
-          },
-        ],
-      },
-      {
-        kind: 'stats',
-        id: 'score',
-        eyebrow: 'AI visibility score',
-        title: 'Every brand has an AI score. Most are losing without knowing it.',
-        sub: 'AI recommends brands it understands and trusts. When those signals are thin, it names someone else. We show you exactly where you stand.',
-        items: [
-          {
-            value: '38/100',
-            label: 'Typical starting score',
-            body: 'Where most brands sit before any generative-engine work at all.',
-          },
-          {
-            value: '38%',
-            label: 'Visibility',
-            body: 'How often AI surfaces you when a buyer asks for options in your category.',
-          },
-          {
-            value: '45%',
-            label: 'Authority',
-            body: 'Whether the sources AI trusts have enough to say about you.',
-          },
-          {
-            value: '53%',
-            label: 'Coverage',
-            body: 'How much of your offer AI can actually describe when asked.',
-          },
-        ],
-      },
-      {
-        kind: 'pillars',
-        id: 'service',
-        eyebrow: 'The service',
-        title: 'We handle it all. You do nothing.',
-        sub: 'We audit your AI visibility, build your presence, and improve it over time.',
-        items: [
-          {
-            id: 'reports',
-            title: 'Know where you stand',
-            body: 'See which AI platforms recommend you, which do not, and exactly what your customers see when they ask.',
-          },
-          {
-            id: 'presence',
-            title: 'Get recommended more',
-            body: 'We publish authority content and join the online conversations AI reads, so it mentions your brand when buyers ask.',
-          },
-          {
-            id: 'tracking',
-            title: 'See what is changing',
-            body: 'A monthly walkthrough — what improved, what we did, and how you compare to competitors.',
-          },
-          {
-            id: 'managed',
-            title: 'Fully managed',
-            body: 'After a short onboarding, we handle everything. You run your business.',
+            body: 'It leaves no trace in your analytics. No bounce, no impression, no lost session — the sale simply looks like it never existed. That is what makes it worth somebody owning.',
           },
         ],
       },
       {
         kind: 'checklist',
         id: 'included',
-        title: "Here's exactly what we do:",
+        title: 'What is in the job description:',
         items: [
-          'Baseline audit across every major AI assistant',
-          'Replies to AI-indexed conversations in your category',
-          'Authority content published on the sources AI cites',
-          'Improvements to your AI citation footprint',
-          'Monthly score rebalancing and competitor comparison',
-          'A monthly video walkthrough of what changed and why',
-        ],
-      },
-    ],
-    close: {
-      eyebrow: 'Get started',
-      title: "Find out if you're invisible to AI.",
-      sub: 'We will run a free audit across the major assistants and show you exactly where you stand.',
-      cta: { primary: bookCta, secondary: whatsappCta('your GEO service') },
-    },
-  },
-
-  /* ======================================================================
-     2. AI agents & assistants — full detail
-  ====================================================================== */
-  {
-    slug: 'ai-personal-assistants',
-    title: 'AI Agents & Assistants',
-    description:
-      'Done-for-you setup of two powerful agent frameworks that handle your inbox, outreach, scheduling, and ops 24/7.',
-    features: [
-      'Personal AI assistant',
-      'Autonomous outreach agent',
-      'CRM & tool integrations',
-    ],
-    category: 'ai-personal-assistants',
-    seo: {
-      title: 'AI Agents & Assistants',
-      description:
-        'Get a full AI team running 24/7 — a personal assistant for inbox and calendar, an autonomous agent for outreach. Done for you, no code required.',
-    },
-    hero: {
-      eyebrow: 'Done for you · No code required',
-      headline: {
-        lead: 'Wake up to an AI team',
-        emphasis: 'already working for you',
-      },
-      sub: 'One assistant manages your inbox, calendar, and tasks. The other messages your leads, books calls, and executes across every channel — both running by tomorrow.',
-      cta: {
-        primary: bookCta,
-        secondary: whatsappCta('the AI agents and assistants setup'),
-      },
-      assurances: ['100+ setups completed', 'Live in days, not months', '30-day support'],
-    },
-    sections: [
-      {
-        kind: 'pillars',
-        id: 'frameworks',
-        eyebrow: 'Two frameworks, one setup',
-        title: 'An assistant for inside. An agent for outside.',
-        sub: 'While you slept, your assistant checked your emails and updated your calendar, and your outreach agent messaged prospects, followed up with leads, and updated your CRM. That is what clients wake up to.',
-        items: [
-          {
-            id: 'assistant',
-            title: 'The personal assistant',
-            body: 'Your chief of staff. Email triaging and drafting, calendar and scheduling, chat integrations, CRM updates and notes — anything internal.',
-          },
-          {
-            id: 'agent',
-            title: 'The outreach agent',
-            body: 'Autonomous and external. Multi-channel messaging, lead outreach and follow-up, call booking automation, and task execution around the clock.',
-          },
-        ],
-      },
-      {
-        kind: 'checklist',
-        id: 'included',
-        title: "Here's exactly what you get:",
-        items: [
-          'Full installation on a VPS, a Mac Mini, or your preferred setup',
-          'Outreach agent configured for messaging, follow-up and task execution',
-          'Custom agents built for your specific business or personal needs',
-          'Your tools integrated — CRM, email, chat, calendar, and more',
-          'Multi-channel messaging and task execution running 24/7',
-          'Personality and memory tailored to how you work',
-          'Skills picked and configured for your use case',
-          'A security protocol proven across 100+ setups',
-          'Bug fixes and troubleshooting for existing setups',
-          '30-day support included',
-          'Full breakdown and walkthrough so you understand everything',
-        ],
-      },
-      {
-        kind: 'audience',
-        id: 'audience',
-        eyebrow: 'Built for',
-        title: 'Why people hire us',
-        items: [
-          'Founders & CEOs — delegate outreach, follow-ups, email triage and ops to AI that never sleeps',
-          'Freelancers & creators — automate client comms, scheduling, and content workflows',
-          'Small teams — a shared AI team for sales, ops and support, with no developer needed',
-          'Technical teams — get both frameworks running properly without the headaches',
+          'A baseline audit across every major assistant — the actual answers they give when somebody asks for options in your category',
+          'A written record of who gets named instead of you, and what those sources say that yours do not',
+          'Authority content published on the sources the assistants actually cite',
+          'Participation in the indexed conversations your category happens in',
+          'Repair of the places your own material is thin, contradictory or missing',
+          'A monthly re-run of the same audit, so movement is measured against the same questions',
+          'A monthly walkthrough: what changed, what we did, and where you now sit against the competitors who keep coming up',
         ],
       },
       {
         kind: 'steps',
         id: 'process',
-        title: 'How it works',
-        sub: 'Four steps, about a week, and you are running.',
+        title: 'How you hire one',
+        sub: 'The first month is measurement. Nothing gets changed before we know what the assistants currently say.',
         steps: [
           {
             step: '01',
-            title: 'Reach out to us',
-            body: 'Tell us your goals. We plan which agents fit your workflows best, and what the first month should look like.',
+            title: 'We ask the assistants about you',
+            body: 'The real questions your buyers ask, put to each major assistant, with the answers recorded verbatim. You read what your customers read.',
           },
           {
             step: '02',
-            title: 'We set up secure access',
-            body: 'We connect over an encrypted tunnel. No passwords are shared, and access is scoped to what the build needs.',
+            title: 'We work out why',
+            body: 'Who gets named instead, which sources those answers lean on, and what is missing from the ones that mention you. This is the part that tells us whether the job is worth doing at all.',
           },
           {
             step: '03',
-            title: 'We build everything for you',
-            body: 'Custom agents, integrations, and channel connections, all built for you. Plan on day one, build across days two and three, connect on day four.',
+            title: 'The work starts',
+            body: 'Authority content on the sources that get cited, participation where your category is discussed, and repair of your own thin material.',
           },
           {
             step: '04',
-            title: "You're up and running",
-            body: 'Everything tested and tailored. We walk you through it and hand over documentation on day five.',
+            title: 'The same questions, every month',
+            body: 'Re-asked, re-recorded, compared. Movement or no movement, you see the transcript rather than a dashboard number.',
           },
         ],
       },
       {
-        kind: 'stats',
-        id: 'why-us',
-        title: 'Why clients choose us',
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        sub: 'Written down here so you do not find it out in month three.',
         items: [
           {
-            value: '29 hrs',
-            label: 'Returned per week',
-            body: 'Email drafting and triage, outreach follow-ups, calendar scheduling, and manual CRM updates, added up.',
+            id: 'no-guarantee',
+            title: 'Nobody can guarantee you a position',
+            body: 'Not us, and not anyone else selling this. There is no ranking to buy and no index to submit to — model answers shift with retraining, and anyone promising a fixed spot is describing a mechanism that does not exist.',
           },
           {
-            value: '0',
-            label: 'Code required',
-            body: 'You never need to touch a terminal or write a single line.',
+            id: 'slow',
+            title: 'It is slow',
+            body: 'This moves in months, not weeks, because it depends on sources being published, indexed and then picked up. If you need pipeline this quarter, hire the prospector instead and come back to this one.',
           },
           {
-            value: '24/7',
-            label: 'Always on',
-            body: 'Once set up, your AI team runs around the clock.',
+            id: 'not-seo',
+            title: 'It is not a replacement for search',
+            body: 'Google still sends you traffic and this does not change that. It is a second front that currently has nobody assigned to it, not a migration off the first.',
+          },
+          {
+            id: 'no-audience',
+            title: 'It does nothing if nobody asks about your category',
+            body: 'Some categories simply are not researched this way yet. The audit tells us that in the first fortnight, and if that is your answer we will say so rather than sell you a retainer.',
           },
         ],
       },
       {
         kind: 'faq',
         id: 'faq',
-        title: 'Frequently asked questions',
+        title: 'The questions people actually ask',
         items: [
           {
-            id: 'both',
-            question: 'Do I get both the assistant and the outreach agent in one setup?',
+            id: 'vs-seo',
+            question: 'Is this just SEO with a new name?',
             answer:
-              'Yes, if both fit your workflows. Most clients start with the internal assistant because the time saving is immediate and obvious, then add outreach once they trust it. We scope which combination makes sense on the call rather than selling you both by default.',
+              'They overlap and they are not the same. SEO optimises for a ranked list of links; this optimises for what a model says in a sentence when there is no list. The tactics differ most in where the work gets published — assistants lean on a narrower, more citable set of sources than a search index does.',
           },
           {
-            id: 'technical',
-            question: 'Do I need technical knowledge?',
+            id: 'measure',
+            question: 'How do I know it is working?',
             answer:
-              'No. We install, configure, and integrate everything, then hand over a walkthrough and written documentation. If you can describe how you work, you can operate what we build.',
+              'The same questions get asked every month and you read the answers. That is deliberately a transcript rather than a score, because a score we invent is not evidence and you have no way to check it.',
           },
           {
-            id: 'timeline',
-            question: 'How long does setup take?',
+            id: 'howlong',
+            question: 'How long before anything changes?',
             answer:
-              'About a week from kickoff to handover for a standard setup — day one to plan, days two and three to build, day four to connect your tools, day five to walk you through it. Heavier integration work extends that, and we tell you before we start if it will.',
+              'Usually months. Sources have to be published, indexed and then actually picked up. We would rather set that expectation now than have you cancel in week six because a number did not move.',
           },
           {
-            id: 'extend',
-            question: 'Can I add more capabilities later?',
+            id: 'diy',
+            question: 'Could I do this myself?',
             answer:
-              'Yes. The agents are yours, including the configuration and any custom skills we wrote. You can extend them yourself, or bring us back for a scoped addition.',
-          },
-          {
-            id: 'breaks',
-            question: 'What if something breaks?',
-            answer:
-              'Support is included for 30 days after handover, which covers the period where real-world use surfaces the things testing did not. Beyond that we offer troubleshooting as a separate engagement, including for setups we did not originally build.',
+              'Yes, genuinely. It is research, writing and participation, and none of it is secret. The reason people hire it out is that it needs doing every month by somebody whose job it is — which is the same reason this whole site exists.',
           },
         ],
       },
     ],
     close: {
-      eyebrow: 'Limited availability',
-      title: 'We take a limited number of clients per month.',
-      sub: 'Book your setup call now. By next week, your AI agents will be working for you.',
+      eyebrow: 'Start with the audit',
+      title: 'Find out what the assistants say about you.',
+      sub: 'We will run the audit across the major assistants and send you the answers in full, whether or not they make the case for hiring us.',
+      cta: { primary: bookCta, secondary: whatsappCta('the AI-search role') },
+    },
+  },
+
+  /* ======================================================================
+     2. Executive assistant — the job inside the business
+  ====================================================================== */
+  {
+    slug: 'ai-personal-assistants',
+    title: 'Your executive assistant',
+    description:
+      'Runs the inbox, the calendar and the chasing — the four hours a day that sit between you and the work you are actually paid for.',
+    features: ['Inbox & calendar management', 'Autonomous follow-up', 'CRM & tool integrations'],
+    category: 'ai-personal-assistants',
+    seo: {
+      title: 'Your Executive Assistant',
+      description:
+        'Inbox, calendar, chasing and CRM updates — the work that has to happen, that nobody was hired to do, and that lands on whoever is most senior and least available.',
+    },
+    hero: {
+      eyebrow: 'Executive support · inside the business',
+      headline: {
+        lead: 'The four hours a day',
+        emphasis: 'that are not your job',
+      },
+      sub: 'Inbox triage, calendar, chasing, notes, CRM updates. Work that has to happen, that nobody was ever hired to do, and that therefore lands on whoever is most senior and least available — which is usually you.',
       cta: {
         primary: bookCta,
-        secondary: whatsappCta('the AI agents and assistants setup'),
+        secondary: whatsappCta('the executive assistant role'),
+      },
+      assurances: ['Live in about a week', 'No code, ever', '30 days of support'],
+    },
+    sections: [
+      {
+        kind: 'pillars',
+        id: 'shape',
+        eyebrow: 'Two shapes of the same hire',
+        title: 'One faces inward. One faces outward.',
+        sub: 'Most people start with the inward one, because the time it gives back is immediate and obvious, then add the outward one once they trust it.',
+        items: [
+          {
+            id: 'assistant',
+            title: 'The assistant, facing in',
+            body: 'Your chief of staff. Email triage and drafting, calendar and scheduling, chat, notes, CRM updates — everything internal that eats the day in fifteen-minute pieces.',
+          },
+          {
+            id: 'agent',
+            title: 'The agent, facing out',
+            body: 'Talks to other people. Multi-channel messaging, lead follow-up, booking calls, and chasing the things you said you would chase. It stops the moment a human on your side picks up the thread.',
+          },
+        ],
+      },
+      {
+        kind: 'checklist',
+        id: 'included',
+        title: 'What is in the job description:',
+        items: [
+          'Full installation on a VPS, a Mac Mini, or whatever you already run',
+          'Inbox triage, drafting and filing against rules you set and can change',
+          'Calendar and scheduling, including the back-and-forth of finding a time',
+          'Follow-up and chasing across email and chat, with a stop rule when a human replies',
+          'Your tools connected — CRM, email, chat, calendar, and the rest',
+          'Personality, tone and memory tuned to how you actually work',
+          'Custom skills built for the parts of your job nobody else has',
+          'A security protocol, with access scoped to what the build needs and nothing more',
+          'Bug fixes and troubleshooting, including for setups we did not originally build',
+          '30 days of support, and a walkthrough so you understand what it is doing',
+        ],
+      },
+      {
+        kind: 'audience',
+        id: 'audience',
+        eyebrow: 'Who hires this one',
+        title: 'The people who end up doing this work themselves',
+        items: [
+          'Founders and CEOs — outreach, follow-up, triage and ops, delegated to something that does not need managing',
+          'Freelancers and creators — client comms, scheduling, and the admin around the work',
+          'Small teams — a shared assistant across sales, ops and support, with no developer in the loop',
+          'Technical teams — the same frameworks, set up properly, without losing a fortnight to it',
+        ],
+      },
+      {
+        kind: 'steps',
+        id: 'process',
+        title: 'How you hire one',
+        sub: 'About a week from the call to it running.',
+        steps: [
+          {
+            step: '01',
+            title: 'Write the job description',
+            body: 'Tell us what the person would do and what "done" looks like. We work out which shape fits and what the first month should cover.',
+          },
+          {
+            step: '02',
+            title: 'We set up access',
+            body: 'Over an encrypted tunnel, scoped to what the build needs. No passwords get shared and nothing is given blanket access to your accounts.',
+          },
+          {
+            step: '03',
+            title: 'We build it',
+            body: 'Plan on day one, build across days two and three, connect your tools on day four. You do nothing during this part.',
+          },
+          {
+            step: '04',
+            title: 'First shift',
+            body: 'Tested and tailored, then a walkthrough and written documentation on day five. You are shown how to change its rules yourself.',
+          },
+        ],
+      },
+      {
+        kind: 'stats',
+        id: 'commitments',
+        eyebrow: 'What we commit to',
+        title: 'Four things we control, and will hold to.',
+        sub: 'Not outcome claims. These are the terms of the engagement, which is a different kind of number and the only kind we will print.',
+        items: [
+          {
+            value: '24/7',
+            label: 'On shift',
+            body: 'Once it is running, it runs — including the nights and weekends nobody was covering.',
+          },
+          {
+            value: '0',
+            label: 'Code required',
+            body: 'You never open a terminal or write a line. If you can describe how you work, you can operate it.',
+          },
+          {
+            value: '30d',
+            label: 'Support included',
+            body: 'The window where real use surfaces what testing did not, answered by the person who built it.',
+          },
+          {
+            value: 'Yours',
+            label: 'The configuration',
+            body: 'The agents, the prompts and any custom skills are yours to keep, extend, or take elsewhere.',
+          },
+        ],
+      },
+      {
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        sub: 'Written down here so you do not find it out in month two.',
+        items: [
+          {
+            id: 'judgment',
+            title: 'It does not make the call for you',
+            body: 'It drafts, sorts, chases and prepares. Anything that commits you — a price, a promise, a hire, a no — comes to you first. That boundary is set during the build and you can move it, but the default is conservative on purpose.',
+          },
+          {
+            id: 'messy-process',
+            title: 'It cannot fix a process you do not have',
+            body: 'If nobody knows what should happen to a given kind of email, an assistant does not resolve that — it makes the ambiguity happen faster. Part of the build is agreeing the rules, and occasionally that conversation is the whole value.',
+          },
+          {
+            id: 'mistakes',
+            title: 'It will get things wrong',
+            body: 'Mostly filing and tone, occasionally something that matters. Everything it does is logged, so you see it rather than hearing about it from a client. Anyone claiming otherwise has not run one on a real inbox.',
+          },
+          {
+            id: 'not-a-replacement',
+            title: 'It does not replace an assistant you already have',
+            body: 'If you employ somebody in this role, this takes the fifteen-minute pieces off them and gives them back the work that needed a person. We will say so on the call if what you actually need is the human.',
+          },
+        ],
+      },
+      {
+        kind: 'faq',
+        id: 'faq',
+        title: 'The questions people actually ask',
+        items: [
+          {
+            id: 'both',
+            question: 'Do I get both the inward and the outward one?',
+            answer:
+              'If both fit. Most people start with the inward one because the time saving is immediate and obvious, then add outreach once they trust it. We scope which combination makes sense on the call rather than selling you both by default.',
+          },
+          {
+            id: 'technical',
+            question: 'Do I need to be technical?',
+            answer:
+              'No. We install, configure and integrate everything, then hand over a walkthrough and written documentation. If you can describe how you work, you can operate what we build and change its rules afterwards.',
+          },
+          {
+            id: 'timeline',
+            question: 'How long does it take to set up?',
+            answer:
+              'About a week from kickoff to handover for a standard build — a day to plan, two to build, one to connect your tools, one to walk you through it. Heavier integration work extends that, and we tell you before we start rather than after.',
+          },
+          {
+            id: 'access',
+            question: 'How much access does it need to my email?',
+            answer:
+              'As little as the job needs, scoped during the build, and revocable by you at any time from your own account. We will tell you exactly which permissions a given capability requires, and which capabilities you can drop if you would rather not grant them.',
+          },
+          {
+            id: 'extend',
+            question: 'Can I add to it later?',
+            answer:
+              'Yes. The configuration and any custom skills are yours. Extend it yourself, or bring us back for a scoped addition.',
+          },
+          {
+            id: 'breaks',
+            question: 'What if something breaks?',
+            answer:
+              'Support is included for 30 days after handover, which covers the period where real use surfaces what testing did not. After that we troubleshoot as a separate engagement — including for setups somebody else built.',
+          },
+        ],
+      },
+    ],
+    close: {
+      eyebrow: 'We keep the roster small',
+      title: 'We take a limited number of builds a month.',
+      sub: 'Bring the part of your week that is not your job. By this time next week it could be somebody else’s.',
+      cta: {
+        primary: bookCta,
+        secondary: whatsappCta('the executive assistant role'),
       },
     },
   },
 
   /* ======================================================================
-     3. Lead gen & outreach — full detail
+     3. Prospector — the job that slips first
   ====================================================================== */
   {
     slug: 'lead-gen-outreach',
-    title: 'Lead Gen & Outreach Systems',
+    title: 'Your prospector',
     description:
-      'We find leads matching your exact target audience, populate a live sheet, and automatically send outreach via email, LinkedIn, and SMS.',
-    features: ['ICP-based lead discovery', 'Live sheet feed', 'Email & LinkedIn automation'],
+      'Finds the people who match your buyer, puts them in a live sheet you can watch fill up, and opens the conversation over email, LinkedIn and SMS.',
+    features: ['ICP-based lead discovery', 'Live sheet feed', 'Email & LinkedIn outreach'],
     category: 'lead-gen-outreach',
     seo: {
-      title: 'Lead Gen & Outreach Systems',
+      title: 'Your Prospector',
       description:
-        'We build systems that find your ideal leads, populate a live sheet, and automatically reach out via email, LinkedIn, and SMS — all on autopilot.',
+        'The job of finding the right people and opening the conversation, every day, whether or not anyone feels like it. Email, LinkedIn and SMS, stopping the moment somebody replies.',
     },
     hero: {
-      eyebrow: 'Lead generation & outreach · Email · LinkedIn · SMS',
+      eyebrow: 'Prospecting · email, LinkedIn, SMS',
       headline: {
-        lead: 'Ten times the pipeline,',
-        emphasis: 'none of the prospecting',
+        lead: 'Nobody wakes up wanting',
+        emphasis: 'to do prospecting',
       },
-      sub: 'We build a system that finds leads matching your exact target audience, populates a live sheet you can always refer to, and automatically sends personalised outreach across email, LinkedIn, and SMS.',
+      sub: 'Which is why it is the first thing that slips in a busy week, and why your pipeline arrives in lumps. This is the job of finding the right people and opening the conversation every day, whether or not anyone feels like it.',
       cta: {
         primary: bookCta,
-        secondary: whatsappCta('your lead gen and outreach systems'),
+        secondary: whatsappCta('the prospector role'),
       },
-      assurances: ['1,000+ leads/day', '3 channels', 'Pauses the moment they reply'],
+      assurances: ['Three channels', 'Stops the moment they reply', '30 days of support'],
     },
     sections: [
       {
+        kind: 'pillars',
+        id: 'problem',
+        eyebrow: 'When nobody has this job',
+        title: 'It is never urgent, so it is never done.',
+        sub: 'Prospecting has no deadline and nobody chasing it, which is exactly why it loses to everything else on the list.',
+        items: [
+          {
+            id: 'slips',
+            title: 'It loses to whatever is on fire',
+            body: 'A live deal, a client problem, an invoice. All of them beat cold outreach on urgency, every single day, and none of them fill next quarter.',
+          },
+          {
+            id: 'lumpy',
+            title: 'Your pipeline arrives in lumps',
+            body: 'A burst of outreach in a quiet week, nothing for a month, then a scramble. The gaps show up in your revenue about ninety days later.',
+          },
+          {
+            id: 'closers',
+            title: 'Your closers are doing it badly',
+            body: 'The people who are good at conversations are spending their mornings building lists, which is neither what you hired them for nor what they are good at.',
+          },
+        ],
+      },
+      {
         kind: 'audience',
         id: 'audience',
-        eyebrow: "Who it's for",
-        title: 'Works for any business that sells',
+        eyebrow: 'Who hires this one',
+        title: 'Any business where somebody has to go first',
         items: [
           'B2B sales teams',
-          'SaaS & tech companies',
-          'Recruiting & staffing',
+          'SaaS and technology companies',
+          'Recruiting and staffing',
           'Marketing agencies',
-          'Real estate & property',
+          'Real estate and property',
           'Service businesses',
         ],
       },
       {
         kind: 'checklist',
         id: 'included',
-        title: "Here's exactly what you get:",
+        title: 'What is in the job description:',
         items: [
-          'ICP-based lead discovery across professional networks, forums, and search',
-          'Every lead delivered into a live sheet you can always access',
-          'Automated email outreach sequences with follow-ups',
-          'Direct message automation on professional networks',
-          'SMS outreach campaigns',
-          'Real-time lead status tracking and reply detection',
-          'Custom filters: industry, job title, company size, location',
-          'De-duplication and bounce filtering built in',
-          'Outreach auto-pauses when a lead replies — you take it from there',
-          '30-day support and optimisation included',
+          'Lead discovery against your ICP across professional networks, forums and search',
+          'Every lead into a live sheet you can open at any time and check yourself',
+          'Custom filters: industry, job title, company size, location, and any signal that matters to you',
+          'De-duplication and bounce filtering, so the same person is not approached twice',
+          'Personalised email sequences with follow-ups',
+          'Direct messaging on professional networks',
+          'SMS campaigns where that is appropriate for your market',
+          'Reply detection, with outreach pausing the second somebody answers',
+          'Live status tracking, so you can see which stage every name is at',
+          '30 days of support and tuning after it goes live',
         ],
       },
       {
         kind: 'steps',
         id: 'process',
-        title: 'How it works',
-        sub: 'You describe the customer. We build the machine that finds them.',
+        title: 'How you hire one',
+        sub: 'You describe the buyer. We build the thing that goes and finds them.',
         steps: [
           {
             step: '01',
-            title: 'Tell us your ICP',
-            body: 'Share your ideal customer profile — industry, job title, company size, geography, or any signal that matters. The more specific, the better the leads.',
+            title: 'Describe the buyer',
+            body: 'Industry, job title, company size, geography, or any signal that actually predicts a good conversation. The more specific you are, the less noise comes back.',
           },
           {
             step: '02',
-            title: 'We build the lead engine',
-            body: 'We configure scrapers, data APIs, and enrichment tools that continuously find new prospects matching your criteria across every source worth watching.',
+            title: 'We build the finder',
+            body: 'Scrapers, data APIs and enrichment configured against your criteria, pointed at the places your buyers actually leave signals rather than at the same source as everybody else.',
           },
           {
             step: '03',
-            title: 'Leads flow into your sheet',
-            body: 'Every lead is added in real time — name, company, contact details, source, and any qualifying data. You always have full visibility.',
+            title: 'Names start arriving',
+            body: 'Into the sheet, in real time, with contact details, source and the data that qualified them. You watch it fill for a fortnight before anything is sent.',
           },
           {
             step: '04',
-            title: 'Outreach runs automatically',
-            body: 'Personalised emails, direct messages, and SMS go out on a schedule. When someone replies, outreach pauses and you are notified to take over the conversation.',
+            title: 'Outreach starts',
+            body: 'Email, direct message and SMS on a schedule you set. When somebody replies, everything queued for that person stops and you are told to take over.',
           },
         ],
       },
       {
         kind: 'stats',
-        id: 'why-us',
-        title: 'Why clients choose us',
+        id: 'commitments',
+        eyebrow: 'What we commit to',
+        title: 'Three things we control.',
+        sub: 'Volume depends on your market and your criteria, so we size that with you rather than printing an average here. These are ours to hold to.',
         items: [
           {
-            value: '1,000+',
-            label: 'Leads found per day',
-            body: 'Continuously sourced against your exact ICP criteria.',
-          },
-          {
             value: '3',
-            label: 'Outreach channels',
-            body: 'Email, professional networks, and SMS, all running simultaneously.',
+            label: 'Channels',
+            body: 'Email, professional networks and SMS, coordinated so the same person is not hit three ways at once.',
           },
           {
-            value: '38 hrs',
-            label: 'Automated per week',
-            body: 'Manual prospecting, email follow-ups, network outreach, and CRM updates.',
+            value: '0',
+            label: 'Messages after a reply',
+            body: 'Reply detection stops the queue for that person immediately. Nobody gets an automated follow-up on top of a live conversation.',
+          },
+          {
+            value: '30d',
+            label: 'Support and tuning',
+            body: 'The first month is where the filtering gets sharpened against real responses, and that is included.',
+          },
+        ],
+      },
+      {
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        sub: 'This is the role where the honest version matters most, because the dishonest version of it is everywhere.',
+        items: [
+          {
+            id: 'no-close',
+            title: 'It does not close, and it barely sells',
+            body: 'It opens conversations. The moment somebody is interested, a person on your side takes over — and if you have nobody to take over, this generates replies you cannot service and makes you look worse than doing nothing.',
+          },
+          {
+            id: 'spam',
+            title: 'It can absolutely get you flagged',
+            body: 'We build in de-duplication, bounce filtering, sending limits, domain warm-up and real per-lead personalisation rather than blasting a template. None of that makes cold outreach risk-free. If your domain setup is not ready, we will say so before we start rather than burn it.',
+          },
+          {
+            id: 'bad-offer',
+            title: 'It cannot rescue a weak offer',
+            body: 'Volume against the wrong audience just produces a bigger pile of no. If the problem is what you are saying rather than how many people hear it, hire the copywriter first — and we will tell you if we think that on the call.',
+          },
+          {
+            id: 'compliance',
+            title: 'The rules are yours to meet',
+            body: 'Consent, data protection and the marketing regulations of the markets you send into are your obligations. We build to what you tell us applies and we will flag what looks wrong, but we are not your compliance function.',
           },
         ],
       },
       {
         kind: 'faq',
         id: 'faq',
-        title: 'Frequently asked questions',
+        title: 'The questions people actually ask',
         items: [
           {
             id: 'sources',
-            question: 'How do you find leads?',
+            question: 'How do you find the leads?',
             answer:
-              'A mix of professional network data, enrichment APIs, public forums, and search — chosen per client based on where your buyers actually leave signals. For some businesses that is a job board; for others it is a neighbourhood forum. We work that out during scoping rather than pointing the same scraper at everyone.',
+              'A mix of professional network data, enrichment APIs, public forums and search — chosen per client based on where your buyers actually leave signals. For some businesses that is a job board; for others it is a neighbourhood forum. We work that out during scoping rather than pointing the same scraper at everyone.',
           },
           {
             id: 'review',
-            question: 'Can I review leads before outreach starts?',
+            question: 'Can I see the leads before anything is sent?',
             answer:
-              'Yes, and we recommend it for the first two weeks. Leads land in the sheet with a status column, and outreach only fires for rows you approve. Once you trust the filtering, most clients switch it to fully automatic.',
+              'Yes, and we recommend it for the first two weeks. Names land in the sheet with a status column and outreach only fires for rows you approve. Once you trust the filtering, most people switch it to automatic.',
           },
           {
             id: 'spam',
-            question: 'Will this get flagged as spam?',
+            question: 'Will this get my domain flagged?',
             answer:
-              'It can, if it is run carelessly — which is why we build in de-duplication, bounce filtering, sending limits, domain warm-up, and per-lead personalisation rather than blasting a template. We also stop outreach the moment someone replies. None of that makes cold outreach risk-free, and we will tell you honestly whether your domain setup is ready for it.',
+              'It can, if it is run carelessly. We build in de-duplication, bounce filtering, sending limits, domain warm-up and per-lead personalisation, and we stop the moment somebody replies. That reduces the risk rather than removing it, and we will tell you honestly whether your current domain setup is ready for it.',
+          },
+          {
+            id: 'volume',
+            question: 'How many leads a day will I get?',
+            answer:
+              'It depends entirely on how narrow your criteria are and how many people match them, so any number printed here would be marketing rather than information. We size it against your actual ICP during scoping and tell you before you commit.',
           },
           {
             id: 'timeline',
-            question: 'How quickly can this be set up?',
+            question: 'How quickly can it be running?',
             answer:
-              'A straightforward single-channel system takes about a week. Multi-channel with heavy enrichment and CRM integration runs closer to two or three. You get a written scope with the timeline before anything starts.',
+              'A straightforward single-channel build takes about a week. Multi-channel with heavy enrichment and CRM integration runs closer to two or three. You get a written scope with the timeline before anything starts.',
           },
         ],
       },
     ],
     close: {
-      eyebrow: 'Limited availability',
-      title: 'Ready to fill your pipeline automatically?',
-      sub: 'Book a call and we will scope your lead gen system. No commitment required.',
+      eyebrow: 'We keep the roster small',
+      title: 'Stop losing prospecting to whatever is on fire.',
+      sub: 'Book the call and describe your buyer. We will tell you how many of them there are before you commit to anything.',
       cta: {
         primary: bookCta,
-        secondary: whatsappCta('your lead gen and outreach systems'),
+        secondary: whatsappCta('the prospector role'),
       },
     },
   },
 
   /* ======================================================================
-     4. 24/7 AI receptionist — full detail
+     4. Receptionist — the job that runs out of hours
   ====================================================================== */
   {
     slug: 'ai-call-centers',
-    title: '24/7 AI Receptionist',
+    title: 'Your receptionist',
     description:
-      'AI phone agents for bookings, customer support, and lead qualification. Never miss a call again.',
-    features: ['Human-like voices', 'Live appointment booking', 'CRM syncing'],
+      'Answers every call, at any hour, in the language it was made in. Books the appointment, takes the details, and never puts anyone on hold or lets it ring out.',
+    features: ['Human-like voice', 'Live appointment booking', 'CRM syncing'],
     category: 'ai-call-centers',
     seo: {
-      title: '24/7 AI Receptionist',
+      title: 'Your Receptionist',
       description:
-        'AI phone agents that answer calls, book appointments, qualify leads, and follow up — even at 2am. No hold music, no missed revenue.',
+        'Answers every call, at any hour, in the language it was made in. Books the appointment, takes the details, and never puts anyone on hold or lets it ring out.',
     },
     hero: {
-      eyebrow: 'AI phone agents · 24/7/365 coverage',
+      eyebrow: 'Reception · every hour of every day',
       headline: {
-        lead: 'Never miss another',
-        emphasis: 'customer call',
+        lead: 'The call you missed last night',
+        emphasis: 'went to someone else',
       },
-      sub: '74% of calls to small businesses go unanswered, and every missed call is a lost customer. We build voice agents that pick up every single call, around the clock.',
-      cta: { primary: bookCta, secondary: whatsappCta('the 24/7 AI receptionist') },
+      /*
+        The reference opened this page with "74% of calls to small businesses
+        go unanswered". It is uncited, we have not measured it, and the page
+        makes the same point without it — count your own missed calls.
+      */
+      sub: 'Look at your call log for last Saturday, and for anything after seven on a weekday. Every one of those rang out to a person who needed something and then called the next number down the list.',
+      cta: { primary: bookCta, secondary: whatsappCta('the receptionist role') },
       assurances: [
-        'Answers in under 1 second',
-        'Handles 100 calls at once',
+        'Answers in under a second',
+        'Takes every call at once',
         'Books against live availability',
       ],
     },
@@ -547,120 +704,93 @@ export const SERVICES: ServiceContent[] = [
       {
         kind: 'pillars',
         id: 'problem',
-        eyebrow: 'The problem',
-        title: 'This is costing you more than you think.',
+        eyebrow: 'When nobody has this job',
+        title: 'The phone is your biggest revenue channel and nobody is watching it.',
         items: [
           {
             id: 'working',
-            title: 'Missing calls while working',
-            body: "You're with a client or on a job. The phone rings. They don't leave a voicemail — they call your competitor.",
+            title: 'You are with a customer',
+            body: 'The phone rings while you are on a job or mid-appointment. They do not leave a voicemail. They call the next number.',
           },
           {
             id: 'after-hours',
-            title: 'After-hours means zero coverage',
-            body: 'Customers call at 8pm, on weekends, on holidays. Most hang up when they hear voicemail. Revenue walks out every night.',
+            title: 'After seven, there is nobody',
+            body: 'People call at 8pm, on Sundays, on holidays — often precisely because that is when the problem happened. Most hang up on a voicemail greeting.',
           },
           {
             id: 'one-at-a-time',
-            title: 'One receptionist, one call',
-            body: "Three calls at once means two go to hold or voicemail. You're paying a full-time salary for one conversation at a time.",
-          },
-          {
-            id: 'cost',
-            title: 'A receptionist is a salary',
-            body: 'Salary, benefits, sick days, training, turnover — and still no nights, weekends, or holidays.',
+            title: 'One person, one call',
+            body: 'Three calls at once means two go to hold or voicemail. You are paying a full salary for one conversation at a time.',
           },
           {
             id: 'holding',
-            title: 'Callers hate holding',
-            body: 'Most customers name hold time as the most frustrating part of contacting a business. Long waits mean bad reviews and lost clients.',
+            title: 'Nobody waits on hold any more',
+            body: 'Hold time is the thing customers complain about most, and the alternative is one tap away in their recent calls list.',
           },
           {
             id: 'blind',
-            title: "You don't know what you're losing",
-            body: "Most owners don't track missed calls. Five today or fifty? You're flying blind on your biggest revenue channel.",
+            title: 'You do not know the number',
+            body: 'Most owners do not track missed calls at all. Five today or fifty? Count last week before you talk to us — it is the only figure that matters here, and it is yours rather than ours.',
           },
         ],
       },
       {
-        kind: 'pillars',
-        id: 'solution',
-        eyebrow: 'The solution',
-        title: 'A receptionist that never sleeps.',
-        sub: 'Handles a hundred calls at once. Never calls in sick. Costs a fraction of a hire.',
+        kind: 'checklist',
+        id: 'included',
+        title: 'What is in the job description:',
         items: [
-          {
-            id: 'instant',
-            title: 'Answers every call instantly',
-            body: 'No rings, no hold music, no voicemail. Every call picked up in under a second, 2pm Tuesday or 11pm on a holiday.',
-          },
-          {
-            id: 'human',
-            title: 'Sounds like a real person',
-            body: 'Natural conversation, not a robot menu. Greets callers by name, understands what they need, responds naturally.',
-          },
-          {
-            id: 'booking',
-            title: 'Books appointments live',
-            body: 'Checks your live availability and books on the spot. Confirmation sent to both of you. No double-booking.',
-          },
-          {
-            id: 'faqs',
-            title: 'Answers your FAQs',
-            body: 'Pricing, hours, location, services — it handles the routine calls so you only deal with the ones that need you.',
-          },
-          {
-            id: 'qualify',
-            title: 'Qualifies leads',
-            body: 'Asks the right questions about need, budget, and timeline. Leads reach you pre-qualified and ready to close.',
-          },
-          {
-            id: 'transfer',
-            title: 'Transfers when needed',
-            body: 'Complex issue or a VIP caller? It transfers to you instantly with full context of what was discussed.',
-          },
+          'Every call answered in under a second, at any hour, on any day',
+          'Natural conversation rather than a keypad menu',
+          'As many calls at once as arrive — nobody is put on hold',
+          'Your routine questions answered: pricing, hours, location, what you do',
+          'Appointments booked against your live availability, with confirmations to both sides',
+          'Callers qualified on need, timing and budget before they reach you',
+          'Transfer to a person, with the context of the conversation so far, whenever it is asked for or your rules say so',
+          'Every call logged to your CRM automatically, at the time it happened',
+          'Connected to your existing number — no new line to advertise',
         ],
       },
       {
         kind: 'audience',
         id: 'industries',
-        title: 'Industries that need this',
+        eyebrow: 'Who hires this one',
+        title: 'Businesses where a missed call is a lost customer',
         items: [
-          'Medical & dental offices',
+          'Medical and dental practices',
           'Law firms',
           'Real estate',
           'Home services — HVAC, plumbing, electrical',
           'Restaurants',
-          'Auto dealerships & repair',
+          'Auto dealerships and repair',
           'Insurance agencies',
-          'Fitness & wellness',
+          'Fitness and wellness',
           'Property management',
-          'E-commerce & retail',
+          'E-commerce and retail',
         ],
       },
       {
         kind: 'comparison',
         id: 'compare',
         spec: {
-          eyebrow: 'Honest comparison',
-          title: 'AI, a receptionist, or voicemail.',
-          sub: 'A human receptionist beats AI on judgment and warmth. On coverage and concurrency, it is not close. Here is the actual trade.',
-          columns: ['AI agent', 'Receptionist', 'Voicemail'],
+          eyebrow: 'The honest comparison',
+          title: 'This one, a person, or voicemail.',
+          sub: 'A human receptionist beats this on judgment and warmth, and it is not close. On coverage and concurrency it is not close the other way. Here is the actual trade.',
+          columns: ['AI receptionist', 'A person', 'Voicemail'],
           rows: [
             {
               id: 'availability',
-              label: 'Available 24/7/365',
+              label: 'Available at 2am',
               values: ['Yes', 'No', 'Yes, but nobody uses it'],
             },
             {
               id: 'speed',
               label: 'Answers instantly',
-              values: ['Under 1 second', 'If not already busy', 'No'],
+              values: ['Under a second', 'If not already busy', 'No'],
             },
             {
               id: 'concurrency',
-              label: 'Multiple calls at once',
-              values: ['Unlimited', 'One at a time', 'No'],
+              label: 'Several calls at once',
+              values: ['Yes', 'One at a time', 'No'],
             },
             {
               id: 'booking',
@@ -669,18 +799,27 @@ export const SERVICES: ServiceContent[] = [
             },
             {
               id: 'qualify',
-              label: 'Qualifies leads',
-              values: ['Yes, to a script', 'Yes, and can use judgment', 'No'],
+              label: 'Qualifies the caller',
+              values: ['Yes, to your rules', 'Yes, and can use judgment', 'No'],
             },
             {
               id: 'judgment',
               label: 'Handles the unexpected',
-              values: ['Escalates to a human', 'Yes — this is the real edge', 'No'],
+              values: ['Escalates to a person', 'Yes — this is the real edge', 'No'],
+            },
+            {
+              id: 'upset',
+              label: 'Handles an angry customer',
+              values: [
+                'Escalates, and should',
+                'Yes, and this is why you keep one',
+                'Makes it worse',
+              ],
             },
             {
               id: 'crm',
-              label: 'Logs to CRM',
-              values: ['Automatically', 'If they remember', 'No'],
+              label: 'Logs the call',
+              values: ['Automatically, every time', 'If they remember', 'No'],
             },
             {
               id: 'sick',
@@ -688,286 +827,630 @@ export const SERVICES: ServiceContent[] = [
               values: ['Never', 'Occasionally', 'Not applicable'],
             },
           ],
-          note: 'Most clients end up running both: AI takes overflow, after-hours, and routine booking, and the human handles everything that needs a person.',
+          note: 'Most people end up running both. This takes overflow, after-hours and routine booking; the person handles everything that needs a person. If you are choosing between this and hiring somebody, and your call volume is low, hire the person.',
         },
       },
       {
         kind: 'steps',
         id: 'process',
-        title: 'How we set it up',
+        title: 'How you hire one',
         steps: [
           {
             step: '01',
-            title: 'Call audit',
-            body: 'We analyse your call volume, missed calls, and what they are costing you. You see the number before you commit to anything.',
+            title: 'Count the missed calls',
+            body: 'We go through your call volume and what is currently going unanswered. You see that number before you commit to anything, and sometimes it is small enough that we tell you not to bother.',
           },
           {
             step: '02',
-            title: 'We build your agent',
-            body: 'We create a voice agent trained on your business, services, pricing, FAQs, booking rules, and tone of voice.',
+            title: 'We build it',
+            body: 'Trained on your services, your prices, your booking rules, your FAQs and the way your business talks. It only answers from what you gave it.',
           },
           {
             step: '03',
-            title: 'Connect your phone line',
-            body: 'It connects to your existing number — no new number needed. Calls route through the agent first, then to you when needed.',
+            title: 'Connect your line',
+            body: 'To your existing number. Calls route through it first and forward to you under rules you set — busy, after hours, always, or never.',
           },
           {
             step: '04',
-            title: 'Every call answered',
-            body: 'From day one, every call gets picked up. A dashboard shows call volume, outcomes, bookings, and leads captured.',
+            title: 'First shift',
+            body: 'Every call answered from day one, with a dashboard showing volume, outcomes, bookings and what was captured.',
+          },
+        ],
+      },
+      {
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        sub: 'Written down here so you do not find it out from a customer.',
+        items: [
+          {
+            id: 'upset',
+            title: 'It should not handle an upset customer',
+            body: 'It can, and it should not. Anger, complaints and anything emotionally loaded are set to escalate to a person — because the version of this that tries to de-escalate on its own is the version that ends up in a screenshot.',
+          },
+          {
+            id: 'disclosure',
+            title: 'It tells people what it is',
+            body: 'If a caller asks directly, it says so. Pretending otherwise damages trust the moment somebody works it out, and in some places disclosure is required outright. In practice callers care far more that somebody picked up.',
+          },
+          {
+            id: 'no-invention',
+            title: 'It will not invent an answer',
+            body: 'Prices, availability and policy come only from what you gave it. When it does not know, it says it will find out and takes a message rather than guessing — a made-up price is the worst thing that can come out of a call.',
+          },
+          {
+            id: 'accents',
+            title: 'It struggles with some accents and bad lines',
+            body: 'Strong regional accents and poor reception will sometimes make it ask somebody to repeat themselves. Every call is recorded, so you will see where that happened rather than wonder.',
+          },
+          {
+            id: 'volume',
+            title: 'It is not worth it on low call volume',
+            body: 'If you miss two calls a week, a person answering the phone is genuinely the better answer and this will not pay for itself. The audit in step one tells us that, and we will say it.',
           },
         ],
       },
       {
         kind: 'faq',
         id: 'faq',
-        title: 'Frequently asked questions',
+        title: 'The questions people actually ask',
         items: [
           {
             id: 'know',
-            question: "Will callers know it's AI?",
+            question: 'Will callers know it is an AI?',
             answer:
-              'Some will, and we think you should let them. The agent identifies itself as a virtual assistant if asked directly — pretending otherwise damages trust the moment someone works it out, and in some jurisdictions disclosure is required. In practice callers care far more that someone picked up.',
+              'Some will, and we think you should let them. It identifies itself if asked directly. Pretending otherwise damages trust the moment somebody works it out, and in some jurisdictions disclosure is required. In practice callers care far more that someone picked up at all.',
           },
           {
             id: 'cannot-handle',
-            question: "What if the AI can't handle a call?",
+            question: 'What happens when it cannot handle a call?',
             answer:
-              'It escalates. Anything outside its scope, any caller who asks for a person, and any case flagged as urgent transfers to a human with the full context of the conversation so far. You define what counts as out of scope during setup.',
+              'It escalates. Anything outside its scope, anyone who asks for a person, and anything flagged urgent transfers to a human with the full context of what was said. You define what counts as out of scope during the build, and you can change it afterwards.',
           },
           {
             id: 'number',
             question: 'Do I need a new phone number?',
             answer:
-              'No. It connects to your existing line. Calls route through the agent first and forward to you under the rules you set.',
+              'No. It connects to your existing line. Calls route through it first and forward to you under the rules you set.',
           },
           {
             id: 'existing-staff',
-            question: 'What if I already have a receptionist?',
+            question: 'I already have a receptionist. Then what?',
             answer:
-              'Then this is overflow and after-hours cover, not a replacement. Most clients in this position route calls to the AI only when the line is busy or the office is closed. Your receptionist stops losing the callers they never had a chance to reach.',
+              'Then this is overflow and after-hours cover, not a replacement. Most people in that position route calls to it only when the line is busy or the office is shut. Your receptionist stops losing the callers they never had a chance to reach in the first place.',
           },
           {
             id: 'timeline',
-            question: 'How fast can this be set up?',
+            question: 'How fast can it be running?',
             answer:
-              'Around three weeks: a free audit, a week of training the agent on your business, a week of testing against real call scenarios, then going live. Simple deployments move faster.',
+              'Around three weeks: the audit, a week training it on your business, a week testing against real call scenarios, then live. Simple deployments move faster and we will tell you which yours is.',
           },
           {
             id: 'languages',
             question: 'Can it handle other languages?',
             answer:
-              'Yes. Multilingual handling is configured during setup, including routing by detected language. Quality varies by language, so we test the specific ones you need before going live rather than promising blanket coverage.',
+              'Yes, including routing by the language it detects. Quality varies by language, so we test the specific ones you need before going live rather than promising blanket coverage.',
           },
         ],
       },
     ],
     close: {
-      eyebrow: 'Stop losing calls',
-      title: "Every missed call is a customer you'll never get back.",
-      sub: '15 minutes, no commitment. We will show you what you are losing.',
-      cta: { primary: bookCta, secondary: whatsappCta('the 24/7 AI receptionist') },
+      eyebrow: 'Count them first',
+      title: 'Go and look at last Saturday.',
+      sub: 'Fifteen minutes, no commitment. We will work out what is currently ringing out — and tell you if the number is too small to be worth fixing.',
+      cta: { primary: bookCta, secondary: whatsappCta('the receptionist role') },
     },
   },
 
   /* ======================================================================
-     5. Social media automation — TODO: thin, source detail or write fresh
+     5. Content marketer
   ====================================================================== */
   {
     slug: 'social-media-automation',
-    title: 'Social Media Automation Systems',
+    title: 'Your content marketer',
     description:
-      'AI content generation built for your brand, custom dashboard, algorithm-aligned calendar, hook engineering, and every piece routed back to your mission.',
-    features: [
-      'AI video generation',
-      'Content dashboard & calendar',
-      'Hook & retention engineering',
-    ],
-    badge: 'New',
+      'Posts every day in your brand voice, without a Sunday night scramble. Video, captions, and a calendar built around the algorithm instead of around guessing.',
+    features: ['AI video generation', 'Content calendar & dashboard', 'Hook & retention engineering'],
     category: 'social-media-automation',
     seo: {
-      title: 'Social Media Automation Systems',
+      title: 'Your Content Marketer',
       description:
-        'AI content systems built for your brand — video generation, a content dashboard and calendar, and hook engineering, all routed back to your mission.',
+        'Posts every day in your brand voice, without a Sunday night scramble. Video, captions, and a calendar built around the algorithm instead of around guessing.',
     },
     hero: {
-      eyebrow: 'Social media automation',
+      eyebrow: 'Content · every day, not every other Tuesday',
       headline: {
-        lead: 'A content team that',
-        emphasis: 'never runs out of ideas',
+        lead: 'You know you should post daily.',
+        emphasis: 'You post on Sundays',
       },
-      sub: 'AI content generation systems built for your brand: a custom dashboard, an algorithm-aligned calendar, hook engineering, and every piece routed back to your mission.',
-      cta: { primary: bookCta, secondary: whatsappCta('social media automation') },
+      sub: 'Because posting is somebody’s fifth priority and it shows. This is the job of turning up every day in your voice — the formats, the hooks, the calendar, and the part where somebody actually presses publish.',
+      cta: { primary: bookCta, secondary: whatsappCta('the content marketer role') },
+      assurances: ['Your voice, trained', 'A calendar you can see', 'You approve before it ships'],
     },
     sections: [
       {
+        kind: 'pillars',
+        id: 'problem',
+        eyebrow: 'When nobody has this job',
+        title: 'It is not a talent problem. It is a nobody-owns-it problem.',
+        items: [
+          {
+            id: 'burst',
+            title: 'You post in bursts',
+            body: 'Four in a good week, nothing for a fortnight. Every platform reads that as a reason to stop showing you to people.',
+          },
+          {
+            id: 'ideas',
+            title: 'The blank page is the bottleneck',
+            body: 'Not the filming and not the editing. Sitting down on Sunday with no idea what to say is the part that makes the whole thing collapse.',
+          },
+          {
+            id: 'format',
+            title: 'Nobody is watching what is working',
+            body: 'Formats and hooks in your niche move every few weeks. Keeping up with that is a job, and right now it is nobody’s.',
+          },
+        ],
+      },
+      {
         kind: 'checklist',
         id: 'included',
-        title: "Here's exactly what you get:",
+        title: 'What is in the job description:',
         items: [
-          'AI video generation using current-generation motion and visual tools',
-          'A custom content dashboard and publishing calendar',
-          'Hook and retention engineering tuned to your niche',
-          'Trend and format monitoring feeding weekly production briefs',
-          'Every piece routed back to your brand mission and voice',
-          'Performance tracking feeding back into the next content cycle',
+          'Video generated with current-generation motion and visual tools',
+          'A content dashboard and publishing calendar you can open and see weeks ahead',
+          'Hooks and retention structure tuned to what is working in your niche now',
+          'Trend and format monitoring, feeding weekly production briefs',
+          'Captions and copy in your voice, trained on what you have already published',
+          'Every piece traced back to something your business actually wants to be known for',
+          'Performance tracking that feeds the following week, rather than a monthly report nobody reads',
+          'An approval queue — nothing publishes without a human saying yes',
+        ],
+      },
+      {
+        kind: 'steps',
+        id: 'process',
+        title: 'How you hire one',
+        steps: [
+          {
+            step: '01',
+            title: 'We learn your voice',
+            body: 'From what you have already posted, what performed, and what you would never say. This is the part that decides whether the output sounds like you or like everybody else.',
+          },
+          {
+            step: '02',
+            title: 'We build the pipeline',
+            body: 'Briefs, generation, the calendar and the dashboard, wired to the accounts you already run.',
+          },
+          {
+            step: '03',
+            title: 'You approve the first weeks',
+            body: 'Everything sits in a queue and you say yes or no. Most people run it that way for a month, then loosen it on the formats they have stopped correcting.',
+          },
+          {
+            step: '04',
+            title: 'It keeps turning up',
+            body: 'Daily, in your voice, with what worked last week shaping what goes out this week.',
+          },
+        ],
+      },
+      {
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        items: [
+          {
+            id: 'no-audience',
+            title: 'It does not buy you an audience',
+            body: 'Consistency and format get you a fair hearing from the algorithm. Whether people care about what you have to say is still down to what you have to say.',
+          },
+          {
+            id: 'not-strategy',
+            title: 'It is not your marketing strategy',
+            body: 'It executes a position. It does not decide what your business should be known for — that comes from you, and if it is vague the output will be too.',
+          },
+          {
+            id: 'approval',
+            title: 'It needs somebody to press yes',
+            body: 'The approval queue is not a formality. Fully unattended publishing in your brand’s name is a bad idea and we do not recommend it, however good the drafts get.',
+          },
+          {
+            id: 'faces',
+            title: 'It does not replace you being on camera',
+            body: 'In most niches the posts that build trust have a person in them. This covers the volume around those; it does not remove the need for them.',
+          },
         ],
       },
     ],
     close: {
       eyebrow: 'Get started',
-      title: 'Stop trading your week for a content calendar.',
-      sub: 'Book a call and we will scope a content system around the formats that actually work in your niche.',
-      cta: { primary: bookCta, secondary: whatsappCta('social media automation') },
+      title: 'Stop trading your Sunday for a content calendar.',
+      sub: 'Bring what you have already posted. We will tell you which formats are worth building a pipeline around in your niche.',
+      cta: { primary: bookCta, secondary: whatsappCta('the content marketer role') },
     },
   },
 
   /* ======================================================================
-     6. AI copywriting — TODO: thin, source detail or write fresh
+     6. Copywriter
   ====================================================================== */
   {
     slug: 'ai-copywriting',
-    title: 'AI Copywriting Systems',
+    title: 'Your copywriter',
     description:
-      'Websites, landing pages, sales emails, and case studies — AI trained on your brand voice, your existing materials, and refined until it converts.',
-    features: [
-      'Brand voice training',
-      'Landing page & website copy',
-      'Sales email sequences',
-    ],
+      'Landing pages, sales emails, case studies. Trained on your voice and the material you have already written, then rewritten against what actually converts.',
+    features: ['Brand voice training', 'Landing page & website copy', 'Sales email sequences'],
     category: 'ai-copywriting',
     seo: {
-      title: 'AI Copywriting Systems',
+      title: 'Your Copywriter',
       description:
-        'Websites, landing pages, sales emails, and case studies — an AI copywriting system trained on your brand voice and refined until it converts.',
+        'Landing pages, sales emails, case studies — trained on your voice and the material you have already written, then rewritten against what actually converts.',
     },
     hero: {
-      eyebrow: 'AI copywriting',
+      eyebrow: 'Copy · in your voice, at volume',
       headline: {
-        lead: 'Copy in your voice,',
-        emphasis: 'at the volume you need',
+        lead: 'The page you have been meaning to rewrite',
+        emphasis: 'for eight months',
       },
-      sub: 'Websites, landing pages, sales emails, and case studies — trained on your brand voice and your existing materials, then refined until it converts.',
-      cta: { primary: bookCta, secondary: whatsappCta('AI copywriting systems') },
+      sub: 'Landing pages, sales emails, case studies, product descriptions. All of it needs writing, none of it is urgent, and the person best placed to write it is the person with the least time.',
+      cta: { primary: bookCta, secondary: whatsappCta('the copywriter role') },
+      assurances: ['Trained on your material', 'Nothing publishes unread', '30 days of support'],
     },
     sections: [
       {
+        kind: 'pillars',
+        id: 'problem',
+        eyebrow: 'When nobody has this job',
+        title: 'Copy is the work that is always next week.',
+        items: [
+          {
+            id: 'stale',
+            title: 'Your site describes a business you no longer run',
+            body: 'The offer moved, the pricing changed, the good case study never got written up. The page is a year behind and everybody knows it.',
+          },
+          {
+            id: 'voice',
+            title: 'Everything sounds like everyone',
+            body: 'When copy gets outsourced piecemeal it drifts toward the category average — which is exactly the thing you were trying not to sound like.',
+          },
+          {
+            id: 'volume',
+            title: 'There is more of it than you think',
+            body: 'Sequences, descriptions, a landing page per campaign, the follow-up email nobody wrote. It is a steady job, not a project.',
+          },
+        ],
+      },
+      {
         kind: 'checklist',
         id: 'included',
-        title: "Here's exactly what you get:",
+        title: 'What is in the job description:',
         items: [
-          'Brand voice training on your existing materials and best-performing copy',
+          'Voice training on your existing material and your best-performing copy',
           'Landing page and full website copy',
-          'Sales email sequences with follow-ups',
+          'Sales email sequences, including the follow-ups nobody gets around to',
           'Product descriptions at catalogue scale',
-          'Case studies written from your own project notes',
-          'A review-and-approve loop, so nothing publishes unread',
+          'Case studies written up from your own project notes and call recordings',
+          'Rewrites of what you already have, tested against what it is meant to do',
+          'A review-and-approve loop, so nothing goes out unread',
+        ],
+      },
+      {
+        kind: 'steps',
+        id: 'process',
+        title: 'How you hire one',
+        steps: [
+          {
+            step: '01',
+            title: 'Bring what you already have',
+            body: 'Your site, your best emails, the deck you actually use. The training is only as good as the material, and most businesses have more usable material than they think.',
+          },
+          {
+            step: '02',
+            title: 'We agree what good sounds like',
+            body: 'Including what you would never say. Ruling things out is more useful here than ruling them in.',
+          },
+          {
+            step: '03',
+            title: 'First drafts, on the call',
+            body: 'You see output against a real brief before you commit to anything, and you can tell us it is wrong while it is still cheap to fix.',
+          },
+          {
+            step: '04',
+            title: 'It keeps producing',
+            body: 'To brief, in your voice, into a queue somebody signs off before it publishes.',
+          },
+        ],
+      },
+      {
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        items: [
+          {
+            id: 'positioning',
+            title: 'It cannot fix your positioning',
+            body: 'If you cannot say who this is for and why it beats the alternative, no amount of drafting rescues that. Vague in, vague out, faster.',
+          },
+          {
+            id: 'facts',
+            title: 'It does not know things you did not tell it',
+            body: 'Claims, numbers and case study outcomes come from what you provide. It will not source a statistic for you, and it is instructed to flag rather than invent.',
+          },
+          {
+            id: 'unread',
+            title: 'Nothing should publish unread',
+            body: 'The approval loop stays. Copy that goes out in your name without a person reading it is how a small error becomes a public one.',
+          },
+          {
+            id: 'not-a-strategist',
+            title: 'It is a writer, not a marketer',
+            body: 'It writes what it is briefed to write, well. Deciding what should be written, and in what order, is still a person’s job — often ours on the call, but a person’s.',
+          },
         ],
       },
     ],
     close: {
       eyebrow: 'Get started',
       title: 'Sound like yourself, faster.',
-      sub: 'Bring the copy you already have. We will train a system on it and show you the first drafts on the call.',
-      cta: { primary: bookCta, secondary: whatsappCta('AI copywriting systems') },
+      sub: 'Bring the copy you already have. We will train on it and show you the first drafts on the call, before you commit to anything.',
+      cta: { primary: bookCta, secondary: whatsappCta('the copywriter role') },
     },
   },
 
   /* ======================================================================
-     7. Custom AI agent team — TODO: thin, source detail or write fresh
+     7. The department
   ====================================================================== */
   {
     slug: 'ai-agent-team',
-    title: 'Custom AI Agent Team',
+    title: 'The rest of the org chart',
     description:
-      'A complete AI operating system — a dedicated team of specialised agents, each one focused on helping your business achieve its mission.',
-    features: ['Dedicated agent roles', 'Mission-aligned output', 'Full team coordination'],
+      'Several of the above at once, built to hand work to each other rather than sit in separate tabs. A department, not a hire.',
+    features: ['Defined roles per employee', 'Work handed between them', 'One place to watch it run'],
     category: 'ai-agent-team',
     seo: {
-      title: 'Custom AI Agent Team',
+      title: 'The Rest Of The Org Chart',
       description:
-        'A complete AI operating system — a dedicated team of specialised agents, each focused on a role, coordinated around your business mission.',
+        'Several roles at once, built to hand work to each other rather than sit in separate tabs. A department, not a hire.',
     },
     hero: {
-      eyebrow: 'Custom AI agent team',
+      eyebrow: 'Several roles · one department',
       headline: {
-        lead: 'Not one assistant.',
-        emphasis: 'A whole team',
+        lead: 'Not one hire.',
+        emphasis: 'A department',
       },
-      sub: 'A complete AI operating system: a dedicated team of specialised agents, each one focused on a role, all coordinated around what your business is actually trying to do.',
-      cta: { primary: bookCta, secondary: whatsappCta('a custom AI agent team') },
+      sub: 'Roles that hand work to each other: the prospector passes to the setter, the setter passes to a person, the assistant files what happened. One place to watch it, one set of rules, one approval queue.',
+      cta: { primary: bookCta, secondary: whatsappCta('building a whole department') },
+      assurances: ['Roles you define', 'Handoffs between them', 'A human signs off'],
     },
     sections: [
       {
+        kind: 'pillars',
+        id: 'problem',
+        eyebrow: 'Why one at a time stops working',
+        title: 'Three good employees who never speak are three more tabs.',
+        items: [
+          {
+            id: 'silos',
+            title: 'The handoff is where work dies',
+            body: 'A prospector that cannot pass to a setter just produces a list. The value was never in the individual role, it was in what happens between them.',
+          },
+          {
+            id: 'context',
+            title: 'Nobody has the whole picture',
+            body: 'When each role keeps its own record, you end up asking three systems what happened to one customer and getting three answers.',
+          },
+          {
+            id: 'oversight',
+            title: 'You cannot supervise what you cannot see',
+            body: 'Separate tools mean separate dashboards, separate rules and separate ways to be surprised. A department needs one place you look.',
+          },
+        ],
+      },
+      {
         kind: 'checklist',
         id: 'included',
-        title: "Here's exactly what you get:",
+        title: 'What is in the job description:',
         items: [
-          'Dedicated agent roles scoped to how your business actually divides work',
-          'Mission-aligned output, with every agent briefed on the same goals',
-          'Full team coordination, including handoffs between agents',
-          'An approval queue so a human signs off before anything ships',
-          'A shared dashboard showing what every agent is working on',
-          'Documentation and a walkthrough so your team can run it',
+          'Roles scoped to how your business actually divides work, not to a template org chart',
+          'Defined handoffs, so work moves between roles instead of stopping at the edge of one',
+          'A shared record, so one customer has one history rather than three',
+          'One set of rules about what may be said, promised and committed to',
+          'An approval queue where a human signs off before anything leaves the building',
+          'A dashboard showing what every role is working on right now',
+          'Documentation and a walkthrough, so your team can run and change it',
+        ],
+      },
+      {
+        kind: 'steps',
+        id: 'process',
+        title: 'How you hire one',
+        sub: 'Most departments start as an org chart sketched on a call.',
+        steps: [
+          {
+            step: '01',
+            title: 'Draw the org chart',
+            body: 'Which roles, what each is accountable for, and where work passes from one to the next. This is the whole design and it takes about an hour.',
+          },
+          {
+            step: '02',
+            title: 'We build one role first',
+            body: 'Never all of them at once. One goes live, you watch it for a fortnight, and what you learn changes how the next one gets built.',
+          },
+          {
+            step: '03',
+            title: 'We add the handoffs',
+            body: 'The second role, then the join between them. This is the part that is actually difficult, and it is why the roles are not sold as a bundle on day one.',
+          },
+          {
+            step: '04',
+            title: 'One place to watch it',
+            body: 'The dashboard, the approval queue and the shared record, plus a walkthrough of how to change the rules without us.',
+          },
+        ],
+      },
+      {
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        items: [
+          {
+            id: 'not-all-at-once',
+            title: 'We will not build five of them at once',
+            body: 'It is the fastest way to ship something nobody trusts. Roles go live one at a time, and if you need all five running next month we are the wrong people.',
+          },
+          {
+            id: 'no-manager',
+            title: 'It still needs a manager',
+            body: 'Somebody on your side owns the approval queue and the rules. A department with no supervisor drifts, and this one drifts faster than a human one because it never gets tired of being wrong.',
+          },
+          {
+            id: 'complexity',
+            title: 'More roles means more to go wrong',
+            body: 'Handoffs are where failures compound. Two roles that work is better than five that mostly do, and we will push back if the org chart you draw is bigger than the problem.',
+          },
+          {
+            id: 'not-a-company',
+            title: 'It does not run the business',
+            body: 'It runs process. Judgment, relationships and anything that commits you stay with people, and the approval queue is where that boundary lives.',
+          },
         ],
       },
     ],
     close: {
       eyebrow: 'Get started',
-      title: 'Describe the roles. We will build the team.',
-      sub: 'Most agent teams start as an org chart sketched on a call. Bring yours.',
-      cta: { primary: bookCta, secondary: whatsappCta('a custom AI agent team') },
+      title: 'Describe the roles. We will build the first one.',
+      sub: 'Bring the org chart you would draw if headcount were not the constraint. We will tell you which role to start with, and why.',
+      cta: { primary: bookCta, secondary: whatsappCta('building a whole department') },
     },
   },
 
   /* ======================================================================
-     8. Custom AI solutions — TODO: thin, source detail or write fresh
+     8. The job with no title
   ====================================================================== */
   {
     slug: 'custom-ai-solutions',
-    title: 'Custom AI Solutions',
+    title: 'The job that has no title yet',
     description:
-      'Already have an AI system in place? We extend, enhance, and integrate your existing setup — zero disruption, maximum impact.',
-    features: [
-      'Existing AI system integration',
-      'Enhancement & extension',
-      'Architecture audit & upgrade',
-    ],
+      'Some of what a business does by hand does not map to a role anyone has named. Describe it and we will tell you whether it can be staffed this way.',
+    features: ['Scoped on a call', 'Built to your process', 'Handed over working'],
     category: 'custom-ai-solutions',
     seo: {
-      title: 'Custom AI Solutions',
+      title: 'The Job That Has No Title Yet',
       description:
-        'Already have an AI system in place? We extend, enhance, and integrate your existing setup — custom workflow bridging and architecture audits included.',
+        'Some of what a business does by hand does not map to a role anyone has named. Describe it and we will tell you whether it can be staffed this way — including if the answer is no.',
     },
     hero: {
-      eyebrow: 'Custom AI solutions',
+      eyebrow: 'The work that fits nowhere else',
       headline: {
-        lead: 'You already built something.',
-        emphasis: 'We make it work',
+        lead: 'Somebody does it every Friday.',
+        emphasis: 'It has no name',
       },
-      sub: 'Already have an AI system or solution in place? We extend, enhance, and integrate your existing setup — zero disruption, maximum impact.',
-      cta: { primary: bookCta, secondary: whatsappCta('custom AI solutions') },
+      sub: 'The reconciliation, the report nobody asked for but everyone reads, the thing your operations manager does in a spreadsheet at 6pm. It is not reception and it is not prospecting, and it is often the most expensive hour in the week.',
+      cta: { primary: bookCta, secondary: whatsappCta('a job that does not fit your other roles') },
+      assurances: ['Scoped before it is quoted', 'Built to your process', 'You own it'],
     },
     sections: [
       {
+        kind: 'pillars',
+        id: 'problem',
+        eyebrow: 'What this covers',
+        title: 'Three shapes this usually takes.',
+        items: [
+          {
+            id: 'ritual',
+            title: 'The weekly ritual',
+            body: 'Pulling numbers out of three systems into one sheet, every Friday, by somebody whose actual job is something else entirely.',
+          },
+          {
+            id: 'bridge',
+            title: 'The tools that do not talk',
+            body: 'Two pieces of software you pay for that will not speak to each other, so a person is the integration. Usually the same person, usually by copy and paste.',
+          },
+          {
+            id: 'half-built',
+            title: 'The thing you already built',
+            body: 'You or somebody on your team put an AI system together and it half works. Extending it, fixing it, or telling you honestly to scrap it is a job too.',
+          },
+        ],
+      },
+      {
         kind: 'checklist',
         id: 'included',
-        title: "Here's exactly what you get:",
+        title: 'What is in the job description:',
         items: [
-          'Integration with the AI systems you already run',
-          'Enhancement and extension of existing agents and pipelines',
-          'Custom workflow bridging between tools that do not talk to each other',
-          'An architecture audit, with an honest verdict on what to keep',
-          'Migration off anything that is costing more than it returns',
-          'Documentation for whatever we touch',
+          'A scoping session that ends in a written description of the job, before any quote',
+          'Built around the process you actually run, not the one a tool assumes',
+          'Bridging between tools that do not talk to each other',
+          'Integration with, and extension of, AI systems you already have',
+          'An architecture audit with an honest verdict on what to keep and what to bin',
+          'Migration off anything costing more than it returns',
+          'Documentation for everything we touch, including the parts we did not build',
+          'Handed over working, and yours to run',
+        ],
+      },
+      {
+        kind: 'steps',
+        id: 'process',
+        title: 'How you hire one',
+        steps: [
+          {
+            step: '01',
+            title: 'Describe the Friday',
+            body: 'Walk us through what somebody actually does, in order, including the bits they only do sometimes. Those are usually the ones that decide whether this is buildable.',
+          },
+          {
+            step: '02',
+            title: 'We tell you if it is a job',
+            body: 'Some work resolves into something that can be staffed and some does not. You get that answer before a number — and sometimes the answer is that a person should keep doing it.',
+          },
+          {
+            step: '03',
+            title: 'A written scope, then a price',
+            body: 'Fixed, against a description you have read and agreed. No open-ended discovery and no hourly drift.',
+          },
+          {
+            step: '04',
+            title: 'Built, tested, handed over',
+            body: 'Working, documented, and running on your accounts, with 30 days of support from whoever built it.',
+          },
+        ],
+      },
+      {
+        kind: 'pillars',
+        id: 'limits',
+        eyebrow: 'Limits',
+        title: 'What is not in the job description.',
+        items: [
+          {
+            id: 'not-everything',
+            title: 'Not everything is a job',
+            body: 'Work that changes shape every time, or that is really a series of judgment calls, does not staff well. We will tell you that at step two rather than take the scope and find out together.',
+          },
+          {
+            id: 'garbage-in',
+            title: 'It cannot fix your data',
+            body: 'If the three systems disagree because nobody maintains them, automating the reconciliation makes the disagreement faster rather than smaller. Sometimes the real answer is a fortnight of cleanup first.',
+          },
+          {
+            id: 'inherit',
+            title: 'We may tell you to scrap what you built',
+            body: 'The audit is honest or it is worthless. Occasionally the cheapest path is deleting something you paid for, and we would rather say that than bill you to keep it alive.',
+          },
+          {
+            id: 'ongoing',
+            title: 'A one-off build is a one-off build',
+            body: 'When your process changes, what we built does not change with it. We will tell you which parts are likely to move and design for that, but this is a hire rather than a subscription to us.',
+          },
         ],
       },
     ],
     close: {
       eyebrow: 'Get started',
-      title: "Bring us what you've already built.",
-      sub: 'We will audit it and tell you plainly whether it is worth extending or worth replacing.',
-      cta: { primary: bookCta, secondary: whatsappCta('custom AI solutions') },
+      title: 'Describe the Friday afternoon.',
+      sub: 'Bring the thing that fits nowhere else, or the system you already built that half works. We will tell you plainly whether it is worth staffing, extending, or scrapping.',
+      cta: { primary: bookCta, secondary: whatsappCta('a job that does not fit your other roles') },
     },
   },
 ]

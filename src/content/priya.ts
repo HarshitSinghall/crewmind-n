@@ -25,6 +25,17 @@ import type { HeroProductContent, PriyaContent } from './types'
 
    The one thing this whole sales motion rests on is being the company in
    this market that tells the truth about response times.
+
+   FRAMING: Priya is a SALES EMPLOYEE, not "an AI voice calling agent". The
+   difference is not decoration. A voice agent is a piece of software the
+   buyer has to evaluate; an employee has a job, a shift, a salary and a list
+   of things outside her remit — all of which he already knows how to judge,
+   because he has hired people before. Every heading on this page is therefore
+   written about the work rather than the technology.
+
+   What does NOT change with that framing: the price, the limits, the
+   disclosure rule, and the absence of testimonials. Recasting the role is a
+   copy decision. It is not a licence to soften any of the above.
 --------------------------------------------------------------------------- */
 
 const WA_DEMO = BRAND.whatsapp('I want to hear Priya. Call me on this number.')
@@ -34,26 +45,26 @@ const WA_DEAD_LEADS = BRAND.whatsapp(
 
 export const PRIYA: PriyaContent = {
   seo: {
-    title: 'Priya — Every Lead Called In 60 Seconds, In Hindi, At 2am',
+    title: 'Priya — Your Sales Employee Who Never Forgets a Lead',
     description:
-      'Your leads arrive at midnight. Your team starts at ten. Priya calls every property enquiry within sixty seconds, qualifies it in Hindi, and sends the card to your WhatsApp.',
+      'Priya is the sales employee who never forgets a lead. She calls every enquiry within sixty seconds, in Hindi, at 2am, qualifies it on budget and timeline, and puts the card on your WhatsApp. ₹12,000 a month.',
   },
 
   hero: {
-    eyebrow: 'Delhi NCR · Real estate',
+    eyebrow: 'Meet Priya',
     headline: {
-      lead: 'Your leads arrive at midnight. Your team',
-      emphasis: 'starts at ten',
+      lead: 'Your sales employee who',
+      emphasis: 'never forgets a lead',
       trail: '.',
     },
-    sub: 'Priya calls every enquiry within sixty seconds, in Hindi, at 2am. Budget, timeline, financing — asked and answered. The card lands on your WhatsApp before your telecaller wakes up.',
+    sub: 'She calls new leads the moment they arrive, works out what they actually want, answers the routine questions, handles the usual objections, follows up for as long as it takes, books the site visit, and passes the serious buyers to your team. In Hindi, at 2am, on a Sunday.',
     cta: {
       primary: { label: 'Call me now', href: WA_DEMO },
       secondary: { label: 'Test it on dead leads', href: '#dead-lead' },
     },
     assurances: [
-      'No login, no app',
-      'No new number to advertise',
+      'Works nights, Sundays and Diwali',
+      'No login, no app, no new number to advertise',
       'Your leads land where they already land',
     ],
     clock: {
@@ -264,6 +275,135 @@ export const PRIYA: PriyaContent = {
     ],
   },
 
+  /* ---------------------------------------------------------------------------
+     The whole job, in the order it happens.
+
+     This section exists because "AI that calls your leads" is a commodity
+     sentence — it describes something several vendors in this market already
+     sell for a couple of thousand rupees a month. Fourteen stages is not
+     feature-listing for its own sake; it is the difference between a dialler
+     and somebody who holds the outcome, and it is the only honest reason we
+     are priced where we are.
+
+     Every stage below is something the product does today. Nothing
+     aspirational goes in this list.
+  --------------------------------------------------------------------------- */
+  job: {
+    eyebrow: 'The job description',
+    title: 'What she actually does, start to finish.',
+    sub: 'A dialler makes a call and hands you a log. This is the job that starts when the enquiry lands and does not finish until you know which conversations turned into money.',
+    phases: [
+      {
+        id: 'first-contact',
+        label: 'The first two minutes',
+        stages: [
+          {
+            id: 'arrive',
+            title: 'The lead arrives',
+            body: 'Your website, your Meta lead ad, your portal account, your WhatsApp. Nothing on your side changes and no new number gets advertised.',
+          },
+          {
+            id: 'contact',
+            title: 'She calls, inside sixty seconds',
+            body: 'Any hour, any day. Before he has finished filling in the next broker’s form on the same phone.',
+          },
+          {
+            id: 'understand',
+            title: 'She works out what he actually wants',
+            body: 'Not a script read down the line at him. What the flat is for, who is moving, and what has to be true before he will say yes.',
+          },
+          {
+            id: 'qualify',
+            title: 'She qualifies him',
+            body: 'Budget, timeline, financing, intent — the four things your best agent would have asked if he had got there first.',
+          },
+          {
+            id: 'answer',
+            title: 'She answers the routine questions',
+            body: 'Carpet area, possession, price, what is left in the tower. Only from the price list and project sheet you gave us, and never from anywhere else. When she does not know, she says she will confirm and come back.',
+          },
+          {
+            id: 'objections',
+            title: 'She handles the usual objections',
+            body: 'Too expensive, too far, just looking, call me later, send it on WhatsApp. The five your team answers forty times a week.',
+          },
+        ],
+      },
+      {
+        id: 'persistence',
+        label: 'The next thirty days',
+        stages: [
+          {
+            id: 'followup',
+            title: 'She follows up, and keeps following up',
+            body: 'Four call attempts spaced across hours and days, never at night, then it stops. This is the follow-up your team fully intends to do on Tuesday and has not done by Friday.',
+          },
+          {
+            id: 'whatsapp',
+            title: 'She moves to WhatsApp when calling stops working',
+            body: 'Text follow-up on the track you set — six minutes, two hours, three days. Every queued message stops the second he replies to a human on your side.',
+          },
+          {
+            id: 'book',
+            title: 'She books the site visit',
+            body: 'Into the calendar, with the confirmation and the reminder, at a time he actually agreed to.',
+          },
+          {
+            id: 'revive',
+            title: 'She works the leads you gave up on',
+            body: 'The file from six months ago that nobody has touched since March. Same conversation, same sixty seconds, and no extra headcount to do it.',
+          },
+        ],
+      },
+      {
+        id: 'handover',
+        label: 'What comes back to you',
+        stages: [
+          {
+            id: 'crm',
+            title: 'She updates the CRM',
+            body: 'Every call, every outcome, every field, at the time it happened — instead of “he seemed interested” typed in from memory three days later.',
+          },
+          {
+            id: 'escalate',
+            title: 'She escalates the serious buyer',
+            body: 'A qualified card on your WhatsApp with the recording, the transcript, and the reason this name is on the list rather than the other forty.',
+          },
+          {
+            id: 'report',
+            title: 'She tells you what happened',
+            body: 'What came in, what was reached, what was said, and which of it is worth your Saturday morning.',
+          },
+          {
+            id: 'learn',
+            title: 'You find out which conversations became revenue',
+            body: 'Every call is recorded and transcribed, so what the closed ones had in common is something you can go and look at rather than something your team has a feeling about.',
+          },
+        ],
+      },
+    ],
+    closing:
+      'Fourteen things, in that order, for every single lead. Your team knows all fourteen and does most of them, most of the time, for the leads it gets to. That gap is the entire product.',
+  },
+
+  /* ---------------------------------------------------------------------------
+     The moat, stated against our own category.
+
+     Deliberately does NOT name competitors. Their prices move, comparative
+     advertising invites an argument we do not need, and the point lands harder
+     as a fact about the market than as a swipe at a named vendor. The range
+     quoted is what those vendors publish today.
+  --------------------------------------------------------------------------- */
+  commodity: {
+    eyebrow: 'Why not just buy an AI that calls',
+    title: 'An AI that dials a number is already a commodity.',
+    paragraphs: [
+      'You can buy one in India this afternoon. A couple of thousand rupees a month and roughly three rupees a minute, from several vendors, in Indian languages, with a CRM integration thrown in. The voices are good and the price is only going one way. If what you want is software that reads a script down a phone line, buy that instead — it will genuinely be cheaper than us.',
+      'What none of it does is the job. A dialler hands you call logs. It does not decide who is worth calling a second time, stop its own queued messages the instant your agent picks up the conversation, refuse to invent a price it was never given, keep working a file from March, or tell you at the end of the month which conversations turned into money.',
+      'That is the difference between buying minutes and hiring somebody, and it is the reason this page is priced as the second one.',
+    ],
+  },
+
   leadCard: {
     eyebrow: 'What you receive',
     title: {
@@ -346,37 +486,37 @@ export const PRIYA: PriyaContent = {
 
   limits: {
     eyebrow: 'Limits',
-    title: 'Things this does not do.',
-    sub: 'Written down so you do not find out in month two.',
+    title: 'What is not in her job description.',
+    sub: 'Written down here so you do not find it out in month two.',
     items: [
       {
         id: 'no-close',
-        title: 'It does not close deals',
-        body: 'It gets you a qualified name and a reason. Your agent still has to sell.',
+        title: 'She does not close deals',
+        body: 'She gets you a qualified name and a reason. Your agent still has to sell.',
       },
       {
         id: 'no-replace',
-        title: 'It does not replace your team',
-        body: 'Everyone who works for you today still works for you after this. It does the ninety seconds nobody is doing.',
+        title: 'She does not replace your team',
+        body: 'Everyone who works for you today still works for you after this. She does the ninety seconds nobody is doing, and hands the conversation back.',
       },
       {
         id: 'no-visits',
-        title: 'It does not do site visits, negotiation, or paperwork',
-        body: 'It hands over a warm name and stops.',
+        title: 'She does not conduct site visits, negotiate or do paperwork',
+        body: 'She books the visit and hands over a warm name. Everything that happens once he is standing in the flat is your agent’s job.',
       },
       {
         id: 'accents',
-        title: 'It is not good at Haryanvi or heavy Punjabi accents yet',
-        body: 'Hindi, English and Hinglish, auto-detected mid-sentence. A thick regional accent will sometimes make it ask him to repeat himself. This is on the list and it is not fixed.',
+        title: 'She is not good at Haryanvi or heavy Punjabi accents yet',
+        body: 'Hindi, English and Hinglish, auto-detected mid-sentence. A thick regional accent will sometimes make her ask him to repeat himself. This is on the list and it is not fixed.',
       },
       {
         id: 'mistakes',
-        title: 'It will occasionally get something wrong',
+        title: 'She will occasionally get something wrong',
         body: 'Every call is recorded and transcribed, so you will see it rather than hear about it from a customer. Anyone telling you their AI never misunderstands has not run enough calls.',
       },
       {
         id: 'volume',
-        title: 'It is not worth your money under 100 leads a month',
+        title: 'She is not worth your money under 100 leads a month',
         body: 'At that volume your team can genuinely call everyone, and we will say so on the call rather than take the setup fee.',
       },
     ],
@@ -412,35 +552,44 @@ export const PRIYA: PriyaContent = {
 
   comparison: {
     eyebrow: 'The comparison that matters',
-    title: 'Less than the telecaller who does not work Sundays.',
-    sub: 'Not against another AI vendor. Against the thing you are actually doing today.',
-    columns: ['One telecaller', 'Priya'],
+    title: 'Against your payroll, not against another vendor.',
+    sub: 'Priya covers a job that takes three people to cover with shifts. So this compares her to what covering it properly actually costs — not to some other AI you were never going to buy.',
+    columns: ['Three telecallers, in shifts', 'Priya'],
     rows: [
       {
         id: 'cost',
         label: 'Cost',
-        values: ['₹18,000 – 25,000 / month', '₹12,000 / month'],
+        values: ['₹54,000 – 75,000 / month', '₹12,000 / month'],
       },
       {
         id: 'hours',
         label: 'Hours',
-        values: ['10am to 7pm, six days', '24 hours, every day, including Diwali'],
+        values: [
+          'Three shifts to cover the clock, and Sunday still thin',
+          '24 hours, every day, including Diwali',
+        ],
       },
       {
         id: 'coverage',
         label: 'Coverage',
-        values: ['The leads he gets to', 'Every lead, in 60 seconds, every time'],
+        values: [
+          'The leads each shift gets to',
+          'Every lead, in 60 seconds, every time',
+        ],
       },
       {
         id: 'language',
         label: 'Language',
-        values: ['Whatever he speaks', 'Hindi, English or Hinglish, auto-detected'],
+        values: [
+          'Whatever each of them speaks',
+          'Hindi, English or Hinglish, auto-detected',
+        ],
       },
       {
         id: 'attrition',
         label: 'Attrition',
         values: [
-          'Notice period, replacement, retraining, quits within a year',
+          'Notice periods, replacements, retraining — one of three quits within a year',
           'None',
         ],
       },
@@ -452,19 +601,24 @@ export const PRIYA: PriyaContent = {
           'Every call recorded and transcribed',
         ],
       },
+      {
+        id: 'ramp',
+        label: 'Time to start',
+        values: ['Two to six weeks of hiring and training, each time', 'Six days, once'],
+      },
     ],
-    note: 'Both columns are monthly. The setup fee is separate and is named in full below.',
+    note: 'Both columns are monthly, and the one-time setup fee is separate and named in full below. If you only staff one shift today, the honest comparison is ₹18,000–25,000 against ₹12,000 — and what you are buying is the other sixteen hours rather than a saving.',
   },
 
   plan: {
     eyebrow: 'Price',
-    title: 'One plan. One number to hold in your head.',
-    sub: 'No tiers, no recommended column, no decoy. There is one product and it does one thing.',
+    title: 'One employee. One salary.',
+    sub: 'No tiers, no recommended column, no decoy. There is one role and she does one job, so there is one number to hold in your head.',
     tier: {
       id: 'priya-plan',
-      badge: 'Every lead, every hour',
+      badge: 'Sales · every lead, every hour',
       title: 'Priya',
-      body: 'Setup is charged because it is real work on our side, and it is done before your first lead is ever dialled: your projects, your price list, your call flow, your objection handling, and the voice tuned to the way your buyers actually speak.',
+      body: 'The setup fee is onboarding, and it is charged because it is real work on our side that happens before she takes a single call: your projects, your price list, your call flow, your objection handling, and a voice tuned to the way your buyers actually speak.',
       price: {
         label: 'One-time setup ₹30,000, then',
         value: '₹12,000',
@@ -535,13 +689,13 @@ export const PRIYA: PriyaContent = {
         id: 'wrong-info',
         question: 'What if it says something wrong about a project?',
         answer:
-          'It answers only from the price list and project sheet you give us, and it is instructed to say it will confirm and come back rather than guess. Every call is recorded, so when it does get something wrong you see it rather than hearing about it from a customer.',
+          'She answers only from the price list and project sheet you give us, and she is instructed to say she will confirm and come back rather than guess. Every call is recorded, so when she does get something wrong you see it rather than hearing about it from a customer.',
       },
       {
         id: 'haryanvi',
         question: 'Does it understand Haryanvi?',
         answer:
-          'Not well. Hindi, English and Hinglish, auto-detected mid-sentence. A thick Haryanvi or Punjabi accent will sometimes make it ask him to repeat himself. It is on the list and it is not fixed yet.',
+          'Not well. Hindi, English and Hinglish, auto-detected mid-sentence. A thick Haryanvi or Punjabi accent will sometimes make her ask him to repeat himself. It is on the list and it is not fixed yet.',
       },
       {
         id: 'cancel',
@@ -590,13 +744,13 @@ export const PRIYA: PriyaContent = {
 --------------------------------------------------------------------------- */
 
 export const PRIYA_HOME: HeroProductContent = {
-  eyebrow: 'Our flagship',
+  eyebrow: 'The first employee we built',
   title: {
-    lead: 'Your leads arrive at midnight. Your team',
-    emphasis: 'starts at ten',
+    lead: 'Your sales employee who',
+    emphasis: 'never forgets a lead',
     trail: '.',
   },
-  sub: 'Priya calls every property enquiry within sixty seconds, in Hindi, at any hour — qualifies it on budget, timeline and financing, and sends the card to your WhatsApp.',
+  sub: 'Priya calls every enquiry within sixty seconds, in Hindi, at any hour — qualifies it on budget, timeline and financing, and sends the card to your WhatsApp. ₹12,000 a month, and she works Sundays.',
   points: [
     'Called in under 60 seconds',
     'Hindi, English or Hinglish',

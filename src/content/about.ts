@@ -17,16 +17,16 @@ export const ABOUT: AboutContent = {
   seo: {
     title: 'Meet the Team',
     description:
-      'The people behind the systems. We design, build, and deploy AI automation that fits the way your business already works.',
+      'The people who build the employees. We design, build and hand over AI staff that do a named job inside the business you already run.',
   },
 
   hero: {
-    eyebrow: 'About Us',
+    eyebrow: 'About us',
     headline: {
-      lead: 'Building smarter businesses,',
-      emphasis: 'one system at a time',
+      lead: 'The people who build',
+      emphasis: 'the employees',
     },
-    sub: 'We help ambitious companies operate more efficiently by designing, building, and deploying AI-powered automation that fits the way they already work.',
+    sub: 'We build AI staff for companies that need a job covered and cannot justify another head to cover it. One role at a time, built to your business, handed over working.',
   },
 
   team: {
@@ -96,30 +96,30 @@ export const ABOUT: AboutContent = {
   story: {
     title: 'Why we started',
     paragraphs: [
-      `Founded in late 2025, ${BRAND.name} was built on a straightforward belief: the best AI tools shouldn't be locked behind enterprise budgets and six-month consulting engagements.`,
-      'We saw businesses of all sizes, from growing startups to established companies, spending too much time on manual processes that could be automated. Meanwhile, AI was advancing faster than most teams could keep up with.',
-      `So we built ${BRAND.name} to bridge that gap, giving companies the AI infrastructure they need to work smarter, move faster, and focus on what actually grows the business.`,
+      `Every business we talked to had the same shape of problem, and none of them described it as an AI problem. They described it as a person problem: nobody called the lead back, nobody chased the invoice, nobody answered the phone after seven. The work was not hard. It just needed somebody there, and there was nobody to spare.`,
+      `Hiring for it rarely works. One head covers eight hours of a job that runs for twenty-four, costs more than the work is worth at that volume, and leaves within the year — taking everything they learned with them.`,
+      `So ${BRAND.name} builds the other kind of employee. It does one named job, it works the hours nobody wants, it does not resign, and when it gets something wrong you can go and listen to the recording. That is the whole company.`,
     ],
   },
 
   pillars: {
     eyebrow: 'What we stand on',
-    title: 'Three commitments we hold every engagement to.',
+    title: 'Three things we hold every engagement to.',
     items: [
       {
-        id: 'mission',
-        title: 'Our Mission',
-        body: 'To make powerful AI automation accessible to every ambitious business, helping them eliminate inefficiencies, scale operations, and compete at the highest level.',
+        id: 'named-job',
+        title: 'A named job, or nothing',
+        body: 'We do not sell capability. We build one role, with a description you could hand to a person, and we can tell you at any point whether it is doing that job or not. If a request does not resolve into a job, we say so instead of scoping it.',
       },
       {
-        id: 'vision',
-        title: 'Our Vision',
-        body: 'A world where every business, regardless of size, has access to AI systems that let their teams focus on strategy, creativity, and growth instead of repetitive tasks.',
+        id: 'limits-first',
+        title: 'The limits, before the price',
+        body: 'Every employee we build has things it is bad at, and you will read them on our website before you read a number. Anyone who tells you their AI never misunderstands has not run enough calls through one.',
       },
       {
-        id: 'approach',
-        title: 'Our Approach',
-        body: 'We listen first, build second. Every solution is tailored to your specific workflows, integrated with your existing tools, and designed to deliver measurable ROI from day one.',
+        id: 'turn-away',
+        title: 'We will talk you out of it',
+        body: 'Below a certain volume, a person genuinely can do the job and this is not worth your money. We would rather say that on the first call than take a setup fee and have you find out in month two.',
       },
     ],
   },
@@ -127,9 +127,9 @@ export const ABOUT: AboutContent = {
   close: {
     eyebrow: 'Work with us',
     title: 'Tell us what your team keeps doing by hand.',
-    sub: "Bring the process that eats your week. We'll tell you on the call whether it's worth automating — and say so if it isn't.",
+    sub: "Bring the job that eats your week — the one somebody is doing at eleven at night. We'll tell you on the call whether it can be staffed this way, and say so plainly if it can't.",
     cta: {
-      primary: { label: 'Book a Free Discovery Call', href: BRAND.calendly },
+      primary: { label: 'Book a free hiring call', href: BRAND.calendly },
       secondary: { label: 'See our work', href: '/past-projects' },
     },
   },

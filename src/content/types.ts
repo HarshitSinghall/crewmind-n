@@ -90,11 +90,44 @@ export interface CtaPair {
   secondary: { label: string; href: string }
 }
 
+/* ---------------------------------------------------------------------------
+   The payroll block.
+
+   This started life as a static two-column table that asserted "80% less".
+   It is a calculator instead, for the reason the Priya page already gives
+   about its own arithmetic: a ratio we picked is exactly the kind of number
+   this reader has learned to skip. He puts his own headcount and salaries in
+   and watches the gap come out, and if the gap is small on his numbers then
+   he should not buy from us.
+
+   `price` carries Priya's REAL published pricing, because that is the only
+   pricing we have actually published. It drives the CrewMind side of the
+   comparison so the block cannot quietly drift away from the Priya page.
+
+   Scope matters here and the caveat enforces it: this compares the job of
+   CALLING AND CHASING leads, not a sales floor. Priya does not close, and
+   the limits section on her page says so — a calculator that implied she
+   replaced closers would contradict the most important page on the site.
+--------------------------------------------------------------------------- */
+
+export interface PayrollMathSpec {
+  eyebrow: string
+  title: Headline
+  sub: string
+  defaults: { people: number; salary: number; loading: number; leads: number }
+  inputs: { people: string; salary: string; loading: string; leads: string }
+  outputs: { human: string; crewmind: string; gap: string }
+  /** Real published pricing. Keep in step with PRIYA.plan.tier.price. */
+  price: { base: number; includedLeads: number; perExtraLead: number }
+  resolve: string
+  caveat: string
+  invite: string
+}
+
 export interface HomeContent {
   seo: { title: string; description: string }
   hero: {
     eyebrow: string
-    avatars: { name: string; initials: string }[]
     headline: { lead: string; emphasis: string; trail: string }
     sub: string
     videoPrompt: string
@@ -102,6 +135,7 @@ export interface HomeContent {
     cta: CtaPair
   }
   proof: { note: string; ratings: RatingSource[] }
+  payroll: PayrollMathSpec
   booking: {
     prompt: string
     title: string
@@ -562,6 +596,46 @@ export interface DeadLeadSpec {
   cta: { label: string; href: string }
 }
 
+/* ---------------------------------------------------------------------------
+   Priya's job description, and the argument for why it is a job.
+
+   An AI that dials a number is already a commodity in this market — a couple
+   of thousand rupees a month and a few rupees a minute, from several vendors.
+   No positioning survives on "we can make phone calls", so the product is not
+   described that way anywhere. `JobLoopSpec` is the answer: the whole run from
+   enquiry to "which of these became revenue", which is a job somebody holds
+   rather than a feature a dialler has.
+--------------------------------------------------------------------------- */
+
+/** One thing she does, in the order she does it. */
+export interface JobStage {
+  id: string
+  title: string
+  body: string
+}
+
+/** Stages grouped by when they happen, so fourteen items stay readable. */
+export interface JobPhase {
+  id: string
+  label: string
+  stages: JobStage[]
+}
+
+export interface JobLoopSpec {
+  eyebrow: string
+  title: string
+  sub: string
+  phases: JobPhase[]
+  closing: string
+}
+
+/** The "why not just buy a dialler" argument, in running prose. */
+export interface CommoditySpec {
+  eyebrow: string
+  title: string
+  paragraphs: string[]
+}
+
 export interface PriyaContent {
   seo: { title: string; description: string }
   hero: PageHero & {
@@ -612,6 +686,8 @@ export interface PriyaContent {
     steps: NumberedStep[]
     notes: Pillar[]
   }
+  job: JobLoopSpec
+  commodity: CommoditySpec
   leadCard: {
     eyebrow: string
     title: Headline

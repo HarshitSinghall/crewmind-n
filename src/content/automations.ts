@@ -299,7 +299,7 @@ export const AUTOMATIONS: Automation[] = [
   },
 ]
 
-const bookCta = { label: 'Book a Free Strategy Call', href: BRAND.calendly }
+const bookCta = { label: 'Book a free hiring call', href: BRAND.calendly }
 
 export const AUTOMATIONS_PAGE: AutomationsContent = {
   seo: {

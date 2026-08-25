@@ -2,74 +2,87 @@ import type { PricingContent } from './types'
 import { BRAND } from './site'
 
 /* ---------------------------------------------------------------------------
-   PLACEHOLDER CONTENT — see CONTENT-SWAP.md
-   Transcribed from docs/reference/autoploy-pricing.md. Every string here is
-   third-party copy standing in until real CrewMind copy is written.
+   Pricing.
+
+   Rewritten onto the employee framing: you are either buying the employee
+   outright or keeping one on payroll, and this page's whole job is to tell
+   you which of the two you are.
+
+   TWO NUMBERS ON THIS PAGE ARE STILL NOT OURS — see CONTENT-SWAP.md:
+
+   - `tiers[0].price.value` is `$500 – $7,000+`, which is the structural
+     reference's own published band. It is a competitor's price list sitting
+     on our pricing page and it must be replaced before launch.
+   - `guarantee` promises every dollar back. Nobody here has agreed to make
+     that promise. Commit to it or delete the block; do not ship it undecided.
+
+   The one honest number on this page is Priya's, in `resource`, and it is
+   real: ₹30,000 to onboard, then ₹12,000 a month.
 --------------------------------------------------------------------------- */
 
 export const PRICING: PricingContent = {
   seo: {
-    title: 'Pricing',
+    title: 'Pricing — Buy the Employee, or Keep One on Payroll',
     description:
-      'One scoped proposal, one fixed fee, and a full refund if we do not deliver exactly what was agreed. No monthly charges, and you own everything we build.',
+      'Two ways to pay for someone who never resigns: a one-time build you own outright, or a monthly salary and we run them. Scoped on a free call, in writing, before you commit anything.',
   },
 
   hero: {
     eyebrow: 'Pricing',
     headline: {
-      lead: 'One proposal.',
-      emphasis: 'Guaranteed results.',
+      lead: 'Two ways to pay for someone who',
+      emphasis: 'never resigns',
     },
-    sub: "We scope every project with a clear proposal. If we don't deliver exactly what's in it, you get 100% of your money back.",
+    sub: 'Build the employee once and own it outright, or keep one on payroll and let us run it. Either way you leave the first call with the scope in writing and a fixed number against it.',
     assurances: [
-      'One-time project fee',
-      'No monthly charges',
-      'You own all code and workflows',
+      'A fixed fee against a written scope',
+      'No seat licences, no per-user pricing',
+      'You own the code, the data and the recordings',
     ],
   },
 
   tiers: [
     {
       id: 'build',
-      badge: 'Standard Build',
-      title: 'AI Setup & Build',
-      body: 'For businesses that need a specific AI system built, agents, automations, RAG pipelines, or custom integrations. Scoped, built, and handed over working.',
+      badge: 'Most people start here',
+      title: 'Buy the employee',
+      body: 'You know the job. We scope it, build it, wire it into your tools, and hand it over working — and then it is yours, running on your accounts, with no monthly cheque to us.',
       price: {
         label: 'Starting from',
         value: '$500 – $7,000+',
-        note: 'One-time project fee. No monthly charges to us.',
+        note: 'One-time build fee, against a scope you signed off first.',
       },
       features: [
-        'Full discovery & requirements document',
-        'Custom-built to your exact specification',
-        'Integrated with your existing tools',
-        'Tested and handed over working',
-        '30-day post-launch support',
-        'You own all code, agents & workflows',
-        'No monthly fees to us',
+        'A written job description before anyone builds anything',
+        'Built to your exact process, not configured from a template',
+        'Wired into the tools your team already opens every day',
+        'Tested against real cases, then handed over working',
+        '30 days of support from the person who built it',
+        'You own the code, the prompts and the workflows',
+        'No monthly fee to us once it is yours',
       ],
-      cta: { label: 'Book a Free Strategy Call', href: BRAND.calendly },
+      cta: { label: 'Book a free hiring call', href: BRAND.calendly },
       secondaryCta: {
-        label: 'Message Us on WhatsApp',
-        href: BRAND.whatsapp("Hello I'd like to learn more about the pricing."),
+        label: 'Message us on WhatsApp',
+        href: BRAND.whatsapp("Hello, I'd like to talk about what a build would cost."),
       },
       featured: true,
     },
     {
       id: 'enterprise',
       badge: 'Enterprise',
-      title: 'Enterprise & Partnership',
-      body: 'For teams with complex AI infrastructure needs, RAG systems, private LLM deployments, multi-agent workflows, and deep integrations. We scope this together on a call.',
+      title: 'Staff the department',
+      body: 'Several roles that hand work to each other, running inside your own infrastructure — because your data cannot leave it. We design the architecture before anyone quotes you a number.',
       features: [
-        'Dedicated project team across the engagement',
-        'Architecture & system design upfront',
-        'RAG systems, private LLM deployments, AI agents',
-        'Full integration into your existing infrastructure',
-        'IP and source code ownership transferred',
-        'Ongoing retainer options available',
+        'A dedicated team across the whole engagement',
+        'Architecture and system design before any quote',
+        'RAG systems, private model deployments, multi-role setups',
+        'Deployed inside your infrastructure, not ours',
+        'IP and source code ownership transferred to you',
+        'Ongoing retainer available if you want us running it',
       ],
-      note: 'We ask that you book a call before we commit to anything. We invest real time and expertise in every engagement — just as we ask you to value yours, we ask you to value ours.',
-      cta: { label: 'Book a Strategy Call', href: BRAND.calendly },
+      note: 'We ask you to book a call before either side commits. We put real engineering time into scoping these, and we would rather spend it on an engagement that is a genuine fit — yours and ours both.',
+      cta: { label: 'Book a scoping call', href: BRAND.calendly },
     },
   ],
 
@@ -82,83 +95,87 @@ export const PRICING: PricingContent = {
     Not in the reference — the reference leaves the two tiers as parallel
     feature lists and makes you read both to work out which one you are.
     Same facts, restructured into the one question a visitor actually has.
+
+    `columns` must stay identical to the two tier titles above; the table is a
+    restructure of the tiers, not a second source of truth, and
+    content.test.ts asserts it.
   */
   comparison: {
     eyebrow: 'Which one am I',
     title: 'Two ways to work with us.',
-    sub: 'Same engineering team, same ownership terms. The difference is scope, and how the scope gets decided.',
-    columns: ['AI Setup & Build', 'Enterprise & Partnership'],
+    sub: 'Same engineers, same ownership terms. What differs is how much has to be designed before anyone can name a price.',
+    columns: ['Buy the employee', 'Staff the department'],
     rows: [
       {
         id: 'fit',
         label: 'Best for',
         values: [
-          'A specific system you can describe today',
-          'Infrastructure that needs designing first',
+          'One job you could describe out loud today',
+          'Several roles, and infrastructure that needs designing',
         ],
       },
       {
         id: 'scoping',
         label: 'How it is scoped',
         values: [
-          'Discovery call, then a fixed written proposal',
+          'One call, then a fixed written proposal',
           'Architecture and system design before any quote',
         ],
       },
       {
         id: 'price',
-        label: 'Investment',
+        label: 'What it costs',
         values: ['$500 – $7,000+ one-time', 'Scoped together on a call'],
       },
       {
         id: 'team',
-        label: 'Team',
+        label: 'Who builds it',
         values: [
-          'Assigned engineer through delivery',
-          'Dedicated project team across the engagement',
+          'An assigned engineer, through to handover',
+          'A dedicated team across the engagement',
         ],
       },
       {
         id: 'scope',
         label: 'Typical scope',
         values: [
-          'Agents, automations, integrations, RAG pipelines',
-          'RAG systems, private LLM deployments, multi-agent workflows',
+          'A receptionist, a prospector, an assistant',
+          'A department, on private infrastructure',
         ],
       },
       {
         id: 'support',
-        label: 'After launch',
-        values: ['30-day post-launch support', 'Ongoing retainer options available'],
+        label: 'After it goes live',
+        values: ['30 days of support included', 'Retainer available if you want it run for you'],
       },
       {
         id: 'ownership',
-        label: 'Ownership',
+        label: 'Who owns it',
         values: [
-          'You own all code, agents & workflows',
-          'IP and source code ownership transferred',
+          'You — code, prompts and workflows',
+          'You — IP and source transferred',
         ],
       },
       {
         id: 'recurring',
-        label: 'Monthly fees to us',
+        label: 'Monthly fee to us',
         values: ['None', 'None, unless you choose a retainer'],
       },
     ],
-    note: 'Not sure which line you fall on? Book the call — scoping it is the call.',
+    note: 'Not sure which line you fall on? Working that out is what the call is for.',
   },
 
   /*
-    Repointed at the flagship. The tiers above are still the reference's
-    placeholder band and are flagged in CONTENT-SWAP.md; Priya's price is
-    real, named in full, and one click away — so the page has at least one
-    honest number on it while those tiers wait to be rewritten.
+    Repointed at the flagship. The tiers above are still carrying the
+    reference's price band and are flagged in CONTENT-SWAP.md; Priya's price
+    is real, named in full, and one click away — so the page has at least one
+    honest number on it while those tiers wait.
   */
   resource: {
-    eyebrow: 'Flagship product',
+    eyebrow: 'Or keep one on payroll',
     title: 'Looking for Priya?',
-    body: 'Our lead-response product is priced separately and plainly: ₹30,000 one-time setup, then ₹12,000 a month with 500 leads included. Every enquiry called inside sixty seconds, in Hindi, at any hour.',
-    cta: { label: 'See the Priya plan', href: '/priya' },
+    body: 'Our sales employee is priced like a salary rather than a project: ₹30,000 once to onboard her, then ₹12,000 a month with 500 leads included. Every enquiry called back inside sixty seconds, in Hindi, at any hour. Month to month, no notice period.',
+    cta: { label: 'See what Priya costs', href: '/priya' },
   },
 
   proof: {
@@ -172,10 +189,10 @@ export const PRICING: PricingContent = {
 
   close: {
     eyebrow: 'Next step',
-    title: 'Get the proposal before you commit a dollar.',
-    sub: 'The strategy call is free, and you leave it with a scoped plan whether or not you hire us.',
+    title: 'Get the number before you commit anything.',
+    sub: 'The call is free, and you leave it with a written scope and a fixed price whether or not you hire us. If the job is not worth staffing this way, that is what we will tell you.',
     cta: {
-      primary: { label: 'Book a Free Strategy Call', href: BRAND.calendly },
+      primary: { label: 'Book a free hiring call', href: BRAND.calendly },
       secondary: { label: 'See what we have built', href: '/past-projects' },
     },
   },

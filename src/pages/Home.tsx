@@ -9,6 +9,7 @@ import { ProcessTimeline } from '@/components/blocks/ProcessTimeline'
 import { CaseStudyRail } from '@/components/blocks/CaseStudyRail'
 import { ScarcityClose } from '@/components/blocks/ScarcityClose'
 import { HeroProductBand } from '@/components/blocks/HeroProductBand'
+import { PayrollMath } from '@/components/blocks/PayrollMath'
 import { HOME } from '@/content/home'
 import { PRIYA_HOME } from '@/content/priya'
 import { AUTOMATIONS_HOME } from '@/content/automations'
@@ -30,9 +31,18 @@ export default function Home() {
       <TestimonialRail />
 
       {/*
-        The flagship, one scroll in. The service grid below names eight
-        categories the visitor has to take on faith; this shows one finished
-        thing first, with a clock that is actually running.
+        The hero puts "80% less" in the headline, so the reader's first
+        objection is that the number is invented. This answers it before
+        anything else is asked of him — two columns of line items that add up
+        in public, using the only real prices we have.
+      */}
+      <PayrollMath payroll={HOME.payroll} />
+
+      {/*
+        The one employee we have actually built, immediately after the
+        arithmetic that quotes her price. The role grid below names seven jobs
+        the visitor has to take on faith; this shows one finished thing first,
+        with a clock that is actually running.
       */}
       <HeroProductBand product={PRIYA_HOME} />
 

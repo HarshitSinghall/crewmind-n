@@ -507,7 +507,7 @@ export const PROJECTS_PAGE: ProjectsContent = {
     title: "Let's talk about your project.",
     sub: 'Bring the process that is eating your week. We will tell you on the call whether it is worth automating.',
     cta: {
-      primary: { label: 'Book a Free Strategy Call', href: BRAND.calendly },
+      primary: { label: 'Book a free hiring call', href: BRAND.calendly },
       secondary: { label: 'See pricing', href: '/pricing' },
     },
   },

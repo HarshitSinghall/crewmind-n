@@ -34,7 +34,7 @@ export const ENTERPRISE: EnterpriseContent = {
     },
     sub: 'We partner with enterprise teams to design, build, and deploy fully custom AI infrastructure, from RAG knowledge systems to autonomous agents, using open source foundations you own and control.',
     cta: {
-      primary: { label: 'Book a Strategy Call', href: BRAND.calendly },
+      primary: { label: 'Book a scoping call', href: BRAND.calendly },
       secondary: {
         label: 'Message Us on WhatsApp',
         href: BRAND.whatsapp("Hello, I'd like to discuss an enterprise engagement."),
@@ -277,7 +277,7 @@ export const ENTERPRISE: EnterpriseContent = {
     title: 'Ready to build your AI system?',
     sub: "Book a strategy call and we'll scope your project in the first session.",
     cta: {
-      primary: { label: 'Book a Strategy Call', href: BRAND.calendly },
+      primary: { label: 'Book a scoping call', href: BRAND.calendly },
       secondary: {
         label: 'Message Us on WhatsApp',
         href: BRAND.whatsapp("Hello, I'd like to discuss an enterprise engagement."),

@@ -15,7 +15,7 @@ export const BRAND: Brand = {
   name: 'CrewMind',
   url: 'https://crewmind.in',
   tagline:
-    'AI that answers your leads in sixty seconds, at any hour, in the language they called in.',
+    'Five employees who never sleep, never resign, and cost 80% less. Tell us the jobs — we build them.',
   email: 'hello@crewmind.in',
   phone: '+91 70175 31825',
   phoneHref: 'tel:+917017531825',
@@ -62,7 +62,7 @@ export const NAV_LINKS: NavLink[] = [
   still has its in-page path via the hero CTA, which keeps '#book'.
 */
 export const PRIMARY_CTA = {
-  label: 'Book a Free Discovery Call',
+  label: 'Book a free hiring call',
   href: BRAND.calendly,
 } as const
 

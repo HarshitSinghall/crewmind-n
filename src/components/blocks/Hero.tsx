@@ -4,7 +4,6 @@ import { Container } from '@/components/ui/Container'
 import { Emphasis, Heading } from '@/components/ui/Heading'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Text } from '@/components/ui/Text'
-import { AvatarStack } from '@/components/ui/Avatar'
 import { Reveal } from '@/components/ui/Reveal'
 import { VideoSlot } from './VideoSlot'
 import type { HomeContent } from '@/content/types'
@@ -16,10 +15,15 @@ export function Hero({ hero }: { hero: HomeContent['hero'] }) {
 
       <Container className="relative">
         <div className="mx-auto max-w-[52rem] text-center">
+          {/*
+            The eyebrow used to sit beside a stack of three invented faces.
+            Under an "AI employees" positioning those faces read as the staff
+            we are selling, which is a roster we do not have — so they are
+            gone rather than restyled.
+          */}
           <Reveal>
-            <div className="mb-7 flex items-center justify-center gap-3">
-              <AvatarStack people={hero.avatars} />
-              <Eyebrow marker={false}>{hero.eyebrow}</Eyebrow>
+            <div className="mb-7 flex items-center justify-center">
+              <Eyebrow>{hero.eyebrow}</Eyebrow>
             </div>
           </Reveal>
 

@@ -21,6 +21,16 @@ describe('Priya', () => {
     expect(screen.getByText(PRIYA.hero.sub)).toBeInTheDocument()
   })
 
+  it('offers the real call form from the primary Priya CTA', () => {
+    renderPriya()
+    expect(screen.getAllByRole('link', { name: 'Call me now' })[0]).toHaveAttribute(
+      'href',
+      '#demo-call',
+    )
+    expect(screen.getByRole('form')).toBeInTheDocument()
+    expect(screen.getByLabelText(/Indian mobile number/i)).toBeRequired()
+  })
+
   it('has exactly one h1', () => {
     const { container } = renderPriya()
     expect(container.querySelectorAll('h1')).toHaveLength(1)

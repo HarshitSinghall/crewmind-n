@@ -552,6 +552,26 @@ export interface LeadMathSpec {
   invite: string
 }
 
+export interface DemoCallSpec {
+  eyebrow: string
+  title: string
+  sub: string
+  steps: { title: string; body: string }[]
+  fields: {
+    name: { label: string; placeholder: string }
+    phone: { label: string; placeholder: string }
+    locality: { label: string; placeholder: string }
+    propertyInterest: { label: string; placeholder: string }
+  }
+  submitLabel: string
+  submittingLabel: string
+  whatsappLabel: string
+  privacy: string
+  success: { title: string; body: string; rescueLabel: string }
+  fallback: { title: string; body: string; rescueLabel: string }
+  rescueMessage: string
+}
+
 export interface DeadLeadSpec {
   eyebrow: string
   title: Headline
@@ -574,6 +594,7 @@ export interface PriyaContent {
     }
     trust: string
   }
+  demo: DemoCallSpec
   sundayTest: {
     eyebrow: string
     title: string

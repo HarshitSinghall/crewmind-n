@@ -6,6 +6,7 @@ import { CallTranscript } from '@/components/blocks/CallTranscript'
 import { LeadCard } from '@/components/blocks/LeadCard'
 import { LeadMath } from '@/components/blocks/LeadMath'
 import { DeadLeadOffer } from '@/components/blocks/DeadLeadOffer'
+import { DemoCallForm } from '@/components/blocks/DemoCallForm'
 import { ComparisonTable } from '@/components/blocks/ComparisonTable'
 import { PricingTiers } from '@/components/blocks/PricingTiers'
 import { FAQ } from '@/components/blocks/FAQ'
@@ -22,7 +23,8 @@ import { useSeo } from '@/lib/useSeo'
 /**
  * The flagship product page.
  *
- * Fifteen blocks, and the order is the argument: he measures his own gap
+ * The order is the argument: he can trigger the real system immediately,
+ * then measures his own gap
  * (Sunday test) before he is shown ours (race), hears the thing work
  * (transcript) before he is told how (mechanism), and reads what it does NOT
  * do (limits) before he is offered a price. Reordering this weakens it.
@@ -33,6 +35,7 @@ export default function Priya() {
   return (
     <>
       <ProductHero hero={PRIYA.hero} />
+      <DemoCallForm demo={PRIYA.demo} />
 
       <StepList
         id="sunday-test"

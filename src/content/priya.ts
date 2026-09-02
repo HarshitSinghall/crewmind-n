@@ -27,7 +27,7 @@ import type { HeroProductContent, PriyaContent } from './types'
    this market that tells the truth about response times.
 --------------------------------------------------------------------------- */
 
-const WA_DEMO = BRAND.whatsapp('I want to hear Priya. Call me on this number.')
+const LIVE_DEMO = '#demo-call'
 const WA_DEAD_LEADS = BRAND.whatsapp(
   'I want to send fifty old leads for the free test.',
 )
@@ -48,7 +48,7 @@ export const PRIYA: PriyaContent = {
     },
     sub: 'Priya calls every enquiry within sixty seconds, in Hindi, at 2am. Budget, timeline, financing — asked and answered. The card lands on your WhatsApp before your telecaller wakes up.',
     cta: {
-      primary: { label: 'Call me now', href: WA_DEMO },
+      primary: { label: 'Call me now', href: LIVE_DEMO },
       secondary: { label: 'Test it on dead leads', href: '#dead-lead' },
     },
     assurances: [
@@ -64,6 +64,50 @@ export const PRIYA: PriyaContent = {
     },
     trust:
       'Nothing on your side changes. Your forms stay where they are, your portal accounts stay where they are, and your hoardings do not change.',
+  },
+
+  demo: {
+    eyebrow: 'Live system · Not a recording',
+    title: 'Send one enquiry. Watch the whole system run.',
+    sub: 'Enter an Indian mobile number and Priya will call it through the same production path a property lead uses. After the call, the outcome, transcript, follow-up and agent report move through the real dashboard workflow.',
+    steps: [
+      {
+        title: 'Your phone rings',
+        body: 'The request is screened, written as a lead and dispatched to Priya through Dograh.',
+      },
+      {
+        title: 'Priya qualifies the enquiry',
+        body: 'Answer naturally. Budget, timeline, financing and property interest are captured from the call.',
+      },
+      {
+        title: 'The operations appear',
+        body: 'The dashboard updates, the lead follow-up is routed to WhatsApp, and the assigned agent receives the post-call report.',
+      },
+    ],
+    fields: {
+      name: { label: 'Your name', placeholder: 'Rajesh Sharma' },
+      phone: { label: 'Indian mobile number', placeholder: '98XXX XXXXX' },
+      locality: { label: 'Locality', placeholder: 'Sector 65, Gurugram' },
+      propertyInterest: {
+        label: 'Property to ask about',
+        placeholder: '3BHK under ₹1.5 Cr',
+      },
+    },
+    submitLabel: 'Call me now',
+    submittingLabel: 'Connecting Priya',
+    whatsappLabel: 'WhatsApp instead',
+    privacy: 'Only the mobile number is required. One demo call; no mailing list. Cooldowns and a daily safety limit apply.',
+    success: {
+      title: 'Priya is calling you now.',
+      body: 'Pick up an unfamiliar Indian number. When the call ends, its result will continue through the dashboard, WhatsApp and agent-report pipeline.',
+      rescueLabel: 'Nothing rang after three minutes',
+    },
+    fallback: {
+      title: 'The automated request did not go through.',
+      body: 'Your details are already prepared in WhatsApp. Send the message and we will inspect or trigger the demo manually.',
+      rescueLabel: 'Continue on WhatsApp',
+    },
+    rescueMessage: 'Namaste. I want the live Priya demo call.',
   },
 
   sundayTest: {
@@ -480,7 +524,7 @@ export const PRIYA: PriyaContent = {
         'Every call recorded and transcribed, exportable on request',
       ],
       note: 'That is ₹24 a lead, answered inside sixty seconds at any hour of the night. You paid several hundred rupees to buy each one of those numbers in the first place.',
-      cta: { label: 'Call me now', href: WA_DEMO },
+      cta: { label: 'Call me now', href: LIVE_DEMO },
       secondaryCta: { label: 'Test it on dead leads first', href: '#dead-lead' },
       featured: true,
     },
@@ -575,7 +619,7 @@ export const PRIYA: PriyaContent = {
     title: 'Send your number. Your phone rings in sixty seconds.',
     sub: 'No meeting room, no trial login, no proposal deck. Take the call yourself, in Hindi, and hear exactly what your buyer would hear. If it is bad, tell us it is bad — that is useful too.',
     cta: {
-      primary: { label: 'Call me now', href: WA_DEMO },
+      primary: { label: 'Call me now', href: LIVE_DEMO },
       secondary: { label: 'See the price again', href: '#plan' },
     },
   },

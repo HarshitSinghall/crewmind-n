@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import handler, { normaliseIndianMobile } from './demo'
+import handler, { handleDemoRequest, normaliseIndianMobile } from './demo'
 
 afterEach(() => {
   vi.unstubAllEnvs()
@@ -26,7 +26,7 @@ describe('demo API', () => {
     const fetchMock = vi.fn()
     vi.stubGlobal('fetch', fetchMock)
 
-    const response = await handler(request({ phone: '123' }))
+    const response = await handleDemoRequest(request({ phone: '123' }))
 
     expect(response.status).toBe(422)
     expect(await response.json()).toMatchObject({
@@ -40,7 +40,7 @@ describe('demo API', () => {
     const fetchMock = vi.fn()
     vi.stubGlobal('fetch', fetchMock)
 
-    const response = await handler(
+    const response = await handleDemoRequest(
       request({ phone: '9876543210', trap_field: 'filled by bot' }),
     )
 
@@ -57,7 +57,7 @@ describe('demo API', () => {
     )
     vi.stubGlobal('fetch', fetchMock)
 
-    const response = await handler(
+    const response = await handleDemoRequest(
       request({
         phone: '98765 43210',
         name: 'A'.repeat(70),
@@ -81,6 +81,24 @@ describe('demo API', () => {
       locality: 'Gurugram',
       property_interest: '3BHK',
       name: 'A'.repeat(60),
+    })
+  })
+
+  it('adapts Vercel Node requests and completes the response', async () => {
+    const setHeader = vi.fn()
+    const end = vi.fn()
+    const response = { setHeader, end, statusCode: 0 }
+
+    await handler(
+      { method: 'POST', body: { phone: '123' } } as never,
+      response as never,
+    )
+
+    expect(response.statusCode).toBe(422)
+    expect(setHeader).toHaveBeenCalledWith('cache-control', 'no-store')
+    expect(JSON.parse(String(end.mock.calls[0][0]))).toMatchObject({
+      ok: false,
+      reason: 'invalid_phone',
     })
   })
 })

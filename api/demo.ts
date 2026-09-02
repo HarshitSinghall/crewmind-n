@@ -40,12 +40,9 @@ export function normaliseIndianMobile(raw: string): string | null {
   return `+91${local}`
 }
 
-export default async function handler(request: Request): Promise<Response> {
-  if (request.method !== 'POST') {
-    return reply({ ok: false, reason: 'method_not_allowed' }, 405)
-  }
-
+export async function handleDemoRequest(request: Request): Promise<Response> {
   let body: DemoRequestBody
+
   try {
     body = (await request.json()) as DemoRequestBody
   } catch {
@@ -53,6 +50,17 @@ export default async function handler(request: Request): Promise<Response> {
       { ok: false, reason: 'bad_request', message: 'Could not read that request.' },
       400,
     )
+  }
+
+  return handleDemoInput(request.method, body)
+}
+
+async function handleDemoInput(
+  method: string | undefined,
+  body: DemoRequestBody,
+): Promise<Response> {
+  if (method !== 'POST') {
+    return reply({ ok: false, reason: 'method_not_allowed' }, 405)
   }
 
   // Browser autofill must never target this deliberately meaningless field.
@@ -145,3 +153,27 @@ export default async function handler(request: Request): Promise<Response> {
     clearTimeout(timeout)
   }
 }
+
+/**
+ * Vercel's Node serverless runtime invokes `api/*.ts` with `(req, res)`, not
+ * the Web Fetch API's `Request -> Response` signature. The adapter keeps the
+ * testable business logic above web-standard while always completing Vercel's
+ * HTTP response below.
+ */
+type VercelRequest = IncomingMessage & { body?: unknown }
+
+export default async function handler(
+  request: VercelRequest,
+  response: ServerResponse,
+): Promise<void> {
+  const body = request.body
+  const result = await handleDemoInput(
+    request.method,
+    body && typeof body === 'object' ? (body as DemoRequestBody) : {},
+  )
+
+  response.statusCode = result.status
+  result.headers.forEach((value, name) => response.setHeader(name, value))
+  response.end(await result.text())
+}
+import type { IncomingMessage, ServerResponse } from 'node:http'

@@ -22,10 +22,9 @@ import { useReducedMotion } from '@/lib/useReducedMotion'
  *     dialog role, no focus management and no Escape. This is a real modal:
  *     it traps focus, restores it on close, locks the page behind it, and
  *     labels itself from the person's name.
- *  3. NO PHOTO. Every team member currently has `avatar: undefined`, so an
- *     image-led card would be a grid of empty rectangles. Without a portrait
- *     it falls back to initials on a token gradient, at the same size, so the
- *     grid does not reflow the day real headshots land.
+ *  3. PHOTO FALLBACK. Approved portraits render when supplied; initials use
+ *     the same frame when a future profile has no image, so the grid does not
+ *     reflow as team assets are added.
  *
  * THE MORPH IS HAND-ROLLED FLIP, NOT A LIBRARY.
  *

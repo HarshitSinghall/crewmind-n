@@ -394,8 +394,9 @@ export interface ProjectCategory {
 export interface ProjectCase {
   id: string
   title: string
-  /** De-identified client descriptor, e.g. "Chiropractic Clinic". */
+  /** Honest context line, e.g. "Support workflow blueprint". */
   client: string
+  /** Delivery status, never an invented recency claim. */
   when: string
   impact: string
   /** Must match a ProjectCategory id. */
@@ -403,6 +404,8 @@ export interface ProjectCase {
   tags: string[]
   challenge: string
   solution: string
+  /** Present only for an openly published third-party reference case. */
+  source?: { label: string; href: string }
 }
 
 export interface ProjectsContent {
@@ -567,6 +570,7 @@ export interface DemoCallSpec {
   submittingLabel: string
   whatsappLabel: string
   privacy: string
+  consentLabel: string
   success: { title: string; body: string; rescueLabel: string }
   fallback: { title: string; body: string; rescueLabel: string }
   rescueMessage: string

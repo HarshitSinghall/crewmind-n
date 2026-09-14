@@ -64,14 +64,16 @@ describe('ServiceDetail', () => {
     }
   })
 
-  it('renders the comparison section as a real table', () => {
+  it('renders the voice control checklist without an invented comparison', () => {
     renderDetail('ai-call-centers')
-    const table = screen.getByRole('table')
     const service = SERVICES.find((s) => s.slug === 'ai-call-centers')!
-    const comparison = service.sections.find((s) => s.kind === 'comparison')!
+    const checklist = service.sections.find((s) => s.kind === 'checklist')!
 
-    if (comparison.kind !== 'comparison') throw new Error('expected a comparison section')
-    expect(table.querySelectorAll('tbody tr')).toHaveLength(comparison.spec.rows.length)
+    if (checklist.kind !== 'checklist') throw new Error('expected a checklist section')
+    for (const item of checklist.items) {
+      expect(screen.getByText(item)).toBeInTheDocument()
+    }
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
   })
 
   it('shows related work drawn from the matching project category', () => {

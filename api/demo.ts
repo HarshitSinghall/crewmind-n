@@ -3,6 +3,7 @@ const ACTIONABLE_REASONS = new Set([
   'throttled',
   'daily_cap',
   'opted_out',
+  'consent_required',
 ])
 
 interface DemoRequestBody {
@@ -11,6 +12,7 @@ interface DemoRequestBody {
   name?: unknown
   property_interest?: unknown
   trap_field?: unknown
+  consent?: unknown
 }
 
 interface UpstreamBody {
@@ -18,6 +20,8 @@ interface UpstreamBody {
   queued?: boolean
   reason?: string
   message?: string
+  status?: string
+  workflow_run_id?: number | string
 }
 
 function reply(body: Record<string, unknown>, status = 200) {
@@ -79,12 +83,37 @@ async function handleDemoInput(
     )
   }
 
+  if (body.consent !== true) {
+    return reply(
+      {
+        ok: false,
+        reason: 'consent_required',
+        message: 'Confirm that you are authorised to request this demo call.',
+      },
+      422,
+    )
+  }
+
   const text = (value: unknown, max: number) =>
     String(value ?? '')
       .slice(0, max)
       .trim()
 
-  const endpoint = process.env.CREWMIND_DEMO_WEBHOOK_URL
+  const dograhApiKey = process.env.DOGRAH_API_KEY?.trim()
+  const dograhTriggerUuid = process.env.DOGRAH_TRIGGER_UUID?.trim()
+  const webhookEndpoint = process.env.CREWMIND_DEMO_WEBHOOK_URL?.trim()
+  const hasPartialDograhConfig = Boolean(dograhApiKey) !== Boolean(dograhTriggerUuid)
+
+  if (hasPartialDograhConfig) {
+    console.error('[demo] incomplete Dograh configuration')
+    return reply({ ok: false, reason: 'unconfigured' }, 503)
+  }
+
+  const usesDograh = Boolean(dograhApiKey && dograhTriggerUuid)
+  const endpoint = usesDograh
+    ? `https://api.dograh.com/api/v1/public/agent/${encodeURIComponent(dograhTriggerUuid!)}`
+    : webhookEndpoint
+
   if (!endpoint) return reply({ ok: false, reason: 'unconfigured' }, 503)
 
   try {
@@ -102,18 +131,32 @@ async function handleDemoInput(
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        ...(process.env.CREWMIND_DEMO_WEBHOOK_TOKEN
+        ...(usesDograh
+          ? { 'X-API-Key': dograhApiKey! }
+          : process.env.CREWMIND_DEMO_WEBHOOK_TOKEN
           ? { 'x-crewmind-token': process.env.CREWMIND_DEMO_WEBHOOK_TOKEN }
           : {}),
       },
-      body: JSON.stringify({
-        source: 'website_demo',
-        phone,
-        locality: text(body.locality, 80) || null,
-        name: text(body.name, 60) || null,
-        property_interest: text(body.property_interest, 80) || null,
-        requested_at: new Date().toISOString(),
-      }),
+      body: JSON.stringify(
+        usesDograh
+          ? {
+              phone_number: phone,
+              initial_context: {
+                source: 'website_demo',
+                name: text(body.name, 60) || null,
+                locality: text(body.locality, 80) || null,
+                property_interest: text(body.property_interest, 80) || null,
+              },
+            }
+          : {
+              source: 'website_demo',
+              phone,
+              locality: text(body.locality, 80) || null,
+              name: text(body.name, 60) || null,
+              property_interest: text(body.property_interest, 80) || null,
+              requested_at: new Date().toISOString(),
+            },
+      ),
       signal: controller.signal,
     })
 
@@ -131,14 +174,23 @@ async function handleDemoInput(
         )
       }
 
-      console.error('[demo] webhook rejected request', upstream.status, reason)
+      console.error('[demo] call provider rejected request', upstream.status, reason)
       return reply({ ok: false, reason: 'upstream' }, 502)
     }
 
-    // A 2xx without an explicit dispatch confirmation must not become a false
-    // "your phone is ringing" screen.
-    if (detail?.ok !== true || detail.queued !== true) {
-      console.error('[demo] webhook returned no queue confirmation')
+    const dograhAccepted =
+      usesDograh &&
+      detail?.status === 'initiated' &&
+      ((typeof detail.workflow_run_id === 'number' &&
+        Number.isFinite(detail.workflow_run_id)) ||
+        (typeof detail.workflow_run_id === 'string' &&
+          detail.workflow_run_id.trim().length > 0))
+    const webhookAccepted =
+      !usesDograh && detail?.ok === true && detail.queued === true
+
+    // A 2xx without provider acceptance must not become a false success screen.
+    if (!dograhAccepted && !webhookAccepted) {
+      console.error('[demo] call provider returned no dispatch confirmation')
       return reply({ ok: false, reason: 'upstream' }, 502)
     }
 

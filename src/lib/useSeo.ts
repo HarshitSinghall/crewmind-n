@@ -39,7 +39,7 @@ export function useSeo({ title, description, path, ogImage }: SeoInput): void {
   useEffect(() => {
     const full = `${title} | ${BRAND.name}`
     const url = `${BRAND.url}${path}`
-    const image = ogImage ?? `${BRAND.url}/opengraph.jpg`
+    const image = ogImage ?? `${BRAND.url}/brand/crewmind-og-1200x630.png`
 
     document.title = full
 

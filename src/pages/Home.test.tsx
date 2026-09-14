@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import Home from './Home'
 import { HOME } from '@/content/home'
@@ -42,17 +41,10 @@ describe('Home', () => {
     }
   })
 
-  it('renders each testimonial exactly once in the accessibility tree', () => {
+  it('publishes no customer testimonials without verified evidence', () => {
     renderHome()
-    // The marquee duplicates the track visually, but the clone is
-    // aria-hidden — so each quote must be findable exactly once by role.
-    for (const t of TESTIMONIALS) {
-      const matches = screen.getAllByText(t.body)
-      const visibleToAt = matches.filter(
-        (el) => !el.closest('[aria-hidden="true"]'),
-      )
-      expect(visibleToAt, `testimonial ${t.id}`).toHaveLength(1)
-    }
+    expect(TESTIMONIALS).toEqual([])
+    expect(screen.queryByText(/trustpilot/i)).not.toBeInTheDocument()
   })
 
   it('exposes exactly one primary CTA colour class per close section', () => {
@@ -67,19 +59,13 @@ describe('Home', () => {
     }
   })
 
-  it('requests nothing from calendly until the scheduler is asked for', async () => {
-    const user = userEvent.setup()
+  it('shows the Calendly scheduler without an extra click', () => {
     const { container } = renderHome()
-
-    // The whole point of the click-to-load facade: no iframe, so no external
-    // request and no third-party cookie for a visitor who never books.
-    expect(container.querySelector('iframe')).toBeNull()
-
-    await user.click(screen.getByRole('button', { name: /load the scheduler/i }))
 
     const frame = container.querySelector('iframe')
     expect(frame).toBeInTheDocument()
     expect(frame).toHaveAttribute('src', expect.stringContaining('calendly.com'))
+    expect(frame).toHaveAttribute('loading', 'lazy')
   })
 
   it('always offers a way through to the scheduler without the embed', () => {

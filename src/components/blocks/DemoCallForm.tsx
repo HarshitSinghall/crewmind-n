@@ -22,6 +22,7 @@ const ACTIONABLE_REASONS = new Set([
   'throttled',
   'daily_cap',
   'opted_out',
+  'consent_required',
 ])
 
 interface DemoResponse {
@@ -37,6 +38,7 @@ export function DemoCallForm({ demo }: { demo: DemoCallSpec }) {
   const [locality, setLocality] = useState('')
   const [propertyInterest, setPropertyInterest] = useState('')
   const [trapField, setTrapField] = useState('')
+  const [consent, setConsent] = useState(false)
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState('')
 
@@ -61,6 +63,7 @@ export function DemoCallForm({ demo }: { demo: DemoCallSpec }) {
           name,
           property_interest: propertyInterest,
           trap_field: trapField,
+          consent,
         }),
       })
       const data = (await response.json().catch(() => ({}))) as DemoResponse
@@ -207,6 +210,23 @@ export function DemoCallForm({ demo }: { demo: DemoCallSpec }) {
                       {message}
                     </p>
                   ) : null}
+
+                  <label className="mt-6 flex cursor-pointer items-start gap-3 text-[0.8125rem] leading-[1.6] text-[var(--text-2)]">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(event) => setConsent(event.target.checked)}
+                      required
+                      className="mt-1 h-4 w-4 shrink-0 accent-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                    />
+                    <span>
+                      {demo.consentLabel}{' '}
+                      <a href="/privacy" className="underline underline-offset-2 hover:text-[var(--text-1)]">
+                        Privacy Policy
+                      </a>
+                      .
+                    </span>
+                  </label>
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                     <button

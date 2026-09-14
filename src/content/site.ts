@@ -15,7 +15,7 @@ export const BRAND: Brand = {
   name: 'CrewMind',
   url: 'https://crewmind.in',
   tagline:
-    'AI that answers your leads in sixty seconds, at any hour, in the language they called in.',
+    'Governed AI voice and workflow systems for real-estate enquiry response.',
   email: 'hello@crewmind.in',
   phone: '+91 70175 31825',
   phoneHref: 'tel:+917017531825',
@@ -32,7 +32,7 @@ export const BRAND: Brand = {
   calendly: 'https://calendly.com/harshitsinghal822/30min',
   whatsapp: (message = "Hello I'd like to learn more about your services.") =>
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-  socials: [{ label: 'LinkedIn', href: 'https://linkedin.com/company/example' }],
+  socials: [],
   sisterSite: undefined,
   legal: {
     entity: 'Antimatter Technologies Private Limited',
@@ -62,7 +62,7 @@ export const NAV_LINKS: NavLink[] = [
   still has its in-page path via the hero CTA, which keeps '#book'.
 */
 export const PRIMARY_CTA = {
-  label: 'Book a Free Discovery Call',
+  label: 'Book a Discovery Call',
   href: BRAND.calendly,
 } as const
 

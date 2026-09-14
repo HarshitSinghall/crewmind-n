@@ -90,7 +90,7 @@ describe('PastProjects', () => {
     const all = screen.getByRole('button', { name: /^All/ })
     expect(all).toHaveAttribute('aria-pressed', 'true')
 
-    const chip = screen.getByRole('button', { name: /24\/7 AI Receptionist/ })
+    const chip = screen.getByRole('button', { name: /Voice & Lead Response/ })
     await user.click(chip)
 
     expect(chip).toHaveAttribute('aria-pressed', 'true')
@@ -123,13 +123,13 @@ describe('PastProjects', () => {
     const { container } = renderProjects()
 
     const live = container.querySelector('[aria-live="polite"]')!
-    expect(live).toHaveTextContent(`${PROJECTS.length} projects`)
+    expect(live).toHaveTextContent(`${PROJECTS.length} blueprints`)
 
     const category = CATEGORIES.find((c) => c.id === 'ai-call-centers')!
     await user.click(screen.getByRole('button', { name: new RegExp(category.label) }))
 
     const count = PROJECTS.filter((p) => p.category === category.id).length
-    expect(live).toHaveTextContent(`${count} projects in ${category.label}`)
+    expect(live).toHaveTextContent(`${count} blueprints in ${category.label}`)
   })
 
   it('shows challenge and solution on every visible card', () => {
@@ -137,8 +137,8 @@ describe('PastProjects', () => {
 
     for (const card of screen.getAllByRole('article')) {
       const scoped = within(card)
-      expect(scoped.getByText('Challenge')).toBeInTheDocument()
-      expect(scoped.getByText('Solution')).toBeInTheDocument()
+      expect(scoped.getByText('Use case')).toBeInTheDocument()
+      expect(scoped.getByText('Build pattern')).toBeInTheDocument()
     }
   })
 })

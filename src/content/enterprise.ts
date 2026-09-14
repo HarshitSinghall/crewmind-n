@@ -1,38 +1,25 @@
 import type { EnterpriseContent } from './types'
 import { BRAND } from './site'
 
-/* ---------------------------------------------------------------------------
-   PLACEHOLDER CONTENT — see CONTENT-SWAP.md
-   Transcribed from docs/reference/autoploy-enterprise.md.
-
-   TWO DELIBERATE DEPARTURES:
-
-   1. Case studies. The reference names a real client and links its real
-      deliverables. Claiming another agency's named client as our own is not
-      something to ship even as placeholder. The engagements below keep every
-      structural detail — sector, scale, challenge, solution, stack — with the
-      client de-identified and the outbound links removed.
-
-   2. FAQ answers. The reference renders its accordion panels only on expand,
-      so the answer text is absent from the served markup and there was
-      nothing to transcribe. These five answers are written fresh against the
-      reference's five verbatim questions.
---------------------------------------------------------------------------- */
+/*
+ * Public enterprise capability copy. The existing case-study block is left
+ * unchanged by explicit instruction and must be reviewed separately before launch.
+ */
 
 export const ENTERPRISE: EnterpriseContent = {
   seo: {
     title: 'Enterprise AI Solutions',
     description:
-      'We partner with enterprise teams to design, build, and deploy fully custom AI infrastructure — RAG systems, agents, private LLM deployments — on open source foundations you own and control.',
+      'Crewmind scopes AI architecture, retrieval, agents, and workflow integration around an organisation’s existing controls, infrastructure, and operating owners.',
   },
 
   hero: {
     eyebrow: 'Enterprise AI Solutions',
     headline: {
-      lead: 'Custom AI systems built for',
-      emphasis: 'enterprise scale',
+      lead: 'Design AI systems around',
+      emphasis: 'the controls you already need',
     },
-    sub: 'We partner with enterprise teams to design, build, and deploy fully custom AI infrastructure, from RAG knowledge systems to autonomous agents, using open source foundations you own and control.',
+    sub: 'We can work with product, engineering, security, and operations owners to define a bounded architecture. Deployment, ownership, support, and acceptance terms are agreed in writing for each engagement.',
     cta: {
       primary: { label: 'Book a Strategy Call', href: BRAND.calendly },
       secondary: {
@@ -41,83 +28,83 @@ export const ENTERPRISE: EnterpriseContent = {
       },
     },
     assurances: [
-      'Private deployment on your infrastructure',
-      'You own all IP and source code',
-      'No vendor lock-in',
+      'Deployment model agreed in scope',
+      'Identity and data boundaries documented',
+      'Release criteria defined before launch',
     ],
   },
 
   why: {
     eyebrow: 'Why custom',
-    title: "Off-the-shelf AI tools weren't built for your business.",
-    sub: 'Generic SaaS AI products are designed for the average case. Enterprise workflows, data governance requirements, and security standards demand something built specifically for you.',
+    title: 'The model is only one part of the operating system.',
+    sub: 'Enterprise usefulness depends on identity, data access, integration contracts, evaluation, failure handling, and the people responsible for exceptions.',
     items: [
       {
         id: 'security',
-        title: 'Security & compliance by design',
-        body: 'Your data stays on your infrastructure. We build with your security policies, access controls, and compliance requirements as constraints, not afterthoughts.',
+        title: 'Security constraints first',
+        body: 'We identify sensitive data, trusted identities, permitted actions, audit requirements, and deployment boundaries during architecture work.',
       },
       {
         id: 'lock-in',
-        title: 'No vendor lock-in',
-        body: "Everything we build runs on open source foundations. If you ever want to move, extend, or rebuild, your team can. You're never hostage to a pricing change or a product shutdown.",
+        title: 'Dependencies made visible',
+        body: 'The architecture names model, hosting, data, and integration dependencies so the organisation can evaluate cost, portability, and operational risk.',
       },
       {
         id: 'ip',
-        title: 'Full IP ownership',
-        body: 'Every line of code, every trained model, every pipeline we build belongs to you. We hand over the full codebase, documentation, and deployment configs at project close.',
+        title: 'Ownership agreed in writing',
+        body: 'Source, configuration, customer materials, third-party components, and handover obligations are separated and defined in the signed agreement.',
       },
     ],
   },
 
   capabilities: {
     eyebrow: 'What we build',
-    title: 'Six capabilities, all custom.',
-    sub: "We don't adapt templates. Every system is designed from scratch to fit how your team actually works, what data you have, and what outcomes you need.",
+    title: 'Six capability areas that can be combined.',
+    sub: 'The final system should include only the capabilities needed for the agreed workflow and risk boundary.',
     items: [
       {
         id: 'rag',
         title: 'RAG Knowledge Systems',
-        body: 'AI that answers from your internal documents, databases, and policies, with citations, grounded retrieval, and role-based access control.',
+        body: 'Retrieve from approved documents, databases, and policies with citations, access checks, abstention, and feedback paths.',
         stack: ['LlamaIndex', 'ChromaDB', 'pgvector', 'Weaviate'],
       },
       {
         id: 'agents',
         title: 'AI Agents & Copilots',
-        body: 'Autonomous agents that complete multi-step tasks, call your APIs, and operate inside your existing tools — Slack, Teams, your internal portals.',
+        body: 'Bounded agents that prepare or complete agreed tasks through explicitly permitted tools and escalation rules.',
         stack: ['LangChain', 'CrewAI', 'AutoGen', 'Custom orchestration'],
       },
       {
         id: 'workflow',
         title: 'Workflow Automation',
-        body: 'End-to-end process automation that connects your systems, handles exceptions, and routes decisions, without anyone doing it manually.',
+        body: 'Process orchestration that connects approved systems, validates inputs, records state, and routes exceptions to a named owner.',
         stack: ['n8n', 'Apache Airflow', 'Custom pipelines'],
       },
       {
         id: 'private-llm',
         title: 'Private LLM Deployments',
-        body: 'Self-hosted language models running on your servers or private cloud. Full control, no data leaving your environment, model fine-tuned on your domain.',
+        body: 'Where appropriate, evaluate self-hosted or private-cloud model options against security, capability, cost, and operating requirements.',
         stack: ['Ollama', 'vLLM', 'HuggingFace', 'Fine-tuning'],
       },
       {
         id: 'integration',
         title: 'Integration & API Layers',
-        body: 'Custom connectors that wire your AI systems into your CRM, ERP, HRIS, and internal tools so the intelligence reaches where decisions happen.',
+        body: 'Documented connectors that authenticate correctly, validate contracts, minimise data, and fail without inventing success.',
         stack: ['REST APIs', 'Webhooks', 'CRM', 'ERP'],
       },
       {
         id: 'data',
         title: 'Data Pipelines & Vector Infrastructure',
-        body: 'Ingestion, embedding, chunking, and retrieval pipelines built for scale, so your AI always works from fresh, structured, and queryable data.',
+        body: 'Ingestion, transformation, embedding, retrieval, freshness, and deletion paths designed around the source and its access model.',
         stack: ['PostgreSQL', 'ETL', 'Vector stores', 'Embeddings'],
       },
     ],
   },
 
   stack: {
-    eyebrow: 'Open source foundation',
-    title: 'Built on tools your team can audit, extend, and own.',
-    sub: 'We work across the full open source AI stack. The specific tools we choose depend on your infrastructure, data, and scale requirements.',
+    eyebrow: 'Technology choices',
+    title: 'Choose the stack after the operating constraints.',
+    sub: 'The tools below are examples of technologies we can evaluate. Listing them does not imply a partnership, required stack, or fit for every environment.',
     items: [
       'LangChain',
       'LlamaIndex',
@@ -132,38 +119,38 @@ export const ENTERPRISE: EnterpriseContent = {
       'Anthropic Claude',
       'OpenAI APIs',
     ],
-    note: "We select the right tool for each project. We don't lock you into a single vendor or framework.",
+    note: 'The proposed architecture records why each dependency is selected, what data it handles, and how it can be replaced or operated.',
   },
 
   process: {
     eyebrow: 'How it works',
-    title: 'From first call to live system.',
-    sub: 'We keep the process direct. No six-week discovery sprints, no strategy decks. You get a working system, not a roadmap.',
+    title: 'From current state to an approved release.',
+    sub: 'Timing and deliverables depend on the environment. Each phase should produce reviewable evidence before the next commitment.',
     steps: [
       {
         step: '01',
         title: 'Discovery',
-        body: 'We get on a call and map your workflows, data landscape, and what outcomes you actually need the system to deliver.',
+        body: 'Map the current workflow, data, owners, controls, exceptions, and measurable outcome.',
       },
       {
         step: '02',
         title: 'Architecture',
-        body: 'We design the system — tech stack, data flow, integration points, access model — and walk you through it before a line of code is written.',
+        body: 'Define trusted identity, data flow, integration contracts, permissions, failure states, and deployment options.',
       },
       {
         step: '03',
         title: 'Build & Test',
-        body: 'We build, integrate, and test against real scenarios with your team. You see the system working before we close the project.',
+        body: 'Build the smallest coherent path and test representative success, rejection, timeout, duplicate, and recovery cases with authorised fixtures.',
       },
       {
         step: '04',
         title: 'Handover',
-        body: 'Full deployment on your infrastructure, documentation, and a handover session so your team understands and can operate what we built.',
+        body: 'Release only after the agreed gate, then provide the versioned source and operating documentation defined in the agreement.',
       },
       {
         step: '05',
-        title: 'Support & Maintenance',
-        body: 'Ongoing support after launch. We monitor performance, apply updates, and fold your feedback back in so the system keeps improving.',
+        title: 'Operate & Improve',
+        body: 'Assign monitoring, incident, review, retention, and change owners. Any ongoing support scope is agreed separately.',
       },
     ],
   },
@@ -215,23 +202,23 @@ export const ENTERPRISE: EnterpriseContent = {
   },
 
   ownership: {
-    title: "Everything you need. Nothing you don't.",
-    sub: 'Every engagement is scoped around your actual problem, not a package with features you will never use.',
+    title: 'Make the operating model explicit.',
+    sub: 'Ownership, deployment, support, and dependencies are commercial and technical decisions recorded in the agreement.',
     items: [
       {
         id: 'source',
-        title: 'You own the source code',
-        body: 'We hand over the full repository. Your team can read, modify, and extend every part of what we built. No black boxes.',
+        title: 'Source and IP terms',
+        body: 'The agreement identifies customer materials, custom deliverables, third-party components, licences, repositories, and handover obligations.',
       },
       {
         id: 'infra',
-        title: 'Deployed on your infrastructure',
-        body: 'On your cloud account, your servers, or on-premise. Your data never passes through our systems or any third-party SaaS.',
+        title: 'Deployment responsibility',
+        body: 'Customer cloud, managed hosting, or another model can be evaluated. The selected boundary and each provider’s data role are documented before deployment.',
       },
       {
         id: 'fees',
-        title: 'No ongoing fees to us',
-        body: 'We charge for the build, not for existence. Once delivered, you run it. No monthly fees, no usage caps, no surprise invoices.',
+        title: 'Operating costs',
+        body: 'Model, telephony, hosting, storage, support, and maintenance costs are identified during scoping. No universal fee claim is made on this page.',
       },
     ],
   },
@@ -243,39 +230,39 @@ export const ENTERPRISE: EnterpriseContent = {
         id: 'vs-consultant',
         question: 'What makes this different from hiring an AI consultant?',
         answer:
-          'A consultant usually leaves you with a strategy document and a recommendation. We leave you with a running system, its source code, and the deployment configs to rebuild it. The engagement ends when something works in your environment, not when the deck is delivered.',
+          'We can scope implementation and handover as part of the engagement, but the exact deliverables are defined in the proposal. The important distinction is whether the work has observable acceptance criteria and an operating owner.',
       },
       {
         id: 'timeline',
         question: 'How long does a typical enterprise engagement take?',
         answer:
-          'Most land between six and twelve weeks from first call to handover, depending on how many systems we have to integrate with and how long access approvals take on your side. Architecture is agreed in the first two weeks, so you know the shape of the build before the bulk of the cost is committed.',
+          'There is no responsible universal timeline. It depends on integration access, data readiness, security review, workflow complexity, testing evidence, and customer decisions. The proposal sets phases and dependencies after discovery.',
       },
       {
         id: 'data-readiness',
         question: 'Do we need to have our data ready before starting?',
         answer:
-          'No. Data is almost never ready, and waiting until it is has sunk more AI projects than any technical problem. Ingestion, cleaning, chunking, and embedding are part of the build — we scope that work explicitly in the proposal rather than assuming a tidy corpus.',
+          'Not necessarily. Discovery should identify data ownership, quality, permissions, retention, and missing sources. Any preparation work is then named rather than assumed.',
       },
       {
         id: 'internal-team',
         question: 'Can you work with our internal engineering team?',
         answer:
-          'Yes, and it usually produces a better result. We can work alongside your engineers in shared repositories, review their code and have them review ours, and run the handover as a working session rather than a document drop.',
+          'That collaboration model can be included when repository access, review responsibility, development environments, and approval boundaries are agreed by both teams.',
       },
       {
         id: 'after-delivery',
         question: 'What happens after the project is delivered?',
         answer:
-          'The system is yours and runs on your infrastructure, so nothing depends on us staying. We include a support window after launch to monitor performance and fix anything that surfaces under real load. Beyond that, a retainer is available if you want us maintaining and extending it, but it is optional.',
+          'The agreement should name who monitors the system, handles incidents, approves changes, maintains integrations, and reviews quality after release. Any support or maintenance period is part of that written scope.',
       },
     ],
   },
 
   close: {
     eyebrow: 'Next step',
-    title: 'Ready to build your AI system?',
-    sub: "Book a strategy call and we'll scope your project in the first session.",
+    title: 'Start with the boundary that is hardest to define.',
+    sub: 'Bring the workflow, systems, risks, and owners. We will use the first conversation to determine what discovery is still required.',
     cta: {
       primary: { label: 'Book a Strategy Call', href: BRAND.calendly },
       secondary: {

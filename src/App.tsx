@@ -11,8 +11,9 @@ import Enterprise from '@/pages/Enterprise'
 import Services from '@/pages/Services'
 import Automations from '@/pages/Automations'
 import PastProjects from '@/pages/PastProjects'
-import Placeholder from '@/pages/Placeholder'
+import LegalPage from '@/pages/LegalPage'
 import NotFound from '@/pages/NotFound'
+import { PRIVACY_POLICY, TERMS_OF_SERVICE } from '@/content/legal'
 
 /*
   The eight service detail pages share one template but carry the largest
@@ -81,11 +82,11 @@ export function App() {
           {/* Legal — real routes, but they still need real legal copy. */}
           <Route
             path="/privacy"
-            element={<Placeholder title="Privacy Policy" path="/privacy" />}
+            element={<LegalPage document={PRIVACY_POLICY} path="/privacy" />}
           />
           <Route
             path="/terms"
-            element={<Placeholder title="Terms of Service" path="/terms" />}
+            element={<LegalPage document={TERMS_OF_SERVICE} path="/terms" />}
           />
 
           <Route path="*" element={<NotFound />} />

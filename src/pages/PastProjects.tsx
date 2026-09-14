@@ -59,7 +59,7 @@ export default function PastProjects() {
       <Section id="projects" spacing="tight" aria-labelledby="projects-title">
         <Container>
           <h2 id="projects-title" className="sr-only">
-            {activeLabel ? `${activeLabel} projects` : 'All projects'}
+            {activeLabel ? `${activeLabel} blueprints` : 'All blueprints'}
           </h2>
 
           <Reveal>
@@ -92,7 +92,7 @@ export default function PastProjects() {
             grid below simply becomes different, with no feedback at all.
           */}
           <p aria-live="polite" className="mt-6 text-[0.875rem] text-[var(--text-3)]">
-            {visible.length} {visible.length === 1 ? 'project' : 'projects'}
+            {visible.length} {visible.length === 1 ? 'blueprint' : 'blueprints'}
             {activeLabel ? ` in ${activeLabel}` : ''}
           </p>
 

@@ -1,127 +1,118 @@
 import { BRAND } from './site'
-import { RATINGS } from './testimonials'
 import type { HomeContent } from './types'
 
-/* ---------------------------------------------------------------------------
-   PLACEHOLDER CONTENT — see CONTENT-SWAP.md
-   Every user-facing string on the homepage lives in this file.
---------------------------------------------------------------------------- */
+/* Public homepage copy. Claims are limited to capabilities and agreed process. */
 
 export const HOME: HomeContent = {
   seo: {
-    title: 'Custom AI Agents & Automation For Your Business',
+    title: 'AI Voice and Workflow Systems for Real Estate Teams',
     description:
-      'We build AI teams that handle your calls, leads, emails, and operations 24/7. No monthly fees. You own everything. Book a free strategy call today.',
+      'Crewmind designs governed AI voice and workflow systems for real-estate enquiry response, qualification, and human follow-up.',
   },
 
   hero: {
-    eyebrow: 'AI Transformation Partner',
-    avatars: [
-      { name: 'Sarah', initials: 'SA' },
-      { name: 'James', initials: 'JA' },
-      { name: 'Aisha', initials: 'AI' },
-    ],
+    eyebrow: 'Real-estate enquiry operations',
+    avatars: [],
     headline: {
-      lead: 'Build the AI infrastructure to',
-      emphasis: 'win the next decade',
+      lead: 'Turn a new property enquiry into',
+      emphasis: 'a clear next action',
       trail: '.',
     },
-    sub: 'We build AI agents, automations, and full operating systems that run your business in the background, so you and your team can focus on the work that actually matters.',
-    videoPrompt: 'Start here — watch the 2 minute overview',
+    sub: 'Crewmind connects governed voice AI, workflow automation, and a human follow-up queue. Every implementation is scoped around consent, tenant boundaries, your existing systems, and the evidence your team needs to act.',
+    videoPrompt: '',
     video: {
-      duration: '2:14',
-      label: 'How we build your AI infrastructure',
+      duration: '',
+      label: '',
     },
     cta: {
-      primary: { label: 'Book a Free Strategy Call', href: '#book' },
+      primary: { label: 'Book a Scoping Call', href: '#book' },
       secondary: { label: 'Message us on WhatsApp', href: BRAND.whatsapp() },
     },
   },
 
   proof: {
-    note: 'Verified reviews across Google and Trustpilot',
-    ratings: RATINGS,
+    note: '',
+    ratings: [],
   },
 
   booking: {
-    prompt: 'Step 2',
-    title: 'Book your free AI strategy call',
-    sub: "On this call we'll map out exactly how to implement an AI system for your business — what to automate first, what it takes, and what it's worth. No deck, no pitch.",
+    prompt: 'Start with the workflow',
+    title: 'Map one enquiry path with us',
+    sub: 'Bring one lead source, the questions your team asks, and the handoff that follows. We will use the call to identify constraints, integrations, safety checks, and what would need to be validated before release.',
   },
 
   services: {
     eyebrow: 'What we build',
-    title: "Pick your problem. We've solved it.",
-    sub: 'Every service is done for you, installed, integrated, and handed over working. Not a template. Not a tutorial.',
+    title: 'Start with the process that needs a better system.',
+    sub: 'These are the areas we can scope. The final design, tools, responsibilities, and acceptance criteria belong in the written proposal for your environment.',
     items: [
       {
         slug: 'social-media-automation',
         title: 'Social Media Automation Systems',
         description:
-          'AI content generation built for your brand, custom dashboard, algorithm-aligned calendar, hook engineering, and every piece routed back to your mission.',
-        features: ['AI video generation', 'Content dashboard & calendar', 'Hook & retention engineering'],
-        badge: 'New',
+          'A review-led workflow for turning approved source material into channel-specific drafts, assets, and a publishing queue.',
+        features: ['Approved-source intake', 'Human review gates', 'Publishing workflow'],
       },
       {
         slug: 'geo',
-        title: 'GEO — Get Recommended by AI',
+        title: 'AI Search Visibility',
         description:
-          "We make AI recommend your business. When your customers ask ChatGPT, Gemini, or Perplexity a question, we make sure you're the answer they get.",
-        features: ['AI visibility audit', 'LLM optimisation', 'Competitive AI positioning'],
+          'A source-based audit of how your public information appears in AI-assisted research, followed by measurable content and technical improvements.',
+        features: ['Visibility baseline', 'Source and content audit', 'Repeatable measurement'],
       },
       {
         slug: 'ai-personal-assistants',
         title: 'AI Agents & Assistants',
         description:
-          'Done-for-you setup of two powerful agent frameworks that handle your inbox, outreach, scheduling, and ops 24/7.',
-        features: ['Personal AI assistant', 'Autonomous outreach agent', 'CRM & tool integrations'],
+          'Assistive workflows that organise information, prepare drafts, and route work while keeping consequential actions under human control.',
+        features: ['Knowledge retrieval', 'Draft and review queues', 'Tool integrations'],
       },
       {
         slug: 'lead-gen-outreach',
         title: 'Lead Gen & Outreach Systems',
         description:
-          'We find leads matching your exact target audience, populate a live sheet, and automatically send outreach via email, LinkedIn, and SMS.',
-        features: ['ICP-based lead discovery', 'Live sheet feed', 'Email & LinkedIn automation'],
+          'Consent-aware lead intake and follow-up workflows designed around source provenance, suppression rules, and accountable handoff.',
+        features: ['Lead-source mapping', 'Suppression controls', 'Human-owned follow-up'],
       },
       {
         slug: 'ai-call-centers',
-        title: '24/7 AI Receptionist',
+        title: 'AI Voice Reception and Qualification',
         description:
-          'AI phone agents for bookings, customer support, and lead qualification. Never miss a call again.',
-        features: ['Human-like voices', 'Live appointment booking', 'CRM syncing'],
+          'Voice workflows for authorised calls, qualification, and callback or visit requests, with clear escalation to a person.',
+        features: ['Consent and contact gates', 'Structured qualification', 'Human handoff'],
       },
       {
         slug: 'ai-copywriting',
         title: 'AI Copywriting Systems',
         description:
-          'Websites, landing pages, sales emails, and case studies — AI trained on your brand voice, your existing materials, and refined until it converts.',
-        features: ['Brand voice training', 'Landing page & website copy', 'Sales email sequences'],
+          'Evidence-led drafting systems that use approved source material, preserve review history, and require sign-off before publication.',
+        features: ['Source-grounded drafts', 'Brand review', 'Versioned approval'],
       },
       {
         slug: 'ai-agent-team',
         title: 'Custom AI Agent Team',
         description:
-          'A complete AI operating system — a dedicated team of specialised agents, each one focused on helping your business achieve its mission.',
-        features: ['Dedicated agent roles', 'Mission-aligned output', 'Full team coordination'],
+          'Multiple bounded agents coordinated around defined roles, permissions, handoffs, and exception paths.',
+        features: ['Role boundaries', 'Shared context', 'Exception handling'],
       },
     ],
     enterprise: {
       eyebrow: 'Enterprise',
-      badge: 'New',
-      title: 'Need a fully custom AI system built for enterprise scale?',
-      body: 'We partner with enterprise teams to design and build from scratch — RAG pipelines, private LLM deployments, AI agents, and workflow automation. All on your infrastructure. All IP yours.',
-      tags: ['RAG systems', 'AI agents', 'Private LLMs', 'Open source', 'Full IP ownership'],
+      badge: 'Custom scope',
+      title: 'Need a system shaped around existing controls and infrastructure?',
+      body: 'We can scope retrieval, agent, integration, and workflow architecture with your technical and operational owners. Deployment model and ownership terms are agreed in writing for each engagement.',
+      tags: ['RAG systems', 'AI agents', 'Workflow controls', 'Integrations', 'Evaluation'],
       cta: { label: 'Explore enterprise', href: '/enterprise' },
     },
   },
 
   positioning: {
-    eyebrow: 'What actually happens',
+    eyebrow: 'Our working principle',
     title: {
-      lead: 'Most AI agencies sell decks.',
-      emphasis: 'We ship things that run.',
+      lead: 'A convincing demo is not enough.',
+      emphasis: 'The workflow must earn release',
     },
-    sub: 'No six-week discovery sprints. No "AI strategy" PDFs. We get on a call, understand your workflow, and hand you a working system — usually within a week.',
+    sub: 'We separate the prototype from the production path, define what success and failure look like, and keep human ownership explicit. Scope and timing depend on the environment and are agreed before work begins.',
   },
 
   process: {
@@ -129,55 +120,55 @@ export const HOME: HomeContent = {
     steps: [
       {
         step: '01',
-        title: 'Book a strategy call',
-        body: 'Tell us what you need automated. We plan your agents, integrations, and workflows. Free, no commitment.',
+        title: 'Choose one workflow',
+        body: 'Map the trigger, current manual steps, people involved, systems touched, and the decision that should come out at the end.',
         visual: {
           kind: 'timeSaved',
           rows: [
-            { label: 'Email & inbox management', value: '8h/wk' },
-            { label: 'Lead outreach & follow-up', value: '10h/wk' },
-            { label: 'Manual data entry & CRM', value: '6h/wk' },
-            { label: 'Scheduling & calendar', value: '5h/wk' },
+            { label: 'Current volume', value: 'Measure' },
+            { label: 'Current response time', value: 'Measure' },
+            { label: 'Exceptions and opt-outs', value: 'List' },
+            { label: 'Human handoff', value: 'Name' },
           ],
-          total: '29 hrs/week returned to you',
+          total: 'Agree the baseline before estimating value',
         },
       },
       {
         step: '02',
-        title: 'We build everything for you',
-        body: 'Custom AI agents, automations, and integrations, built around your exact tools and workflows. You sit back.',
+        title: 'Design the controlled path',
+        body: 'Define trusted identity, permissions, model boundaries, integrations, failure handling, and the evidence required before a consequential action.',
         visual: {
           kind: 'flow',
-          from: 'Your business',
-          nodes: ['AI agents', 'Automations', 'Integrations'],
-          to: 'Running',
+          from: 'Authorised input',
+          nodes: ['Policy checks', 'AI task', 'Human review'],
+          to: 'Recorded outcome',
         },
       },
       {
         step: '03',
-        title: 'We launch & hand over',
-        body: 'Everything tested, live, and documented. We walk you through it and make sure it runs exactly as planned.',
+        title: 'Test representative cases',
+        body: 'Exercise success, refusal, timeout, duplicate, opt-out, and escalation paths with authorised fixtures before release.',
         visual: {
           kind: 'schedule',
           items: [
-            { label: 'Call', when: 'Day 1' },
-            { label: 'Build', when: 'Day 2–4' },
-            { label: 'Test', when: 'Day 5' },
-            { label: 'Live', when: 'Day 6' },
+            { label: 'Scope', when: 'Agreed' },
+            { label: 'Build', when: 'Versioned' },
+            { label: 'Test', when: 'Recorded' },
+            { label: 'Release', when: 'Approved' },
           ],
         },
       },
       {
         step: '04',
-        title: 'Real support, real humans',
-        body: '30-day support on every build. Message us and the person who built your system responds — not a ticket queue.',
+        title: 'Hand over with ownership',
+        body: 'Document how the system is operated, monitored, changed, and stopped. Support scope and ownership are set in the engagement agreement.',
         visual: {
           kind: 'stats',
           items: [
-            { value: '24/7', label: 'Always running' },
-            { value: '30d', label: 'Support included' },
-            { value: '0', label: 'Code required' },
-            { value: 'Yours', label: 'You own it' },
+            { value: 'Scoped', label: 'Permissions' },
+            { value: 'Tested', label: 'Failure paths' },
+            { value: 'Logged', label: 'Key actions' },
+            { value: 'Named', label: 'Human owner' },
           ],
         },
       },
@@ -185,60 +176,60 @@ export const HOME: HomeContent = {
   },
 
   work: {
-    title: 'See our work in action',
+    title: 'Explore the systems we design for',
     items: [
       {
-        id: 'reels-growth',
-        title: 'AI Social Media Content System',
-        impact: '85K+ followers from a fully automated short-form pipeline',
-        tags: ['Social Media', 'AI Video', 'Short-Form'],
-        href: '/past-projects',
+        id: 'property-enquiry-response',
+        title: 'Property Enquiry Response',
+        impact: 'A governed voice-to-human handoff for authorised property enquiries.',
+        tags: ['Real estate', 'Voice AI', 'Human handoff'],
+        href: '/past-projects?category=ai-call-centers',
       },
       {
-        id: 'sales-pipeline',
-        title: 'Sales Pipeline Autopilot',
-        impact: '24/7 autonomous prospecting, zero manual outreach',
-        tags: ['AI Assistants', 'Sales', 'Prospecting'],
-        href: '/past-projects',
+        id: 'knowledge-support-handoff',
+        title: 'Knowledge Support with Handoff',
+        impact: 'Grounded answers, clear escalation, and feedback the team can review.',
+        tags: ['Knowledge base', 'Escalation', 'n8n'],
+        href: '/past-projects?category=ai-agent-team',
       },
       {
-        id: 'chief-of-staff',
-        title: 'AI Chief of Staff + Sales Engine',
-        impact: '2-agent system running inbox, calendar, and outreach',
-        tags: ['AI Assistants', 'Executive AI'],
-        href: '/past-projects',
+        id: 'proposal-drafting-workflow',
+        title: 'Structured Proposal Drafting',
+        impact: 'Versioned drafts built from approved evidence, with accountable review.',
+        tags: ['Brief intake', 'Review', 'Version history'],
+        href: '/past-projects?category=ai-copywriting',
       },
       {
-        id: 'marketing-team',
-        title: 'Full AI Marketing Team',
-        impact: '6-agent team running autonomously across 8 clients',
-        tags: ['Multi-Agent', 'Marketing', 'Agency'],
-        href: '/past-projects',
+        id: 'competitor-intelligence-briefing',
+        title: 'Competitor Intelligence Briefing',
+        impact: 'Source-tracked changes prepared for a human analyst to validate.',
+        tags: ['Monitoring', 'Research', 'Source tracking'],
+        href: '/past-projects?category=geo',
       },
       {
-        id: 'bizdev-setter',
-        title: 'BizDev Setter Agent',
-        impact: 'Lead response time cut from hours to 60 seconds',
-        tags: ['Lead Generation', 'CRM'],
-        href: '/past-projects',
+        id: 'agent-quality-evaluation',
+        title: 'Agent Quality & Evaluation',
+        impact: 'Representative tests and trace review before a workflow earns trust.',
+        tags: ['Evals', 'Trace review', 'Regression tests'],
+        href: '/past-projects?category=ai-personal-assistants',
       },
       {
-        id: 'content-team',
-        title: 'Discord AI Content Team',
-        impact: 'Publication-ready content in under 20 minutes',
-        tags: ['Multi-Agent', 'Content'],
-        href: '/past-projects',
+        id: 'internal-operations-workflow',
+        title: 'Internal Operations Workflow',
+        impact: 'Role-aware automation with an audit trail and human exception queue.',
+        tags: ['Workflow automation', 'Access control', 'Audit trail'],
+        href: '/past-projects?category=custom-ai-solutions',
       },
     ],
-    cta: { label: 'View all projects', href: '/past-projects' },
+    cta: { label: 'Explore all blueprints', href: '/past-projects' },
   },
 
   close: {
-    eyebrow: 'We keep the roster small on purpose',
-    title: 'We only work with a handful of clients at a time.',
-    sub: "Not a sales tactic — it's how we keep the quality high. If you're serious about getting AI working in your business, book a call and let's see if we're a fit.",
+    eyebrow: 'Next step',
+    title: 'Bring one real workflow, not a wish list.',
+    sub: 'We will map what can be automated, what must stay human, and what evidence the system would need before you rely on it.',
     cta: {
-      primary: { label: 'Book a Free Strategy Call', href: '#book' },
+      primary: { label: 'Book a Scoping Call', href: '#book' },
       secondary: { label: 'Message us on WhatsApp', href: BRAND.whatsapp() },
     },
   },

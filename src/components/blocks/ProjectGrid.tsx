@@ -1,10 +1,11 @@
+import { ExternalLink } from 'lucide-react'
 import { Badge } from '@/components/ui/Badge'
 import { Reveal } from '@/components/ui/Reveal'
 import { Stat } from '@/components/ui/Stat'
 import type { ProjectCase } from '@/content/types'
 
 /**
- * The project card grid, shared by /past-projects and the "related work"
+ * The blueprint card grid, shared by /past-projects and the "related work"
  * block on every service page.
  *
  * Cards are `<article>`, not links: there is no per-project detail route, so
@@ -35,12 +36,12 @@ function ProjectCard({ project }: { project: ProjectCase }) {
       </h3>
 
       <div className="mb-5 border-y border-[var(--border-subtle)] py-4">
-        <Stat value={project.impact} label="Impact" size="sm" />
+        <Stat value={project.impact} label="Success signal" size="sm" />
       </div>
 
       <div className="flex flex-1 flex-col gap-4">
-        <Panel label="Challenge" body={project.challenge} />
-        <Panel label="Solution" body={project.solution} />
+        <Panel label="Use case" body={project.challenge} />
+        <Panel label="Build pattern" body={project.solution} />
       </div>
 
       <ul className="mt-6 flex flex-wrap gap-1.5 border-t border-[var(--border-subtle)] pt-5">
@@ -50,6 +51,18 @@ function ProjectCard({ project }: { project: ProjectCase }) {
           </li>
         ))}
       </ul>
+
+      {project.source ? (
+        <a
+          href={project.source.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-flex w-fit items-center gap-1.5 text-[0.8125rem] font-medium text-[var(--accent)] transition-colors hover:text-[var(--text-1)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+        >
+          {project.source.label}
+          <ExternalLink size={14} aria-hidden="true" />
+        </a>
+      ) : null}
     </article>
   )
 }

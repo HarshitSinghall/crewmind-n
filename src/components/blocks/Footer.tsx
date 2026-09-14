@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
+import { BrandLogo } from '@/components/ui/BrandLogo'
 import { BRAND, FOOTER_LINKS } from '@/content/site'
 
 export function Footer() {
@@ -11,9 +12,7 @@ export function Footer() {
       <Container className="py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <p className="mb-3 font-display text-[1.0625rem] font-semibold tracking-[-0.02em] text-[var(--text-1)]">
-              {BRAND.name}
-            </p>
+            <BrandLogo className="mb-4 h-10" />
             <p className="max-w-[24rem] text-[0.875rem] leading-[1.6] text-[var(--text-2)]">
               {BRAND.tagline}
             </p>
@@ -100,10 +99,6 @@ export function Footer() {
             © {year} {BRAND.name}. All rights reserved.
           </p>
           <ul className="flex flex-wrap items-center gap-5">
-            {/*
-              Real routes, not the reference site's dead "#" links. These are
-              Phase 2+ pages — until then they resolve to the placeholder.
-            */}
             <li>
               <Link
                 to="/privacy"

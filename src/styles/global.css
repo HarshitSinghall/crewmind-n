@@ -115,6 +115,15 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Supplied logo variants stay unmodified and switch with the site theme. */
+  .brand-logo-on-light {
+    display: none;
+  }
+
+  .brand-logo-on-dark {
+    display: block;
+  }
+
   .skip-link {
     position: absolute;
     top: var(--space-2);
@@ -163,6 +172,24 @@
   .marquee:focus-within .marquee-track {
     animation-play-state: paused;
   }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .brand-logo-on-light {
+    display: block;
+  }
+
+  :root:not([data-theme='dark']) .brand-logo-on-dark {
+    display: none;
+  }
+}
+
+:root[data-theme='light'] .brand-logo-on-light {
+  display: block;
+}
+
+:root[data-theme='light'] .brand-logo-on-dark {
+  display: none;
 }
 
 /* Keyframes stay unlayered — layers do not apply to at-rule definitions. */

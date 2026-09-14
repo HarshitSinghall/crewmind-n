@@ -1,6 +1,6 @@
 import { PageHeader } from '@/components/blocks/PageHeader'
-import { TeamGrid } from '@/components/blocks/TeamGrid'
 import { Story } from '@/components/blocks/Story'
+import { TeamGrid } from '@/components/blocks/TeamGrid'
 import { PillarRow } from '@/components/blocks/PillarRow'
 import { CtaBand } from '@/components/blocks/CtaBand'
 import { ABOUT } from '@/content/about'

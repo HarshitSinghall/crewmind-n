@@ -1,6 +1,4 @@
 import { Hero } from '@/components/blocks/Hero'
-import { ProofBar } from '@/components/blocks/ProofBar'
-import { TestimonialRail } from '@/components/blocks/TestimonialRail'
 import { BookingSection } from '@/components/blocks/BookingSection'
 import { ServiceGrid } from '@/components/blocks/ServiceGrid'
 import { AutomationShowcase } from '@/components/blocks/AutomationShowcase'
@@ -20,14 +18,6 @@ export default function Home() {
   return (
     <>
       <Hero hero={HOME.hero} />
-      <ProofBar proof={HOME.proof} />
-
-      {/*
-        Social proof appears once, high on the page. The reference site runs
-        this rail twice on the homepage — see TestimonialRail for why that is
-        worse than it looks.
-      */}
-      <TestimonialRail />
 
       {/*
         The flagship, one scroll in. The service grid below names eight
@@ -39,11 +29,6 @@ export default function Home() {
       <BookingSection booking={HOME.booking} />
       <ServiceGrid services={HOME.services} />
 
-      {/*
-        Sits directly under the service grid on purpose. The grid names eight
-        categories; this proves one of them is a real, running thing before
-        the visitor has to take anything else on faith.
-      */}
       <AutomationShowcase showcase={AUTOMATIONS_HOME} />
 
       <Positioning positioning={HOME.positioning} />

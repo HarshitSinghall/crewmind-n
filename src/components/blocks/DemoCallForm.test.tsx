@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { DemoCallForm } from './DemoCallForm'
 import { PRIYA } from '@/content/priya'
@@ -17,10 +17,19 @@ describe('DemoCallForm', () => {
     const user = userEvent.setup()
 
     render(<DemoCallForm demo={PRIYA.demo} />)
-    await user.type(screen.getByLabelText(/your name/i), 'Rajesh')
-    await user.type(screen.getByLabelText(/Indian mobile number/i), '9876543210')
-    await user.type(screen.getByLabelText(/^Locality/i), 'Gurugram')
-    await user.type(screen.getByLabelText(/Property to ask about/i), '3BHK')
+    fireEvent.change(screen.getByLabelText(/your name/i), {
+      target: { value: 'Rajesh' },
+    })
+    fireEvent.change(screen.getByLabelText(/Indian mobile number/i), {
+      target: { value: '9876543210' },
+    })
+    fireEvent.change(screen.getByLabelText(/^Locality/i), {
+      target: { value: 'Gurugram' },
+    })
+    fireEvent.change(screen.getByLabelText(/Property to ask about/i), {
+      target: { value: '3BHK' },
+    })
+    await user.click(screen.getByRole('checkbox', { name: /I am 18 or older/i }))
     await user.click(screen.getByRole('button', { name: 'Call me now' }))
 
     expect(await screen.findByText(PRIYA.demo.success.title)).toBeInTheDocument()
@@ -31,6 +40,7 @@ describe('DemoCallForm', () => {
       name: 'Rajesh',
       locality: 'Gurugram',
       property_interest: '3BHK',
+      consent: true,
     })
   })
 
@@ -39,7 +49,10 @@ describe('DemoCallForm', () => {
     const user = userEvent.setup()
 
     render(<DemoCallForm demo={PRIYA.demo} />)
-    await user.type(screen.getByLabelText(/Indian mobile number/i), '9876543210')
+    fireEvent.change(screen.getByLabelText(/Indian mobile number/i), {
+      target: { value: '9876543210' },
+    })
+    await user.click(screen.getByRole('checkbox', { name: /I am 18 or older/i }))
     await user.click(screen.getByRole('button', { name: 'Call me now' }))
 
     const rescue = await screen.findByRole('link', {

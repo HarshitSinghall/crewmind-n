@@ -26,9 +26,10 @@ const STATIC_ROUTES = new Set([
 
 function resolves(href: string): boolean {
   if (href.startsWith('#') || /^(https?:|mailto:|tel:)/.test(href)) return true
-  if (STATIC_ROUTES.has(href)) return true
+  const { pathname } = new URL(href, 'https://crewmind.in')
+  if (STATIC_ROUTES.has(pathname)) return true
   // Dynamic service detail route.
-  return /^\/services\/[a-z0-9-]+$/.test(href)
+  return /^\/services\/[a-z0-9-]+$/.test(pathname)
 }
 
 describe('content integrity', () => {
@@ -141,9 +142,8 @@ describe('content integrity', () => {
     expect(BRAND.phoneHref).toBe('tel:+917017531825')
     expect(BRAND.address.join(' ')).toMatch(/Gurugram/)
 
-    // calendly and socials are still placeholders on purpose — no real values
-    // for them exist yet, and they stay listed in CONTENT-SWAP.md. Everything
-    // a visitor could actually contact us on has to be real.
+    // Every published contact route must be real; optional social links remain
+    // absent until a verified company profile is available.
     const contactable = JSON.stringify({
       name: BRAND.name,
       url: BRAND.url,
@@ -155,6 +155,7 @@ describe('content integrity', () => {
       legal: BRAND.legal,
     })
     expect(contactable).not.toMatch(/example|Hong Kong|85228105510/i)
+    expect(BRAND.socials).toEqual([])
   })
 
   it('routes whatsapp at the real number', () => {
@@ -435,7 +436,7 @@ describe('projects content', () => {
     }
   })
 
-  it('tolerates a category with no projects yet', () => {
+  it('puts at least one blueprint in every service category', () => {
     // GEO is the newest service and has no shipped case studies, so its
     // category is legitimately empty. The catalogue keeps the category —
     // it maps to a real service — and PastProjects hides the empty chip
@@ -445,10 +446,10 @@ describe('projects content', () => {
       (c) => !PROJECTS.some((p) => p.category === c.id),
     ).map((c) => c.id)
 
-    expect(empty).toEqual(['geo'])
+    expect(empty).toEqual([])
   })
 
-  it('gives every project a challenge, a solution and an impact', () => {
+  it('gives every blueprint a use case, build pattern and success signal', () => {
     for (const project of PROJECTS) {
       expect(project.challenge.length, `${project.id} challenge`).toBeGreaterThan(40)
       expect(project.solution.length, `${project.id} solution`).toBeGreaterThan(40)
@@ -555,7 +556,7 @@ describe('automations', () => {
   })
 
   it('looks up by id and misses cleanly', () => {
-    expect(getAutomation('ai-voice-receptionist')?.name).toBe('AI Voice Receptionist')
+    expect(getAutomation('ai-voice-receptionist')?.name).toBe('Property Enquiry Voice Response')
     expect(getAutomation('nope')).toBeUndefined()
     expect(getAutomation(undefined)).toBeUndefined()
   })

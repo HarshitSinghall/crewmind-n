@@ -1,375 +1,189 @@
 import { BRAND } from './site'
 import type { Automation, AutomationsContent, ShowcaseBlock } from './types'
 
-/* ---------------------------------------------------------------------------
-   PLACEHOLDER CONTENT — see CONTENT-SWAP.md
-
-   The seven automations buyers ask for by name. Selection is grounded in what
-   the 2026 market actually transacts on — voice agents, AI SDRs, RAG support
-   deflection, inbox triage, document/invoice extraction, meeting-to-CRM, and
-   content repurposing — rather than on what is fun to build.
-
-   RULES FOR THIS FILE
-   1. No vendor is claimed as a partner. `stack` chips name categories and
-      widely-used tools; they are rendered as plain text, never as logos.
-   2. Every `metric.value` is an integer so the count-up can animate it. The
-      unit lives in `suffix`. Numbers here are illustrative targets, and the
-      showcase says so in `showcase.note` — do not quietly drop that line.
-   3. Every `service` must be a slug in services.ts. content.test.ts asserts
-      it, so a renamed service cannot orphan an automation.
---------------------------------------------------------------------------- */
-
+/**
+ * Capability blueprints, not client deployments or performance claims.
+ * Numeric values exist only because the visual component animates a number;
+ * each label identifies it as an illustrative workflow parameter.
+ */
 export const AUTOMATIONS: Automation[] = [
   {
     id: 'ai-voice-receptionist',
     index: '01',
-    name: 'AI Voice Receptionist',
-    tagline: 'Answers every call, books the job, never sleeps.',
+    name: 'Property Enquiry Voice Response',
+    tagline: 'Screens an authorised request, qualifies it, and hands it to a person.',
     icon: 'phone',
-    trigger: 'Inbound call rings',
+    trigger: 'Authorised enquiry received',
     steps: [
-      {
-        label: 'Answer on the second ring',
-        detail:
-          'Picks up in under a second with your greeting, your tone, and your business hours — including the ones nobody staffs.',
-      },
-      {
-        label: 'Qualify against your criteria',
-        detail:
-          'Asks the questions your best receptionist asks: what, where, when, budget band, and whether this is a fit at all.',
-      },
-      {
-        label: 'Check the live calendar',
-        detail:
-          'Reads real availability rather than a static list, so it never offers a slot that has already gone.',
-      },
-      {
-        label: 'Book, log, and hand off',
-        detail:
-          'Writes the appointment, creates the CRM record, and pings the right person on Slack when a call needs a human.',
-      },
+      { label: 'Apply contact policy', detail: 'Check trusted identity, opt-out, quiet hours, cooldown, and capacity before dispatch.' },
+      { label: 'Run the agreed call', detail: 'Use approved context and questions, with a clear path for refusal, uncertainty, and handoff.' },
+      { label: 'Record the outcome', detail: 'Store provider-backed evidence and route a callback or viewing request to the responsible person.' },
     ],
-    outcome: 'Booked appointment + CRM record',
-    metric: { value: 100, suffix: '%', label: 'of calls answered, 2am included' },
-    before:
-      'Calls outside office hours go to voicemail. A large share of those callers never ring back — and you never find out which ones they were.',
-    after:
-      'Every call is answered, qualified, and either booked straight into the calendar or routed to a human who already has the context.',
-    stack: ['Telephony', 'Google Calendar', 'CRM', 'Slack'],
+    outcome: 'Recorded attempt + accountable next action',
+    metric: { value: 1, suffix: ' lead', label: 'illustrative workflow unit' },
+    before: 'A new enquiry can sit in a portal or spreadsheet without a clearly owned first response.',
+    after: 'The proposed workflow gives an authorised enquiry a policy check, recorded attempt, and named human owner.',
+    stack: ['Lead source', 'Policy engine', 'Voice provider', 'CRM'],
     service: 'ai-call-centers',
   },
-
   {
     id: 'ai-sdr-outbound',
     index: '02',
-    name: 'AI SDR — Outbound Engine',
-    tagline: 'Finds the accounts, writes the email, runs the follow-up.',
+    name: 'Consent-aware Lead Follow-up',
+    tagline: 'Preserves source and permission before preparing the next touch.',
     icon: 'send',
-    trigger: 'Daily at 06:00, or a new target list lands',
+    trigger: 'Lead enters an approved queue',
     steps: [
-      {
-        label: 'Source matching accounts',
-        detail:
-          'Pulls companies that match your ICP from the databases and directories your market actually lives in.',
-      },
-      {
-        label: 'Enrich and verify contacts',
-        detail:
-          'Finds the decision-maker, verifies the address, and drops anything that would bounce before it costs you domain reputation.',
-      },
-      {
-        label: 'Score against your ICP',
-        detail:
-          'Ranks each account on the signals that predicted your last ten deals, so the weak half never gets contacted.',
-      },
-      {
-        label: 'Write in your voice',
-        detail:
-          'Drafts a first line that proves the research happened, on top of a body written from your own past winning emails.',
-      },
-      {
-        label: 'Send and follow up',
-        detail:
-          'Runs the sequence across email and LinkedIn, stops the moment someone replies, and hands the thread to you.',
-      },
+      { label: 'Verify provenance', detail: 'Carry the lead source, intended channel, and permission evidence into the workflow.' },
+      { label: 'Check suppression', detail: 'Stop on opt-out, duplicate, quiet-hour, frequency, or tenant mismatch.' },
+      { label: 'Route the reply', detail: 'Prepare or send only the authorised message and hand any response to a person.' },
     ],
-    outcome: 'Warm replies land in your inbox',
-    metric: { value: 400, suffix: '+', label: 'personalised touches per week' },
-    before:
-      'A rep spends the morning on lists and the afternoon on templates. Volume and personalisation trade off against each other, and both lose.',
-    after:
-      'The pipeline runs before anyone logs in. Your team spends its day on replies, not on research and copy-paste.',
-    stack: ['Lead databases', 'Enrichment', 'Email infra', 'LinkedIn', 'CRM'],
+    outcome: 'Policy-checked follow-up task',
+    metric: { value: 3, suffix: ' gates', label: 'illustrative minimum before dispatch' },
+    before: 'Source, permission, and ownership can become separated as a lead moves between tools.',
+    after: 'The proposed workflow keeps provenance, policy checks, and the accountable reply owner together.',
+    stack: ['Lead source', 'Suppression list', 'Messaging channel', 'CRM'],
     service: 'lead-gen-outreach',
   },
-
   {
     id: 'inbox-triage-agent',
     index: '03',
-    name: 'Inbox Triage Agent',
-    tagline: 'Reads everything, drafts the replies, waits for your yes.',
+    name: 'Inbox Triage & Draft Queue',
+    tagline: 'Classifies incoming work and prepares drafts without sending them.',
     icon: 'inbox',
-    trigger: 'Every email that hits the inbox',
+    trigger: 'New message arrives',
     steps: [
-      {
-        label: 'Classify and de-noise',
-        detail:
-          'Sorts each message into needs-you, needs-someone-else, or needs-nobody — and archives the third bucket quietly.',
-      },
-      {
-        label: 'Summarise the thread',
-        detail:
-          'Compresses a 14-message chain into what was decided, what is being asked, and what is still open.',
-      },
-      {
-        label: 'Draft the reply in your voice',
-        detail:
-          'Writes the response from your own sent folder, so it sounds like you on a good day rather than like a model.',
-      },
-      {
-        label: 'Queue for one-click approval',
-        detail:
-          'Nothing sends itself. Drafts sit ready; you read, adjust if needed, and send in a single pass.',
-      },
+      { label: 'Classify the request', detail: 'Use agreed categories, urgency rules, and ownership rather than a generic priority guess.' },
+      { label: 'Retrieve approved context', detail: 'Find the relevant policy, account, or knowledge source and preserve citations.' },
+      { label: 'Queue a draft', detail: 'Prepare a response for the named owner to review, edit, and send.' },
     ],
-    outcome: 'A morning queue of drafts, nothing missed',
-    metric: { value: 11, suffix: ' hrs', label: 'of inbox time returned weekly' },
-    before:
-      'Two hours a day in the inbox, and the important message still surfaces late because it arrived under forty that were not.',
-    after:
-      'One pass in the morning. The thinking is already done; what is left is judgement and a send button.',
-    stack: ['Gmail / Outlook', 'Calendar', 'Notion', 'Slack'],
+    outcome: 'Prioritised queue + reviewable draft',
+    metric: { value: 3, suffix: ' states', label: 'illustrative triage design' },
+    before: 'Important requests and routine messages share one queue and depend on manual sorting.',
+    after: 'The proposed workflow separates priority, prepares context, and leaves the send decision with a person.',
+    stack: ['Email', 'Knowledge base', 'Task queue', 'Audit log'],
     service: 'ai-personal-assistants',
   },
-
   {
     id: 'support-deflection-agent',
     index: '04',
-    name: 'Support Agent on Your Docs',
-    tagline: 'Answers from your own material, cites it, escalates honestly.',
+    name: 'Knowledge Support with Handoff',
+    tagline: 'Answers from approved material and escalates when evidence is missing.',
     icon: 'support',
-    trigger: 'Ticket, live chat, or WhatsApp message arrives',
+    trigger: 'Support question arrives',
     steps: [
-      {
-        label: 'Retrieve from your own docs',
-        detail:
-          'Searches your help centre, policies, and past resolved tickets — not the open internet, and not its own memory.',
-      },
-      {
-        label: 'Answer with a citation',
-        detail:
-          'Every reply links the source it came from, so the customer and your team can both check the work.',
-      },
-      {
-        label: 'Resolve or escalate',
-        detail:
-          'When confidence is low it stops and hands over, with the full history attached, rather than guessing fluently.',
-      },
-      {
-        label: 'Log the gap',
-        detail:
-          'Anything it could not answer becomes a documentation ticket, so the same question does not escalate twice.',
-      },
+      { label: 'Retrieve evidence', detail: 'Search only the approved knowledge sources available to that user and request.' },
+      { label: 'Answer or abstain', detail: 'Return a cited answer when supported; otherwise say what is missing.' },
+      { label: 'Escalate with context', detail: 'Route the question, retrieved sources, and uncertainty to the appropriate person.' },
     ],
-    outcome: 'Resolved ticket, or a human with full context',
-    metric: { value: 68, suffix: '%', label: 'of tier-one tickets closed unaided' },
-    before:
-      'The same forty questions arrive every week. Your team answers them by hand, and the queue is longest exactly when customers are least patient.',
-    after:
-      'Routine questions are answered in seconds with a citation. Your team only sees the tickets that genuinely need a person.',
-    stack: ['Help centre', 'Vector search', 'Zendesk / Intercom', 'WhatsApp'],
-    service: 'custom-ai-solutions',
+    outcome: 'Grounded answer or explained escalation',
+    metric: { value: 2, suffix: ' exits', label: 'answer or human handoff' },
+    before: 'Routine questions repeat, while unusual ones can receive an answer without enough evidence.',
+    after: 'The proposed workflow makes grounded response and explicit escalation equally valid outcomes.',
+    stack: ['Help centre', 'Retrieval', 'Support queue', 'Feedback log'],
+    service: 'ai-agent-team',
   },
-
   {
     id: 'document-processing',
     index: '05',
-    name: 'Invoice & Document Processing',
-    tagline: 'Reads the PDF, extracts the fields, posts the entry.',
+    name: 'Document Intake & Review',
+    tagline: 'Extracts structured fields and sends uncertain records to a reviewer.',
     icon: 'document',
-    trigger: 'A PDF lands in the folder or the inbox',
+    trigger: 'Approved document received',
     steps: [
-      {
-        label: 'Read the document',
-        detail:
-          'Handles scans, photos, and native PDFs in whatever layout each supplier decided on this quarter.',
-      },
-      {
-        label: 'Extract the fields',
-        detail:
-          'Pulls supplier, dates, line items, tax, and totals into a structured record with a confidence score per field.',
-      },
-      {
-        label: 'Validate against the PO',
-        detail:
-          'Checks the maths and matches the purchase order. Mismatches are held for review instead of posted quietly.',
-      },
-      {
-        label: 'Post to accounting',
-        detail:
-          'Writes the entry into your ledger, files the original, and notifies the approver when a threshold is crossed.',
-      },
+      { label: 'Read and classify', detail: 'Identify the document type and required fields without treating every upload as trustworthy.' },
+      { label: 'Extract and validate', detail: 'Capture structured values, run agreed checks, and retain confidence or source location.' },
+      { label: 'Post or hold', detail: 'Write only records that meet the acceptance rule; hold exceptions for review.' },
     ],
-    outcome: 'A clean, matched entry in your ledger',
-    metric: { value: 30, suffix: ' sec', label: 'per invoice, from nine minutes' },
-    before:
-      'Someone opens each PDF, retypes eight fields, checks the maths, and files it. It is unskilled, unavoidable, and error-prone at volume.',
-    after:
-      'The queue clears itself overnight. A person only touches the invoices that failed validation — usually the ones worth reading.',
-    stack: ['OCR', 'Document AI', 'Xero / QuickBooks', 'Drive'],
+    outcome: 'Validated record or exception task',
+    metric: { value: 2, suffix: ' paths', label: 'accepted or held for review' },
+    before: 'People retype fields and may discover mismatches after the downstream record already exists.',
+    after: 'The proposed workflow validates before write and gives exceptions a visible owner.',
+    stack: ['Document store', 'Extraction', 'Validation rules', 'System of record'],
     service: 'custom-ai-solutions',
   },
-
   {
     id: 'meeting-to-crm',
     index: '06',
-    name: 'Meeting → CRM & Follow-up',
-    tagline: 'Turns the call recording into notes, records, and a sent email.',
+    name: 'Meeting Notes to CRM Draft',
+    tagline: 'Turns an authorised meeting record into reviewable notes and actions.',
     icon: 'calendar',
-    trigger: 'The call ends and the recording drops',
+    trigger: 'Authorised meeting record available',
     steps: [
-      {
-        label: 'Transcribe and identify speakers',
-        detail:
-          'Produces a clean transcript that knows who said what, across accents and a bad connection.',
-      },
-      {
-        label: 'Pull decisions and actions',
-        detail:
-          'Separates what was agreed from what was discussed, and names the owner and date for each action.',
-      },
-      {
-        label: 'Update the CRM record',
-        detail:
-          'Writes stage, next step, objections raised, and the notes field your team has never once filled in on time.',
-      },
-      {
-        label: 'Send the follow-up',
-        detail:
-          'Drafts the recap email with the agreed actions and sends it while the conversation is still warm.',
-      },
+      { label: 'Prepare the transcript', detail: 'Process the permitted recording or notes and separate speakers where evidence allows.' },
+      { label: 'Extract decisions', detail: 'Distinguish agreed actions from discussion, and mark uncertain ownership or dates.' },
+      { label: 'Queue the updates', detail: 'Prepare CRM fields, tasks, and a recap for review before external sending.' },
     ],
-    outcome: 'CRM current, follow-up sent, actions assigned',
-    metric: { value: 4, suffix: ' min', label: 'from call ending to recap sent' },
-    before:
-      'Notes get written up two days later, if at all. The CRM is a fiction, and the follow-up email arrives after the buyer has cooled.',
-    after:
-      'The recap is in their inbox before your next call starts, and the pipeline reflects what actually happened.',
-    stack: ['Zoom / Meet', 'Transcription', 'CRM', 'Task tracker'],
+    outcome: 'Reviewable CRM update + action list',
+    metric: { value: 3, suffix: ' outputs', label: 'notes, actions, and CRM draft' },
+    before: 'Meeting context can be split between personal notes, memory, and an incomplete CRM record.',
+    after: 'The proposed workflow assembles a review queue while preserving the person responsible for approval.',
+    stack: ['Meeting source', 'Transcription', 'CRM', 'Task tracker'],
     service: 'ai-agent-team',
   },
-
   {
     id: 'content-repurposing',
     index: '07',
-    name: 'Content Repurposing Engine',
-    tagline: 'One recording becomes a fortnight of scheduled posts.',
+    name: 'Approved Content Repurposing',
+    tagline: 'Turns one approved source into channel drafts with a publishing gate.',
     icon: 'content',
-    trigger: 'One long-form asset is published',
+    trigger: 'Approved source asset added',
     steps: [
-      {
-        label: 'Find the strongest moments',
-        detail:
-          'Scores the transcript for the passages that stand alone — the claim, the story, the number, the disagreement.',
-      },
-      {
-        label: 'Cut and caption the clips',
-        detail:
-          'Reframes to vertical, tracks the speaker, burns in captions, and keeps the cut on a sentence boundary.',
-      },
-      {
-        label: 'Write per-platform copy',
-        detail:
-          'Rewrites the hook for each platform rather than posting one caption everywhere and hoping.',
-      },
-      {
-        label: 'Schedule across the calendar',
-        detail:
-          'Spaces the posts to your posting cadence and queues them for approval, never straight to live.',
-      },
+      { label: 'Extract supported ideas', detail: 'Identify reusable claims, stories, and examples while retaining the source.' },
+      { label: 'Adapt by channel', detail: 'Create drafts for the chosen formats using the brand and rights rules for each.' },
+      { label: 'Queue for approval', detail: 'Present drafts, sources, and asset rights to the person authorised to publish.' },
     ],
-    outcome: 'Two weeks of scheduled, on-brand posts',
-    metric: { value: 24, suffix: ' posts', label: 'from a single recording' },
-    before:
-      'The good material exists once, in a 40-minute video eleven people watched, and then never appears anywhere again.',
-    after:
-      'Every asset you record keeps working for a fortnight, in the formats each platform actually rewards.',
-    stack: ['Video AI', 'Captioning', 'Buffer / Later', 'Content calendar'],
+    outcome: 'Channel drafts awaiting approval',
+    metric: { value: 1, suffix: ' source', label: 'illustrative starting asset' },
+    before: 'Useful source material can be hard to reuse consistently without losing context or approval history.',
+    after: 'The proposed workflow keeps every draft tied to its source and final publishing owner.',
+    stack: ['Asset library', 'Brand rules', 'Review queue', 'Publishing tools'],
     service: 'social-media-automation',
   },
 ]
 
-const bookCta = { label: 'Book a Free Strategy Call', href: BRAND.calendly }
+const bookCta = { label: 'Book a scoping call', href: BRAND.calendly }
 
 export const AUTOMATIONS_PAGE: AutomationsContent = {
   seo: {
-    title: 'The 7 AI Automations Businesses Actually Buy',
+    title: 'Automation Blueprints',
     description:
-      'Voice receptionists, AI SDRs, inbox triage, support agents, invoice processing, meeting-to-CRM, and content repurposing — what each one does, step by step, and what it replaces.',
+      'Seven illustrative AI workflow blueprints showing triggers, control points, handoffs, and intended outcomes without client or performance claims.',
   },
-
   hero: {
-    eyebrow: 'The automation catalogue',
-    headline: {
-      lead: 'Seven automations that',
-      emphasis: 'pay for themselves',
-      trail: '.',
-    },
-    sub: 'These are the systems the market asks for by name. Each one is a pipeline, not a chatbot — a trigger, a handful of steps, and something concrete at the end. Here is exactly what happens in between.',
-    cta: {
-      primary: bookCta,
-      secondary: { label: 'See the work', href: '/past-projects' },
-    },
-    assurances: ['Built to your workflow', 'One-time setup', 'You own it'],
+    eyebrow: 'Automation blueprints',
+    headline: { lead: 'See the workflow before', emphasis: 'believing the promise', trail: '.' },
+    sub: 'These examples show how a controlled automation can be structured. They are capability blueprints, not claims that Crewmind has deployed each system or achieved the illustrated parameters for a client.',
+    cta: { primary: bookCta, secondary: { label: 'Explore system blueprints', href: '/past-projects' } },
+    assurances: ['Illustrative flows', 'Control points named', 'No performance guarantee'],
   },
-
   showcase: {
-    eyebrow: 'Watch one run',
-    title: {
-      lead: 'Pick an automation.',
-      emphasis: 'Watch it work',
-      trail: '.',
-    },
-    sub: 'Every automation below is a real pipeline we have shipped. Select one and the canvas plays the run, step by step, exactly as it executes in production.',
-    note: 'Figures are typical outcomes from comparable builds, not a guarantee. We scope yours against your own numbers on the call.',
+    eyebrow: 'Explore a flow',
+    title: { lead: 'Pick a workflow.', emphasis: 'Inspect each handoff', trail: '.' },
+    sub: 'The canvas shows a possible trigger, processing path, and outcome. A real implementation is designed and tested against the customer’s systems and policies.',
+    note: 'All numeric values are illustrative workflow parameters, not customer results or performance benchmarks.',
   },
-
   catalogue: {
-    eyebrow: 'Before and after',
-    title: 'What each one actually replaces.',
-    sub: 'The honest version: the manual job on the left, the same job once the automation is running on the right.',
+    eyebrow: 'Current and proposed state',
+    title: 'What changes in the operating model.',
+    sub: 'The left describes a common manual-state problem. The right describes the intended controlled workflow, subject to discovery and acceptance testing.',
   },
-
   close: {
-    eyebrow: 'Start with one',
-    title: 'Which of these is costing you the most right now?',
-    sub: 'Most engagements start with a single automation from this list, shipped in weeks. Bring the process you do by hand and we will tell you which one it is.',
-    cta: {
-      primary: bookCta,
-      secondary: { label: 'Message us on WhatsApp', href: BRAND.whatsapp() },
-    },
+    eyebrow: 'Start with one boundary',
+    title: 'Which queue or handoff is hardest to operate today?',
+    sub: 'Bring the current workflow and its exceptions. We will identify whether automation is appropriate and what must remain human.',
+    cta: { primary: bookCta, secondary: { label: 'Message us on WhatsApp', href: BRAND.whatsapp() } },
   },
 }
 
-/**
- * The homepage cut. Same seven pipelines, different job: the /automations
- * page is for someone comparing options, the homepage is for someone who has
- * not yet believed that any of this is real. So it opens on proof and ends
- * on a way through, rather than on a catalogue.
- */
 export const AUTOMATIONS_HOME: ShowcaseBlock = {
-  eyebrow: 'Seven automations',
-  title: {
-    lead: 'The systems businesses',
-    emphasis: 'actually buy',
-    trail: '.',
-  },
-  sub: 'Not demos. These seven are what the market asks for by name — and each one is a pipeline you can watch run, step by step, before you ever talk to us.',
-  note: 'Figures are typical outcomes from comparable builds, not a guarantee.',
-  cta: { label: 'See all seven, side by side', href: '/automations' },
+  eyebrow: 'Automation blueprints',
+  title: { lead: 'Inspect the system,', emphasis: 'not just the output', trail: '.' },
+  sub: 'Seven illustrative flows show where policy, AI work, validation, and human ownership fit together.',
+  note: 'Blueprints and numeric parameters are illustrative, not customer deployments or results.',
+  cta: { label: 'Explore all seven blueprints', href: '/automations' },
 }
 
-/** Lookup used by the showcase and by tests. */
 export function getAutomation(id: string | undefined): Automation | undefined {
-  return AUTOMATIONS.find((a) => a.id === id)
+  return AUTOMATIONS.find((automation) => automation.id === id)
 }

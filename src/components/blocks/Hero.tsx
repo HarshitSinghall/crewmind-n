@@ -18,7 +18,7 @@ export function Hero({ hero }: { hero: HomeContent['hero'] }) {
         <div className="mx-auto max-w-[52rem] text-center">
           <Reveal>
             <div className="mb-7 flex items-center justify-center gap-3">
-              <AvatarStack people={hero.avatars} />
+              {hero.avatars.length > 0 ? <AvatarStack people={hero.avatars} /> : null}
               <Eyebrow marker={false}>{hero.eyebrow}</Eyebrow>
             </div>
           </Reveal>
@@ -52,14 +52,16 @@ export function Hero({ hero }: { hero: HomeContent['hero'] }) {
           </Reveal>
         </div>
 
-        <Reveal index={4}>
-          <div className="mx-auto mt-16 max-w-[56rem]">
-            <p className="mb-4 text-center font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--text-3)]">
-              {hero.videoPrompt}
-            </p>
-            <VideoSlot video={hero.video} />
-          </div>
-        </Reveal>
+        {hero.video.label ? (
+          <Reveal index={4}>
+            <div className="mx-auto mt-16 max-w-[56rem]">
+              <p className="mb-4 text-center font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--text-3)]">
+                {hero.videoPrompt}
+              </p>
+              <VideoSlot video={hero.video} />
+            </div>
+          </Reveal>
+        ) : null}
       </Container>
     </section>
   )

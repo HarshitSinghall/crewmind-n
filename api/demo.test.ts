@@ -18,6 +18,7 @@ describe('demo API', () => {
   it('normalises supported Indian mobile formats', () => {
     expect(normaliseIndianMobile('98765 43210')).toBe('+919876543210')
     expect(normaliseIndianMobile('+91-98765-43210')).toBe('+919876543210')
+    expect(normaliseIndianMobile('91 98765 43210')).toBe('+919876543210')
     expect(normaliseIndianMobile('09876543210')).toBe('+919876543210')
     expect(normaliseIndianMobile('123')).toBeNull()
   })
@@ -49,6 +50,20 @@ describe('demo API', () => {
     expect(fetchMock).not.toHaveBeenCalled()
   })
 
+  it('requires affirmative consent before contacting n8n', async () => {
+    const fetchMock = vi.fn()
+    vi.stubGlobal('fetch', fetchMock)
+
+    const response = await handleDemoRequest(request({ phone: '9876543210' }))
+
+    expect(response.status).toBe(422)
+    expect(await response.json()).toMatchObject({
+      ok: false,
+      reason: 'consent_required',
+    })
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
   it('adds the private token and only confirms an explicitly queued call', async () => {
     vi.stubEnv('CREWMIND_DEMO_WEBHOOK_URL', 'https://n8n.example/webhook/demo/call')
     vi.stubEnv('CREWMIND_DEMO_WEBHOOK_TOKEN', 'server-only-token')
@@ -63,6 +78,7 @@ describe('demo API', () => {
         name: 'A'.repeat(70),
         locality: 'Gurugram',
         property_interest: '3BHK',
+        consent: true,
       }),
     )
 
@@ -82,6 +98,75 @@ describe('demo API', () => {
       property_interest: '3BHK',
       name: 'A'.repeat(60),
     })
+  })
+
+  it('calls the configured Dograh agent with a +91 number', async () => {
+    vi.stubEnv('DOGRAH_API_KEY', 'server-only-dograh-key')
+    vi.stubEnv('DOGRAH_TRIGGER_UUID', 'crewmind-trigger-uuid')
+    const fetchMock = vi.fn().mockResolvedValue(
+      Response.json({ status: 'initiated', workflow_run_id: 12345 }),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const response = await handleDemoRequest(
+      request({
+        phone: '9876543210',
+        name: 'Rajesh',
+        locality: 'Gurugram',
+        property_interest: '3BHK',
+        consent: true,
+      }),
+    )
+
+    expect(response.status).toBe(200)
+    expect(await response.json()).toEqual({ ok: true, queued: true })
+    expect(fetchMock).toHaveBeenCalledOnce()
+
+    const [url, options] = fetchMock.mock.calls[0] as [string, RequestInit]
+    expect(url).toBe(
+      'https://api.dograh.com/api/v1/public/agent/crewmind-trigger-uuid',
+    )
+    expect(options.headers).toMatchObject({
+      'X-API-Key': 'server-only-dograh-key',
+    })
+    expect(JSON.parse(String(options.body))).toEqual({
+      phone_number: '+919876543210',
+      initial_context: {
+        source: 'website_demo',
+        name: 'Rajesh',
+        locality: 'Gurugram',
+        property_interest: '3BHK',
+      },
+    })
+  })
+
+  it('does not claim success when Dograh omits its run ID', async () => {
+    vi.stubEnv('DOGRAH_API_KEY', 'server-only-dograh-key')
+    vi.stubEnv('DOGRAH_TRIGGER_UUID', 'crewmind-trigger-uuid')
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(Response.json({ status: 'initiated' })),
+    )
+
+    const response = await handleDemoRequest(
+      request({ phone: '9876543210', consent: true }),
+    )
+
+    expect(response.status).toBe(502)
+    expect(await response.json()).toEqual({ ok: false, reason: 'upstream' })
+  })
+
+  it('rejects incomplete Dograh configuration without calling any provider', async () => {
+    vi.stubEnv('DOGRAH_API_KEY', 'server-only-dograh-key')
+    const fetchMock = vi.fn()
+    vi.stubGlobal('fetch', fetchMock)
+
+    const response = await handleDemoRequest(
+      request({ phone: '9876543210', consent: true }),
+    )
+
+    expect(response.status).toBe(503)
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 
   it('adapts Vercel Node requests and completes the response', async () => {

@@ -1,54 +1,43 @@
 import type { PricingContent } from './types'
 import { BRAND } from './site'
 
-/* ---------------------------------------------------------------------------
-   PLACEHOLDER CONTENT — see CONTENT-SWAP.md
-   Transcribed from docs/reference/autoploy-pricing.md. Every string here is
-   third-party copy standing in until real CrewMind copy is written.
---------------------------------------------------------------------------- */
+/* Public commercial copy. Only Priya has a published price; other work is scoped. */
 
 export const PRICING: PricingContent = {
   seo: {
     title: 'Pricing',
     description:
-      'One scoped proposal, one fixed fee, and a full refund if we do not deliver exactly what was agreed. No monthly charges, and you own everything we build.',
+      'Crewmind scopes custom AI work after discovery. Priya has a published plan; other engagements are quoted against an agreed architecture and acceptance criteria.',
   },
 
   hero: {
     eyebrow: 'Pricing',
     headline: {
-      lead: 'One proposal.',
-      emphasis: 'Guaranteed results.',
+      lead: 'Price the workflow',
+      emphasis: 'after the boundaries are clear',
     },
-    sub: "We scope every project with a clear proposal. If we don't deliver exactly what's in it, you get 100% of your money back.",
+    sub: 'Custom work is priced after we understand the systems involved, the controls required, and how acceptance will be tested. No invented starting band and no outcome promise before discovery.',
     assurances: [
-      'One-time project fee',
-      'No monthly charges',
-      'You own all code and workflows',
+      'Written scope before work',
+      'Dependencies named upfront',
+      'Ownership agreed in the proposal',
     ],
   },
 
   tiers: [
     {
       id: 'build',
-      badge: 'Standard Build',
-      title: 'AI Setup & Build',
-      body: 'For businesses that need a specific AI system built, agents, automations, RAG pipelines, or custom integrations. Scoped, built, and handed over working.',
-      price: {
-        label: 'Starting from',
-        value: '$500 – $7,000+',
-        note: 'One-time project fee. No monthly charges to us.',
-      },
+      badge: 'Focused workflow',
+      title: 'Scoped Automation Build',
+      body: 'For a defined operational workflow with known inputs, owners, integrations, and acceptance cases.',
       features: [
-        'Full discovery & requirements document',
-        'Custom-built to your exact specification',
-        'Integrated with your existing tools',
-        'Tested and handed over working',
-        '30-day post-launch support',
-        'You own all code, agents & workflows',
-        'No monthly fees to us',
+        'Current-state workflow map',
+        'Proposed architecture and responsibility boundaries',
+        'Named integrations and access requirements',
+        'Representative acceptance and failure cases',
+        'Deployment, support, and ownership terms in writing',
       ],
-      cta: { label: 'Book a Free Strategy Call', href: BRAND.calendly },
+      cta: { label: 'Book a Scoping Call', href: BRAND.calendly },
       secondaryCta: {
         label: 'Message Us on WhatsApp',
         href: BRAND.whatsapp("Hello I'd like to learn more about the pricing."),
@@ -57,25 +46,24 @@ export const PRICING: PricingContent = {
     },
     {
       id: 'enterprise',
-      badge: 'Enterprise',
-      title: 'Enterprise & Partnership',
-      body: 'For teams with complex AI infrastructure needs, RAG systems, private LLM deployments, multi-agent workflows, and deep integrations. We scope this together on a call.',
+      badge: 'Multi-system scope',
+      title: 'Architecture & Integration Engagement',
+      body: 'For workflows that cross several systems, permission models, data sources, teams, or operational controls.',
       features: [
-        'Dedicated project team across the engagement',
-        'Architecture & system design upfront',
-        'RAG systems, private LLM deployments, AI agents',
-        'Full integration into your existing infrastructure',
-        'IP and source code ownership transferred',
-        'Ongoing retainer options available',
+        'Architecture and data-flow review',
+        'Identity, permission, and audit boundaries',
+        'Integration and deployment planning',
+        'Evaluation and release criteria',
+        'Handover and operating model',
       ],
-      note: 'We ask that you book a call before we commit to anything. We invest real time and expertise in every engagement — just as we ask you to value yours, we ask you to value ours.',
+      note: 'Scope, staffing, timing, commercial model, ownership, and support are agreed after the architecture is understood.',
       cta: { label: 'Book a Strategy Call', href: BRAND.calendly },
     },
   ],
 
   guarantee: {
-    title: '100% Money-Back Guarantee',
-    body: "If we don't deliver exactly what's agreed in your proposal and requirements, you get every dollar back. No questions asked.",
+    title: 'Acceptance before promises',
+    body: 'Each proposal should define what will be delivered, how it will be tested, the customer dependencies, and what happens when an acceptance case does not pass.',
   },
 
   /*
@@ -86,96 +74,90 @@ export const PRICING: PricingContent = {
   comparison: {
     eyebrow: 'Which one am I',
     title: 'Two ways to work with us.',
-    sub: 'Same engineering team, same ownership terms. The difference is scope, and how the scope gets decided.',
-    columns: ['AI Setup & Build', 'Enterprise & Partnership'],
+    sub: 'The difference is how many systems, teams, and control boundaries the work crosses.',
+    columns: ['Scoped Automation Build', 'Architecture & Integration Engagement'],
     rows: [
       {
         id: 'fit',
         label: 'Best for',
         values: [
-          'A specific system you can describe today',
-          'Infrastructure that needs designing first',
+          'One bounded workflow with a named owner',
+          'A cross-system programme requiring architecture first',
         ],
       },
       {
         id: 'scoping',
         label: 'How it is scoped',
         values: [
-          'Discovery call, then a fixed written proposal',
-          'Architecture and system design before any quote',
+          'Workflow mapping followed by a written proposal',
+          'Architecture review followed by a phased proposal',
         ],
       },
       {
         id: 'price',
         label: 'Investment',
-        values: ['$500 – $7,000+ one-time', 'Scoped together on a call'],
+        values: ['Quoted after workflow review', 'Quoted after architecture review'],
       },
       {
         id: 'team',
         label: 'Team',
         values: [
-          'Assigned engineer through delivery',
-          'Dedicated project team across the engagement',
+          'Named delivery owner in the proposal',
+          'Roles agreed for each phase',
         ],
       },
       {
         id: 'scope',
         label: 'Typical scope',
         values: [
-          'Agents, automations, integrations, RAG pipelines',
-          'RAG systems, private LLM deployments, multi-agent workflows',
+          'One automation, agent, or integration path',
+          'Multiple data, agent, and integration boundaries',
         ],
       },
       {
         id: 'support',
         label: 'After launch',
-        values: ['30-day post-launch support', 'Ongoing retainer options available'],
+        values: ['Defined in the proposal', 'Defined per phase or operating model'],
       },
       {
         id: 'ownership',
         label: 'Ownership',
         values: [
-          'You own all code, agents & workflows',
-          'IP and source code ownership transferred',
+          'Defined in the signed proposal',
+          'Defined in the signed agreement',
         ],
       },
       {
         id: 'recurring',
-        label: 'Monthly fees to us',
-        values: ['None', 'None, unless you choose a retainer'],
+        label: 'Recurring costs',
+        values: ['Provider and support costs identified in scope', 'Operating costs modelled during architecture'],
       },
     ],
-    note: 'Not sure which line you fall on? Book the call — scoping it is the call.',
+    note: 'If the workflow cannot be bounded on the first call, it belongs in architecture discovery.',
   },
 
-  /*
-    Repointed at the flagship. The tiers above are still the reference's
-    placeholder band and are flagged in CONTENT-SWAP.md; Priya's price is
-    real, named in full, and one click away — so the page has at least one
-    honest number on it while those tiers wait to be rewritten.
-  */
   resource: {
     eyebrow: 'Flagship product',
     title: 'Looking for Priya?',
-    body: 'Our lead-response product is priced separately and plainly: ₹30,000 one-time setup, then ₹12,000 a month with 500 leads included. Every enquiry called inside sixty seconds, in Hindi, at any hour.',
+    body: 'Priya has a published plan: ₹30,000 one-time setup, then ₹12,000 a month with 500 leads included. The product page states the intended service level, exclusions, and limits; availability remains subject to readiness and the signed agreement.',
     cta: { label: 'See the Priya plan', href: '/priya' },
   },
 
   proof: {
-    title: 'Rated 4.5 on Trustpilot',
-    sub: 'See what our verified clients have to say',
+    title: 'No public review score',
+    sub: 'Crewmind does not currently publish an aggregate customer rating.',
     cta: {
-      label: 'View all reviews on Trustpilot',
-      href: 'https://www.trustpilot.com/review/example.com',
+      label: 'Review the system blueprints',
+      href: '/past-projects',
     },
   },
 
   close: {
     eyebrow: 'Next step',
-    title: 'Get the proposal before you commit a dollar.',
-    sub: 'The strategy call is free, and you leave it with a scoped plan whether or not you hire us.',
+    title: 'Start with a scope you can challenge.',
+    sub: 'Bring the workflow, constraints, and systems involved. The next step is a written scope, not an unsupported result promise.',
     cta: {
-      primary: { label: 'Book a Free Strategy Call', href: BRAND.calendly },
+      primary: { label: 'Book a Scoping Call', href: BRAND.calendly },
       secondary: { label: 'See what we have built', href: '/past-projects' },
     },
   },

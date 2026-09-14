@@ -68,20 +68,20 @@ export const PRIYA: PriyaContent = {
 
   demo: {
     eyebrow: 'Live system · Not a recording',
-    title: 'Send one enquiry. Watch the whole system run.',
-    sub: 'Enter an Indian mobile number and Priya will call it through the same production path a property lead uses. After the call, the outcome, transcript, follow-up and agent report move through the real dashboard workflow.',
+    title: 'Request a live call from Priya.',
+    sub: 'Enter an Indian mobile number. Crewmind normalises it to +91 and asks the configured Dograh agent to start one live demo call.',
     steps: [
       {
-        title: 'Your phone rings',
-        body: 'The request is screened, written as a lead and dispatched to Priya through Dograh.',
+        title: 'Crewmind checks the request',
+        body: 'The server validates your consent and Indian mobile number before contacting Dograh.',
       },
       {
-        title: 'Priya qualifies the enquiry',
-        body: 'Answer naturally. Budget, timeline, financing and property interest are captured from the call.',
+        title: 'Dograh starts Priya',
+        body: 'The API trigger selects the configured Crewmind agent and requests the outbound call.',
       },
       {
-        title: 'The operations appear',
-        body: 'The dashboard updates, the lead follow-up is routed to WhatsApp, and the assigned agent receives the post-call report.',
+        title: 'Answer the demo call',
+        body: 'Pick up the unfamiliar Indian number and speak naturally with Priya.',
       },
     ],
     fields: {
@@ -96,10 +96,12 @@ export const PRIYA: PriyaContent = {
     submitLabel: 'Call me now',
     submittingLabel: 'Connecting Priya',
     whatsappLabel: 'WhatsApp instead',
-    privacy: 'Only the mobile number is required. One demo call; no mailing list. Cooldowns and a daily safety limit apply.',
+    privacy: 'Only the mobile number is required. This requests one automated demo call and does not add you to a mailing list.',
+    consentLabel:
+      'I am 18 or older, this number belongs to me or is under my control, and I ask Crewmind to use these details to attempt one automated demo call as described in the Privacy Policy.',
     success: {
-      title: 'Priya is calling you now.',
-      body: 'Pick up an unfamiliar Indian number. When the call ends, its result will continue through the dashboard, WhatsApp and agent-report pipeline.',
+      title: 'Dograh accepted your call request.',
+      body: 'Pick up an unfamiliar Indian number. Acceptance means the call started; it does not guarantee that the phone has begun ringing.',
       rescueLabel: 'Nothing rang after three minutes',
     },
     fallback: {

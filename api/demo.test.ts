@@ -140,6 +140,26 @@ describe('demo API', () => {
     })
   })
 
+  it('calls a self-hosted Dograh instance when its base URL is configured', async () => {
+    vi.stubEnv('DOGRAH_API_KEY', 'server-only-dograh-key')
+    vi.stubEnv('DOGRAH_TRIGGER_UUID', 'crewmind-trigger-uuid')
+    vi.stubEnv('DOGRAH_BASE_URL', 'https://dograh.example/')
+    const fetchMock = vi.fn().mockResolvedValue(
+      Response.json({ status: 'initiated', workflow_run_id: 12345 }),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const response = await handleDemoRequest(
+      request({ phone: '9876543210', consent: true }),
+    )
+
+    expect(response.status).toBe(200)
+    expect(fetchMock).toHaveBeenCalledOnce()
+    expect(fetchMock.mock.calls[0][0]).toBe(
+      'https://dograh.example/api/v1/public/agent/crewmind-trigger-uuid',
+    )
+  })
+
   it('does not claim success when Dograh omits its run ID', async () => {
     vi.stubEnv('DOGRAH_API_KEY', 'server-only-dograh-key')
     vi.stubEnv('DOGRAH_TRIGGER_UUID', 'crewmind-trigger-uuid')

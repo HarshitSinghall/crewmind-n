@@ -101,6 +101,9 @@ async function handleDemoInput(
 
   const dograhApiKey = process.env.DOGRAH_API_KEY?.trim()
   const dograhTriggerUuid = process.env.DOGRAH_TRIGGER_UUID?.trim()
+  const dograhBaseUrl =
+    process.env.DOGRAH_BASE_URL?.trim().replace(/\/+$/, '') ||
+    'https://api.dograh.com'
   const webhookEndpoint = process.env.CREWMIND_DEMO_WEBHOOK_URL?.trim()
   const hasPartialDograhConfig = Boolean(dograhApiKey) !== Boolean(dograhTriggerUuid)
 
@@ -111,7 +114,7 @@ async function handleDemoInput(
 
   const usesDograh = Boolean(dograhApiKey && dograhTriggerUuid)
   const endpoint = usesDograh
-    ? `https://api.dograh.com/api/v1/public/agent/${encodeURIComponent(dograhTriggerUuid!)}`
+    ? `${dograhBaseUrl}/api/v1/public/agent/${encodeURIComponent(dograhTriggerUuid!)}`
     : webhookEndpoint
 
   if (!endpoint) return reply({ ok: false, reason: 'unconfigured' }, 503)

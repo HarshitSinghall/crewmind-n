@@ -1,0 +1,1657 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "date": "2026-10-11T10:38:52.258Z",
+  "widths": [
+    {
+      "width": 360,
+      "scrollWidth": 360,
+      "mainCount": 1,
+      "h1": [
+        "Put routine work in good hands."
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Put routine work in good hands."
+        },
+        {
+          "tag": "H2",
+          "text": "Meet your AI crew"
+        },
+        {
+          "tag": "H3",
+          "text": "Operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Assistant"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice"
+        },
+        {
+          "tag": "H3",
+          "text": "Documents"
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the work that repeats."
+        },
+        {
+          "tag": "H3",
+          "text": "Workflow automation"
+        },
+        {
+          "tag": "H3",
+          "text": "AI assistants"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice systems"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "More ways to put AI to work."
+        },
+        {
+          "tag": "H3",
+          "text": "AI search visibility"
+        },
+        {
+          "tag": "H3",
+          "text": "Lead research & outreach"
+        },
+        {
+          "tag": "H3",
+          "text": "Content operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Evidence-led drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Multi-agent operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Custom AI systems"
+        },
+        {
+          "tag": "H2",
+          "text": "A few ways the crew could help."
+        },
+        {
+          "tag": "H3",
+          "text": "Property enquiry response"
+        },
+        {
+          "tag": "H3",
+          "text": "Knowledge support"
+        },
+        {
+          "tag": "H3",
+          "text": "Proposal drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Competitor research"
+        },
+        {
+          "tag": "H3",
+          "text": "Agent evaluation"
+        },
+        {
+          "tag": "H3",
+          "text": "Internal operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "Send a request.Get a demo quotation."
+        },
+        {
+          "tag": "H3",
+          "text": "In our demo database"
+        },
+        {
+          "tag": "H3",
+          "text": "Your email, ready to send."
+        },
+        {
+          "tag": "H3",
+          "text": "Before you send"
+        },
+        {
+          "tag": "H2",
+          "text": "Build carefully. Improve with evidence."
+        },
+        {
+          "tag": "H3",
+          "text": "Discover the workflow"
+        },
+        {
+          "tag": "H3",
+          "text": "Agree the scope"
+        },
+        {
+          "tag": "H3",
+          "text": "Build and test"
+        },
+        {
+          "tag": "H3",
+          "text": "Monitor and improve"
+        },
+        {
+          "tag": "H2",
+          "text": "An AI crew with a clear brief."
+        },
+        {
+          "tag": "H2",
+          "text": "The people leading CrewMind."
+        },
+        {
+          "tag": "H3",
+          "text": "Raghuraj"
+        },
+        {
+          "tag": "H3",
+          "text": "Harshit"
+        },
+        {
+          "tag": "H3",
+          "text": "Yash"
+        },
+        {
+          "tag": "H2",
+          "text": "Questions before we begin."
+        },
+        {
+          "tag": "H3",
+          "text": "What should we automate first?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can you work with our existing tools?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can people approve actions?"
+        },
+        {
+          "tag": "H3",
+          "text": "What happens after delivery?"
+        },
+        {
+          "tag": "H3",
+          "text": "How are projects priced?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can agents run outside office hours?"
+        },
+        {
+          "tag": "H2",
+          "text": "Bring one workflow. Let’s map it."
+        }
+      ],
+      "images": [
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        },
+        {
+          "alt": "Four illustrated AI agents routing requests, organizing knowledge, handling voice conversations and reviewing documents in adjoining studio windows.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 312,
+          "height": 650
+        },
+        {
+          "alt": "Operations AI agent: Move work between tools.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 148,
+          "height": 270
+        },
+        {
+          "alt": "Assistant AI agent: Make knowledge easier to use.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 148,
+          "height": 270
+        },
+        {
+          "alt": "Voice AI agent: Give conversations a clear next step.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 148,
+          "height": 270
+        },
+        {
+          "alt": "Documents AI agent: Turn documents into reviewable fields.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 148,
+          "height": 270
+        },
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        }
+      ],
+      "overflow": [],
+      "title": "CrewMind | AI automation with human oversight",
+      "description": "Explore scoped AI agents for business workflows, conversations and documents, with clear limits and human oversight.",
+      "robots": "noindex",
+      "socialImage": "/assets/brand/crewmind-og-1200x630.png",
+      "sections": [
+        {
+          "id": "",
+          "top": 72,
+          "bottom": 1341.734375
+        },
+        {
+          "id": "crew",
+          "top": 1341.734375,
+          "bottom": 2725.25
+        },
+        {
+          "id": "services",
+          "top": 2725.25,
+          "bottom": 4438.3125
+        },
+        {
+          "id": "capabilities",
+          "top": 4438.3125,
+          "bottom": 6023.4375
+        },
+        {
+          "id": "examples",
+          "top": 6023.4375,
+          "bottom": 7889.296875
+        },
+        {
+          "id": "email-demo",
+          "top": 7889.296875,
+          "bottom": 11028.578125
+        },
+        {
+          "id": "process",
+          "top": 11028.578125,
+          "bottom": 11951.25
+        },
+        {
+          "id": "about",
+          "top": 11951.25,
+          "bottom": 12755.96875
+        },
+        {
+          "id": "leadership",
+          "top": 12755.96875,
+          "bottom": 13470.390625
+        },
+        {
+          "id": "faq",
+          "top": 13470.390625,
+          "bottom": 14734.203125
+        },
+        {
+          "id": "invitation",
+          "top": 14734.203125,
+          "bottom": 15170.984375
+        }
+      ],
+      "violations": []
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "mainCount": 1,
+      "h1": [
+        "Put routine work in good hands."
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Put routine work in good hands."
+        },
+        {
+          "tag": "H2",
+          "text": "Meet your AI crew"
+        },
+        {
+          "tag": "H3",
+          "text": "Operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Assistant"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice"
+        },
+        {
+          "tag": "H3",
+          "text": "Documents"
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the work that repeats."
+        },
+        {
+          "tag": "H3",
+          "text": "Workflow automation"
+        },
+        {
+          "tag": "H3",
+          "text": "AI assistants"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice systems"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "More ways to put AI to work."
+        },
+        {
+          "tag": "H3",
+          "text": "AI search visibility"
+        },
+        {
+          "tag": "H3",
+          "text": "Lead research & outreach"
+        },
+        {
+          "tag": "H3",
+          "text": "Content operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Evidence-led drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Multi-agent operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Custom AI systems"
+        },
+        {
+          "tag": "H2",
+          "text": "A few ways the crew could help."
+        },
+        {
+          "tag": "H3",
+          "text": "Property enquiry response"
+        },
+        {
+          "tag": "H3",
+          "text": "Knowledge support"
+        },
+        {
+          "tag": "H3",
+          "text": "Proposal drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Competitor research"
+        },
+        {
+          "tag": "H3",
+          "text": "Agent evaluation"
+        },
+        {
+          "tag": "H3",
+          "text": "Internal operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "Send a request.Get a demo quotation."
+        },
+        {
+          "tag": "H3",
+          "text": "In our demo database"
+        },
+        {
+          "tag": "H3",
+          "text": "Your email, ready to send."
+        },
+        {
+          "tag": "H3",
+          "text": "Before you send"
+        },
+        {
+          "tag": "H2",
+          "text": "Build carefully. Improve with evidence."
+        },
+        {
+          "tag": "H3",
+          "text": "Discover the workflow"
+        },
+        {
+          "tag": "H3",
+          "text": "Agree the scope"
+        },
+        {
+          "tag": "H3",
+          "text": "Build and test"
+        },
+        {
+          "tag": "H3",
+          "text": "Monitor and improve"
+        },
+        {
+          "tag": "H2",
+          "text": "An AI crew with a clear brief."
+        },
+        {
+          "tag": "H2",
+          "text": "The people leading CrewMind."
+        },
+        {
+          "tag": "H3",
+          "text": "Raghuraj"
+        },
+        {
+          "tag": "H3",
+          "text": "Harshit"
+        },
+        {
+          "tag": "H3",
+          "text": "Yash"
+        },
+        {
+          "tag": "H2",
+          "text": "Questions before we begin."
+        },
+        {
+          "tag": "H3",
+          "text": "What should we automate first?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can you work with our existing tools?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can people approve actions?"
+        },
+        {
+          "tag": "H3",
+          "text": "What happens after delivery?"
+        },
+        {
+          "tag": "H3",
+          "text": "How are projects priced?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can agents run outside office hours?"
+        },
+        {
+          "tag": "H2",
+          "text": "Bring one workflow. Let’s map it."
+        }
+      ],
+      "images": [
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        },
+        {
+          "alt": "Four illustrated AI agents routing requests, organizing knowledge, handling voice conversations and reviewing documents in adjoining studio windows.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 342,
+          "height": 650
+        },
+        {
+          "alt": "Operations AI agent: Move work between tools.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 163,
+          "height": 270
+        },
+        {
+          "alt": "Assistant AI agent: Make knowledge easier to use.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 163,
+          "height": 270
+        },
+        {
+          "alt": "Voice AI agent: Give conversations a clear next step.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 163,
+          "height": 270
+        },
+        {
+          "alt": "Documents AI agent: Turn documents into reviewable fields.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 163,
+          "height": 270
+        },
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        }
+      ],
+      "overflow": [],
+      "title": "CrewMind | AI automation with human oversight",
+      "description": "Explore scoped AI agents for business workflows, conversations and documents, with clear limits and human oversight.",
+      "robots": "noindex",
+      "socialImage": "/assets/brand/crewmind-og-1200x630.png",
+      "sections": [
+        {
+          "id": "",
+          "top": 72,
+          "bottom": 1322.53125
+        },
+        {
+          "id": "crew",
+          "top": 1322.53125,
+          "bottom": 2706.046875
+        },
+        {
+          "id": "services",
+          "top": 2706.046875,
+          "bottom": 4292.734375
+        },
+        {
+          "id": "capabilities",
+          "top": 4292.734375,
+          "bottom": 5798.6875
+        },
+        {
+          "id": "examples",
+          "top": 5798.6875,
+          "bottom": 7611.765625
+        },
+        {
+          "id": "email-demo",
+          "top": 7611.765625,
+          "bottom": 10510.34375
+        },
+        {
+          "id": "process",
+          "top": 10510.34375,
+          "bottom": 11370.625
+        },
+        {
+          "id": "about",
+          "top": 11370.625,
+          "bottom": 12112.953125
+        },
+        {
+          "id": "leadership",
+          "top": 12112.953125,
+          "bottom": 12827.375
+        },
+        {
+          "id": "faq",
+          "top": 12827.375,
+          "bottom": 14065.59375
+        },
+        {
+          "id": "invitation",
+          "top": 14065.59375,
+          "bottom": 14476.78125
+        }
+      ],
+      "violations": []
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "mainCount": 1,
+      "h1": [
+        "Put routine work in good hands."
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Put routine work in good hands."
+        },
+        {
+          "tag": "H2",
+          "text": "Meet your AI crew"
+        },
+        {
+          "tag": "H3",
+          "text": "Operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Assistant"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice"
+        },
+        {
+          "tag": "H3",
+          "text": "Documents"
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the work that repeats."
+        },
+        {
+          "tag": "H3",
+          "text": "Workflow automation"
+        },
+        {
+          "tag": "H3",
+          "text": "AI assistants"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice systems"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "More ways to put AI to work."
+        },
+        {
+          "tag": "H3",
+          "text": "AI search visibility"
+        },
+        {
+          "tag": "H3",
+          "text": "Lead research & outreach"
+        },
+        {
+          "tag": "H3",
+          "text": "Content operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Evidence-led drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Multi-agent operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Custom AI systems"
+        },
+        {
+          "tag": "H2",
+          "text": "A few ways the crew could help."
+        },
+        {
+          "tag": "H3",
+          "text": "Property enquiry response"
+        },
+        {
+          "tag": "H3",
+          "text": "Knowledge support"
+        },
+        {
+          "tag": "H3",
+          "text": "Proposal drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Competitor research"
+        },
+        {
+          "tag": "H3",
+          "text": "Agent evaluation"
+        },
+        {
+          "tag": "H3",
+          "text": "Internal operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "Send a request.Get a demo quotation."
+        },
+        {
+          "tag": "H3",
+          "text": "In our demo database"
+        },
+        {
+          "tag": "H3",
+          "text": "Your email, ready to send."
+        },
+        {
+          "tag": "H3",
+          "text": "Before you send"
+        },
+        {
+          "tag": "H2",
+          "text": "Build carefully. Improve with evidence."
+        },
+        {
+          "tag": "H3",
+          "text": "Discover the workflow"
+        },
+        {
+          "tag": "H3",
+          "text": "Agree the scope"
+        },
+        {
+          "tag": "H3",
+          "text": "Build and test"
+        },
+        {
+          "tag": "H3",
+          "text": "Monitor and improve"
+        },
+        {
+          "tag": "H2",
+          "text": "An AI crew with a clear brief."
+        },
+        {
+          "tag": "H2",
+          "text": "The people leading CrewMind."
+        },
+        {
+          "tag": "H3",
+          "text": "Raghuraj"
+        },
+        {
+          "tag": "H3",
+          "text": "Harshit"
+        },
+        {
+          "tag": "H3",
+          "text": "Yash"
+        },
+        {
+          "tag": "H2",
+          "text": "Questions before we begin."
+        },
+        {
+          "tag": "H3",
+          "text": "What should we automate first?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can you work with our existing tools?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can people approve actions?"
+        },
+        {
+          "tag": "H3",
+          "text": "What happens after delivery?"
+        },
+        {
+          "tag": "H3",
+          "text": "How are projects priced?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can agents run outside office hours?"
+        },
+        {
+          "tag": "H2",
+          "text": "Bring one workflow. Let’s map it."
+        }
+      ],
+      "images": [
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        },
+        {
+          "alt": "Four illustrated AI agents routing requests, organizing knowledge, handling voice conversations and reviewing documents in adjoining studio windows.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 720,
+          "height": 650
+        },
+        {
+          "alt": "Operations AI agent: Move work between tools.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 352,
+          "height": 270
+        },
+        {
+          "alt": "Assistant AI agent: Make knowledge easier to use.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 352,
+          "height": 270
+        },
+        {
+          "alt": "Voice AI agent: Give conversations a clear next step.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 352,
+          "height": 270
+        },
+        {
+          "alt": "Documents AI agent: Turn documents into reviewable fields.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 352,
+          "height": 270
+        },
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        }
+      ],
+      "overflow": [],
+      "title": "CrewMind | AI automation with human oversight",
+      "description": "Explore scoped AI agents for business workflows, conversations and documents, with clear limits and human oversight.",
+      "robots": "noindex",
+      "socialImage": "/assets/brand/crewmind-og-1200x630.png",
+      "sections": [
+        {
+          "id": "",
+          "top": 72,
+          "bottom": 1234.921875
+        },
+        {
+          "id": "crew",
+          "top": 1234.921875,
+          "bottom": 2415.109375
+        },
+        {
+          "id": "services",
+          "top": 2415.109375,
+          "bottom": 3732.484375
+        },
+        {
+          "id": "capabilities",
+          "top": 3732.484375,
+          "bottom": 4885.75
+        },
+        {
+          "id": "examples",
+          "top": 4885.75,
+          "bottom": 6214.1875
+        },
+        {
+          "id": "email-demo",
+          "top": 6214.1875,
+          "bottom": 8764.09375
+        },
+        {
+          "id": "process",
+          "top": 8764.09375,
+          "bottom": 9422.25
+        },
+        {
+          "id": "about",
+          "top": 9422.25,
+          "bottom": 9893.078125
+        },
+        {
+          "id": "leadership",
+          "top": 9893.078125,
+          "bottom": 10545.109375
+        },
+        {
+          "id": "faq",
+          "top": 10545.109375,
+          "bottom": 11445.640625
+        },
+        {
+          "id": "invitation",
+          "top": 11445.640625,
+          "bottom": 11783.046875
+        }
+      ],
+      "violations": []
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "mainCount": 1,
+      "h1": [
+        "Put routine work in good hands."
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Put routine work in good hands."
+        },
+        {
+          "tag": "H2",
+          "text": "Meet your AI crew"
+        },
+        {
+          "tag": "H3",
+          "text": "Operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Assistant"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice"
+        },
+        {
+          "tag": "H3",
+          "text": "Documents"
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the work that repeats."
+        },
+        {
+          "tag": "H3",
+          "text": "Workflow automation"
+        },
+        {
+          "tag": "H3",
+          "text": "AI assistants"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice systems"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "More ways to put AI to work."
+        },
+        {
+          "tag": "H3",
+          "text": "AI search visibility"
+        },
+        {
+          "tag": "H3",
+          "text": "Lead research & outreach"
+        },
+        {
+          "tag": "H3",
+          "text": "Content operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Evidence-led drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Multi-agent operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Custom AI systems"
+        },
+        {
+          "tag": "H2",
+          "text": "A few ways the crew could help."
+        },
+        {
+          "tag": "H3",
+          "text": "Property enquiry response"
+        },
+        {
+          "tag": "H3",
+          "text": "Knowledge support"
+        },
+        {
+          "tag": "H3",
+          "text": "Proposal drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Competitor research"
+        },
+        {
+          "tag": "H3",
+          "text": "Agent evaluation"
+        },
+        {
+          "tag": "H3",
+          "text": "Internal operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "Send a request.Get a demo quotation."
+        },
+        {
+          "tag": "H3",
+          "text": "In our demo database"
+        },
+        {
+          "tag": "H3",
+          "text": "Your email, ready to send."
+        },
+        {
+          "tag": "H3",
+          "text": "Before you send"
+        },
+        {
+          "tag": "H2",
+          "text": "Build carefully. Improve with evidence."
+        },
+        {
+          "tag": "H3",
+          "text": "Discover the workflow"
+        },
+        {
+          "tag": "H3",
+          "text": "Agree the scope"
+        },
+        {
+          "tag": "H3",
+          "text": "Build and test"
+        },
+        {
+          "tag": "H3",
+          "text": "Monitor and improve"
+        },
+        {
+          "tag": "H2",
+          "text": "An AI crew with a clear brief."
+        },
+        {
+          "tag": "H2",
+          "text": "The people leading CrewMind."
+        },
+        {
+          "tag": "H3",
+          "text": "Raghuraj"
+        },
+        {
+          "tag": "H3",
+          "text": "Harshit"
+        },
+        {
+          "tag": "H3",
+          "text": "Yash"
+        },
+        {
+          "tag": "H2",
+          "text": "Questions before we begin."
+        },
+        {
+          "tag": "H3",
+          "text": "What should we automate first?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can you work with our existing tools?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can people approve actions?"
+        },
+        {
+          "tag": "H3",
+          "text": "What happens after delivery?"
+        },
+        {
+          "tag": "H3",
+          "text": "How are projects priced?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can agents run outside office hours?"
+        },
+        {
+          "tag": "H2",
+          "text": "Bring one workflow. Let’s map it."
+        }
+      ],
+      "images": [
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        },
+        {
+          "alt": "Four illustrated AI agents routing requests, organizing knowledge, handling voice conversations and reviewing documents in adjoining studio windows.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 960,
+          "height": 480
+        },
+        {
+          "alt": "Operations AI agent: Move work between tools.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 468,
+          "height": 360
+        },
+        {
+          "alt": "Assistant AI agent: Make knowledge easier to use.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 468,
+          "height": 360
+        },
+        {
+          "alt": "Voice AI agent: Give conversations a clear next step.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 468,
+          "height": 360
+        },
+        {
+          "alt": "Documents AI agent: Turn documents into reviewable fields.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 468,
+          "height": 360
+        },
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        }
+      ],
+      "overflow": [],
+      "title": "CrewMind | AI automation with human oversight",
+      "description": "Explore scoped AI agents for business workflows, conversations and documents, with clear limits and human oversight.",
+      "robots": "noindex",
+      "socialImage": "/assets/brand/crewmind-og-1200x630.png",
+      "sections": [
+        {
+          "id": "",
+          "top": 72,
+          "bottom": 1017.8125
+        },
+        {
+          "id": "crew",
+          "top": 1017.8125,
+          "bottom": 2383.203125
+        },
+        {
+          "id": "services",
+          "top": 2383.203125,
+          "bottom": 3687.78125
+        },
+        {
+          "id": "capabilities",
+          "top": 3687.78125,
+          "bottom": 4423.640625
+        },
+        {
+          "id": "examples",
+          "top": 4423.640625,
+          "bottom": 5465.0625
+        },
+        {
+          "id": "email-demo",
+          "top": 5465.0625,
+          "bottom": 7145.625
+        },
+        {
+          "id": "process",
+          "top": 7145.625,
+          "bottom": 15978.78125
+        },
+        {
+          "id": "about",
+          "top": 15978.78125,
+          "bottom": 16424.203125
+        },
+        {
+          "id": "leadership",
+          "top": 16424.203125,
+          "bottom": 16818.640625
+        },
+        {
+          "id": "faq",
+          "top": 16818.640625,
+          "bottom": 17491.59375
+        },
+        {
+          "id": "invitation",
+          "top": 17491.59375,
+          "bottom": 17845
+        }
+      ],
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "mainCount": 1,
+      "h1": [
+        "Put routine work in good hands."
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Put routine work in good hands."
+        },
+        {
+          "tag": "H2",
+          "text": "Meet your AI crew"
+        },
+        {
+          "tag": "H3",
+          "text": "Operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Assistant"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice"
+        },
+        {
+          "tag": "H3",
+          "text": "Documents"
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the work that repeats."
+        },
+        {
+          "tag": "H3",
+          "text": "Workflow automation"
+        },
+        {
+          "tag": "H3",
+          "text": "AI assistants"
+        },
+        {
+          "tag": "H3",
+          "text": "Voice systems"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "More ways to put AI to work."
+        },
+        {
+          "tag": "H3",
+          "text": "AI search visibility"
+        },
+        {
+          "tag": "H3",
+          "text": "Lead research & outreach"
+        },
+        {
+          "tag": "H3",
+          "text": "Content operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Evidence-led drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Multi-agent operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Custom AI systems"
+        },
+        {
+          "tag": "H2",
+          "text": "A few ways the crew could help."
+        },
+        {
+          "tag": "H3",
+          "text": "Property enquiry response"
+        },
+        {
+          "tag": "H3",
+          "text": "Knowledge support"
+        },
+        {
+          "tag": "H3",
+          "text": "Proposal drafting"
+        },
+        {
+          "tag": "H3",
+          "text": "Competitor research"
+        },
+        {
+          "tag": "H3",
+          "text": "Agent evaluation"
+        },
+        {
+          "tag": "H3",
+          "text": "Internal operations"
+        },
+        {
+          "tag": "H3",
+          "text": "Document processing"
+        },
+        {
+          "tag": "H2",
+          "text": "Send a request.Get a demo quotation."
+        },
+        {
+          "tag": "H3",
+          "text": "In our demo database"
+        },
+        {
+          "tag": "H3",
+          "text": "Your email, ready to send."
+        },
+        {
+          "tag": "H3",
+          "text": "Before you send"
+        },
+        {
+          "tag": "H2",
+          "text": "Build carefully. Improve with evidence."
+        },
+        {
+          "tag": "H3",
+          "text": "Discover the workflow"
+        },
+        {
+          "tag": "H3",
+          "text": "Agree the scope"
+        },
+        {
+          "tag": "H3",
+          "text": "Build and test"
+        },
+        {
+          "tag": "H3",
+          "text": "Monitor and improve"
+        },
+        {
+          "tag": "H2",
+          "text": "An AI crew with a clear brief."
+        },
+        {
+          "tag": "H2",
+          "text": "The people leading CrewMind."
+        },
+        {
+          "tag": "H3",
+          "text": "Raghuraj"
+        },
+        {
+          "tag": "H3",
+          "text": "Harshit"
+        },
+        {
+          "tag": "H3",
+          "text": "Yash"
+        },
+        {
+          "tag": "H2",
+          "text": "Questions before we begin."
+        },
+        {
+          "tag": "H3",
+          "text": "What should we automate first?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can you work with our existing tools?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can people approve actions?"
+        },
+        {
+          "tag": "H3",
+          "text": "What happens after delivery?"
+        },
+        {
+          "tag": "H3",
+          "text": "How are projects priced?"
+        },
+        {
+          "tag": "H3",
+          "text": "Can agents run outside office hours?"
+        },
+        {
+          "tag": "H2",
+          "text": "Bring one workflow. Let’s map it."
+        }
+      ],
+      "images": [
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        },
+        {
+          "alt": "Four illustrated AI agents routing requests, organizing knowledge, handling voice conversations and reviewing documents in adjoining studio windows.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 735,
+          "height": 420
+        },
+        {
+          "alt": "Operations AI agent: Move work between tools.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 308,
+          "height": 340
+        },
+        {
+          "alt": "Assistant AI agent: Make knowledge easier to use.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 308,
+          "height": 340
+        },
+        {
+          "alt": "Voice AI agent: Give conversations a clear next step.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 308,
+          "height": 340
+        },
+        {
+          "alt": "Documents AI agent: Turn documents into reviewable fields.",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 308,
+          "height": 340
+        },
+        {
+          "alt": "CrewMind",
+          "complete": true,
+          "loaded": true,
+          "loading": "auto",
+          "width": 140,
+          "height": 42
+        }
+      ],
+      "overflow": [],
+      "title": "CrewMind | AI automation with human oversight",
+      "description": "Explore scoped AI agents for business workflows, conversations and documents, with clear limits and human oversight.",
+      "robots": "noindex",
+      "socialImage": "/assets/brand/crewmind-og-1200x630.png",
+      "sections": [
+        {
+          "id": "",
+          "top": 72,
+          "bottom": 646.40625
+        },
+        {
+          "id": "crew",
+          "top": 646.40625,
+          "bottom": 1431.59375
+        },
+        {
+          "id": "services",
+          "top": 1431.59375,
+          "bottom": 2380.765625
+        },
+        {
+          "id": "capabilities",
+          "top": 2380.765625,
+          "bottom": 3090.875
+        },
+        {
+          "id": "examples",
+          "top": 3090.875,
+          "bottom": 4080.15625
+        },
+        {
+          "id": "email-demo",
+          "top": 4080.15625,
+          "bottom": 5752.625
+        },
+        {
+          "id": "process",
+          "top": 5752.625,
+          "bottom": 6179
+        },
+        {
+          "id": "about",
+          "top": 6179,
+          "bottom": 6695.390625
+        },
+        {
+          "id": "leadership",
+          "top": 6695.390625,
+          "bottom": 7116.859375
+        },
+        {
+          "id": "faq",
+          "top": 7116.859375,
+          "bottom": 7768.8125
+        },
+        {
+          "id": "invitation",
+          "top": 7768.8125,
+          "bottom": 8174.8125
+        }
+      ],
+      "violations": []
+    }
+  ],
+  "routes": [
+    {
+      "route": "/privacy",
+      "width": 390,
+      "status": 200,
+      "title": "Privacy preview notice | CrewMind",
+      "violations": []
+    },
+    {
+      "route": "/terms",
+      "width": 390,
+      "status": 200,
+      "title": "Terms preview notice | CrewMind",
+      "violations": []
+    },
+    {
+      "route": "/privacy",
+      "width": 1440,
+      "status": 200,
+      "title": "Privacy preview notice | CrewMind",
+      "violations": []
+    },
+    {
+      "route": "/terms",
+      "width": 1440,
+      "status": 200,
+      "title": "Terms preview notice | CrewMind",
+      "violations": []
+    }
+  ],
+  "failures": [],
+  "consoleErrors": [],
+  "reducedMotion": {
+    "opacity": "1",
+    "loaded": true
+  }
+}

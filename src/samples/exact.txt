@@ -1,0 +1,13 @@
+Subject: [CrewMind Demo] Quotation request
+
+Please quote the following demo products:
+
+Manufacturer: ACME Bearings
+Part: 6205-2RS
+Quantity: 12
+Unit: each
+
+Manufacturer: ACME Bearings
+Part: 6304-C3
+Quantity: 3
+Unit: each

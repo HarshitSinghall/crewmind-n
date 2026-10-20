@@ -1,0 +1,12 @@
+* text=auto
+*.html text eol=lf
+*.json text eol=lf
+*.ts text eol=lf
+*.woff binary
+*.woff2 binary
+*.webp binary
+*.png binary
+*.jpg binary
+*.mp4 binary
+# Preserve captured presentation sources without enforcing authored-code whitespace rules.
+snapshot/** -whitespace

@@ -1,9 +1,9 @@
 # Product context
 
-CrewMind agency website for businesses across industries. Standalone HTML/CSS with original illustrated AI crew, four core services, six extended capabilities, seven illustrative workflow blueprints and supplied human leadership roles. Examples are not client results; no testimonials are claimed.
+Crewmind is an AI automation and development practice for service businesses. First Automation offers one agreed pilot, seven days of live assessment after go-live, and optional ongoing support. Pilot scope, usage limits, access, human checkpoints, and success measures must be agreed first. Build timing is separate from assessment time. Additional builds are scoped separately; there is no automatic continuation or billing.
 
-Direct discovery-call and published business contact links are separate from the email quotation demo. The demo opens a visitor's email app; the existing external processor handles sent requests. The static site has no credentials, backend, database, analytics or scheduler embed.
+The public presentation contains five routes and a branded 404. Workflow diagrams, generated business photographs, service illustrations, and interface concepts are illustrative; they do not establish client work, deployed integrations, staff identity, or results. Existing design, content, motion, and delivered images are preserved during repository cleanup.
 
-This repository replaces its earlier React/Vite app and demo API. Only `/`, `/privacy` and `/terms` remain. Framer remains independent. Public policies retain preview notices; domain confirmation, final business identity and policy approval remain launch work. No deployment readiness or demo response time is guaranteed.
+Requests remain closed. The form collects no data. No backend, authentication, tracking, or indexing is enabled. The owner authorized repository publication for Vercel connection; actual hosting and a production domain still require verification. The remaining lead-generation inputs are documented in docs/GO-LIVE-CHECKLIST.md.
 
-Sources: https://crewmind.in/services, https://crewmind.in/about, https://crewmind.in/past-projects. Never place personal/contact details or secrets in handoff documents.
+On 2026-10-20, nondeployment research, masters, historical utilities, original handoff history, and unused captured content moved to ../website-archive/2026-10-20 locally. That archive is outside the Git repository. Required template and theme inputs remain committed so a clean checkout builds independently.

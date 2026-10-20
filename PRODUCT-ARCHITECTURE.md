@@ -1,9 +1,17 @@
 # Product architecture
 
-Source pages: `src/index.html`, `src/privacy.html`, `src/terms.html`. Shared styling and native mobile navigation: `src/site.css`, `src/site.js`. Fonts, artwork and supplied brand assets are local. Content, booking, navigation and demo instructions are usable without JavaScript.
+## Static build
 
-`node build.mjs` copies source into `dist/` and optionally configures canonical/social URLs from `SITE_URL`; `PUBLIC_INDEXING=true` removes preview noindex. `server.mjs` provides local preview. `vercel.json` sets the dependency-free build, `dist` output and clean policy routes. Use repository root for hosting.
+scripts/build.ts reads snapshot/pages/index.html and the minimal snapshot/manifest.json. The manifest lists only 22 theme dependencies. scripts/lib/crewmind.ts and scripts/lib/walkthrough.ts render content from src/content/ into five allowlisted pages and a branded 404. scripts/lib/transform.ts strips original backend and tracking behavior. Theme assets are copied to /_theme/; committed delivery images and branding are copied to /_crew/.
 
-No website APIs or credentials. The email quotation demo is a static catalogue snapshot, downloads and a mailto request; visitors send through their email app to an independently operated processor. Scheduling/contact links are external. The old demo API, React source and Vite configuration are removed; history retains them.
+The guarded theme patch preserves menu behavior when carousels emit synthetic resize events. esbuild bundles src/crewmind.ts and src/guard.ts. The build cleans dist before writing output. No image generation, original-site access, capture tools, or local archive is needed. The retained snapshot template is a build input, not a route served directly.
 
-Historical `docs/reference/` and `docs/superpowers/` do not describe current deployment.
+## Browser and hosting
+
+The preserved theme handles the hero grid, globe, carousels, menu, accordion, and scroll effects. Crewmind scripts add keyboard support, focus handling, linked FAQ behavior, and unavailable-form behavior. Reduced-motion styling remains. src/guard.ts blocks original backend/tracking calls.
+
+scripts/serve.ts serves dist locally with GET/HEAD only and the branded 404. Vercel builds the repository root using Node.js 24, npm run build, and dist output. vercel.json retains trailing slash handling and noindex headers. HTML robots metadata and robots.txt also block indexing. No environment variables are required.
+
+## Repository boundaries
+
+src/, required scripts, and the minimal snapshot are deployment inputs. Current tests and static audit verify the presentation. Historical recruitment tests, unused runtime/catalog code, capture utilities, lossless masters, and research are preserved outside the repository in ../website-archive/2026-10-20. Recreating an image export requires the archived masters/tools; ordinary builds use committed WebPs and do not need that archive.

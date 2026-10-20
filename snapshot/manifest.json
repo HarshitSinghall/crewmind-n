@@ -1,0 +1,163 @@
+{
+  "origin": "https://www.spheredigitalrecruitment.com",
+  "capturedAt": "2026-10-17T03:31:53.562Z",
+  "pages": [],
+  "assets": [
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/css/app.min.css?ver=1790750325",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/css/app.min.css",
+      "status": 200,
+      "bytes": 223518,
+      "sha256": "7eb0761292b76d1281a7787a4b6850e896ae682dbe1f417f9a16e02ab7cedb22"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/font/GoogleSans-Bold.woff2",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/font/GoogleSans-Bold.woff2",
+      "status": 200,
+      "bytes": 21916,
+      "sha256": "8c08e9068264cd8fd98633c3588702cff20ec434f43541b2afb6ea6af8154058"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/font/GoogleSans-Medium.woff2",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/font/GoogleSans-Medium.woff2",
+      "status": 200,
+      "bytes": 22240,
+      "sha256": "63edf64c54f81c5fb472736ef3dd2ea123e23f89bedb2b7ae9f958100389e5ce"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/font/GoogleSans-Regular.woff2",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/font/GoogleSans-Regular.woff2",
+      "status": 200,
+      "bytes": 21088,
+      "sha256": "e117d7912d0de6fbd8b44a063ad238207fa74cbc7d31f19e3c0ad4420ea81a6a"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/button-gradient-green.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/button-gradient-green.svg",
+      "status": 200,
+      "bytes": 8205,
+      "sha256": "b7a7739eaad3a14383682f88e8ff63d64721368621af58abd236deb423bbd4fa"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/button-gradient-purple.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/button-gradient-purple.svg",
+      "status": 200,
+      "bytes": 8993,
+      "sha256": "8d68de434fa2cc20e791b94c3a90c20e3ca12eade542ca1aac5c7de853d87b17"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient-purple-flipped.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient-purple-flipped.svg",
+      "status": 200,
+      "bytes": 14458,
+      "sha256": "17aa908878674e25405df76071c820cb3df08c11f7142ae31b3fd935a7392029"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient-purple-top.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient-purple-top.svg",
+      "status": 200,
+      "bytes": 15726,
+      "sha256": "6fe066774d2fafe1a83e0af97349dbb84f8e6b088ac6ba90067b9aff2ca21179"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient-purple.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient-purple.svg",
+      "status": 200,
+      "bytes": 14438,
+      "sha256": "c2a676929f2c211fe6acb0dc7bed424099940feb2954f55d2982321ca4218306"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/gradient.svg",
+      "status": 200,
+      "bytes": 25465,
+      "sha256": "8ab103a4cd7bd0408640d17fd0766c35187ac6795ec9a9d4c619eba3fc01d4f0"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/image-cutout-corner-landscape.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/image-cutout-corner-landscape.svg",
+      "status": 200,
+      "bytes": 446,
+      "sha256": "919784173f66727b7fd3ce3013dcfa794975e3717f9d4d647c92b9047e20492f"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/image-cutout-corner-portrait.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/image-cutout-corner-portrait.svg",
+      "status": 200,
+      "bytes": 445,
+      "sha256": "8937388f90987c3db672570c5b21ee73227cddb2ee48992551d8e328ea64cf66"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/rounded-rhombus.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/graphics/rounded-rhombus.svg",
+      "status": 200,
+      "bytes": 1058,
+      "sha256": "4c036ab364126507e7ae43ce9e83ebf0049b7b6eb786b47ee1cdb77c183c237a"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/icons/arrow.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/icons/arrow.svg",
+      "status": 200,
+      "bytes": 474,
+      "sha256": "3adf8892718d2c961c78ed767e69418ded448d04fbe6c07793853357f5766db1"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/icons/caret-down.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/icons/caret-down.svg",
+      "status": 200,
+      "bytes": 392,
+      "sha256": "67d5153404f8e9b1bfacbf3cd892e6479e3a2300739e5284aaa99b06c35adb7d"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/icons/caret-left.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/icons/caret-left.svg",
+      "status": 200,
+      "bytes": 812,
+      "sha256": "8e4f1f9347d14caa5be87f819cfaeada148d808d95f06e2730e43cb1d4f51b9c"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/icons/check-white.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/icons/check-white.svg",
+      "status": 200,
+      "bytes": 385,
+      "sha256": "a588e163dccde4aa7e93b853d2b0a626df64a92d17a0d77cd1d558181c5ca7ee"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/icons/check.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/icons/check.svg",
+      "status": 200,
+      "bytes": 385,
+      "sha256": "deeacfc9e576c4ac359c651a14cf258002e8ba45cf2278c121caa2e3386328ff"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/icons/cross.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/icons/cross.svg",
+      "status": 200,
+      "bytes": 480,
+      "sha256": "806c365d0d3897c80c5baa7cf868c6ba2012de2221a103fa5de8356a6d94bf01"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/img/icons/map-marker.svg",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/img/icons/map-marker.svg",
+      "status": 200,
+      "bytes": 968,
+      "sha256": "ededbfc626f1681f165eacad8c3e2873fb0ed37ba17705f12c11f4f802976d87"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-content/themes/sphere-digital-recruitment/dist/js/app.min.js?ver=1790687631",
+      "path": "/wp-content/themes/sphere-digital-recruitment/dist/js/app.min.js",
+      "status": 200,
+      "bytes": 156084,
+      "sha256": "8085148c2600910ca9b115a826e83d897469bf5af0dd20c91570bb47415b5856"
+    },
+    {
+      "url": "https://www.spheredigitalrecruitment.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+      "path": "/wp-includes/js/jquery/jquery.min.js",
+      "status": 200,
+      "bytes": 87553,
+      "sha256": "cb6f2d32c49d1c2b25e9ffc9aaafa3f83075346c01bcd4ae6eb187392a4292cf"
+    }
+  ],
+  "redirects": {},
+  "sitemaps": []
+}

@@ -1,7 +1,12 @@
 node_modules/
 dist/
-*.tsbuildinfo
-.DS_Store
-.env
-.env.local
-*.local
+artifacts/
+test-results/
+playwright-report/
+.vercel/
+.superpowers/
+*.log
+*.tmp-*
+.env*
+!.env.example
+snapshot/.capture.lock

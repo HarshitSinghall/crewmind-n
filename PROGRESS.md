@@ -17,4 +17,6 @@ The archive contains the original documents and metadata, cleanup-record.json, a
 - All 29 Chromium browser scenarios passed on a completed build. An earlier overlapping build/browser run briefly served the local missing-output response to one tablet scenario; the serial rerun passed without product changes.
 - The staged files contain no common credential signatures or environment/key files. This check is not a full security audit.
 
+GitHub's first Linux build exposed an inherited broad dist/ ignore rule that also excluded nested theme dependencies. Scoped the rule to /dist/ and committed all 22 required theme assets. A clean checkout must contain every asset listed in snapshot/manifest.json; local filesystem presence alone is insufficient proof of deployment completeness.
+
 Generated verification reports are retained in the local archive. Dependencies are cached in ../node_modules on this workstation; a fresh checkout uses npm ci normally. Build output and local verification reports are kept outside the final source folder after verification. Git ignores these generated directories if future commands recreate them.

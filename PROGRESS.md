@@ -1,5 +1,9 @@
 # Product progress
 
+## Deployment configuration encoding — 2026-10-20
+
+The reported Vercel error was `Invalid vercel.json file provided`. The committed file began with a UTF-8 byte-order mark (EF BB BF). Strict JSON parsing reproduced the failure before any build could run. Removed only that encoding prefix; all deployment settings remain unchanged. Added a unit regression check that reads and parses the actual vercel.json without stripping encoding prefixes. The check failed on the original file and passed after correction. No Vercel account or project settings were changed.
+
 ## Deployment repository cleanup — 2026-10-20
 
 Prepared the current five-page Crewmind presentation for repository-root Vercel builds. Moved research, image masters, old reports, capture tooling, unused source modules, historical recruitment tests, and the full reference snapshot to ../website-archive/2026-10-20. Retained only the homepage presentation template, minimal manifest, and 22 required theme assets from that snapshot.

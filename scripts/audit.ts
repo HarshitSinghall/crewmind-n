@@ -2,7 +2,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import * as cheerio from 'cheerio';
 import { readJson, within, writeJson } from './lib/io.ts';
 import { pages } from '../src/content/crewmind.ts';
-import { indexable, siteOrigin, robotsText, sitemap } from './lib/seo.ts';
+import { indexable, siteOrigin, robotsText, sitemap } from './lib/crewmind.ts';
 
 const errors: string[] = [];
 const report = await readJson<{ assets: string[] }>('dist/build-report.json');

@@ -10,7 +10,7 @@ The guarded theme patch preserves menu behavior when carousels emit synthetic re
 
 The preserved theme handles the hero grid, globe, carousels, menu, accordion, and scroll effects. Crewmind scripts add keyboard support, focus handling, linked FAQ behavior, and unavailable-form behavior. Reduced-motion styling remains. src/guard.ts blocks original backend/tracking calls.
 
-scripts/serve.ts serves dist locally with GET/HEAD only, a noindex header, and the branded 404. Vercel builds the repository root using Node.js 24, npm run build, and dist output. vercel.json retains trailing slash handling without a blanket noindex header. scripts/lib/seo.ts emits production crawl permissions, absolute canonical/social URLs for https://www.crewmindhq.com, and a sitemap. VERCEL_ENV=preview or development blocks crawling in robots.txt and HTML. No manually configured environment variables are required.
+scripts/serve.ts serves dist locally with GET/HEAD only, a noindex header, and the branded 404. Vercel builds the repository root using Node.js 24, npm run build, and dist output. vercel.json retains trailing slash handling without a blanket noindex header. scripts/lib/crewmind.ts emits production crawl permissions, absolute canonical/social URLs for https://www.crewmindhq.com, and a sitemap. VERCEL_ENV=preview or development blocks crawling in robots.txt and HTML. No manually configured environment variables are required.
 
 ## Repository boundaries
 

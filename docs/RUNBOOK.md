@@ -10,7 +10,7 @@ npm run dev serves port 5173 and rebuilds source changes. npm run preview serves
 
 Import the GitHub repository and deploy main. Root Directory is ./ (the repository already contains the website root). Use Other framework, Node.js 24.x, npm ci, npm run build, and dist. No environment variables are needed. Commit source/template/delivery assets; do not commit node_modules or dist. No Vercel project creation or connection is implied by a Git push.
 
-After deployment, verify /, /services/, /examples/, /about/, /audit/, an unknown route returning 404, images/fonts, mobile menu, carousel, and accordion. Confirm the request form remains unavailable and robots restrictions remain until deliberately configured. No live URL is recorded until hosting is verified.
+After deployment, verify /, /services/, /examples/, /about/, /audit/, an unknown route returning 404, images/fonts, mobile menu, carousel, and accordion. Confirm the request form remains unavailable. Production must serve robots.txt with Allow: /, sitemap.xml with only the five public routes, index,follow HTML, absolute www.crewmindhq.com canonical URLs, and no blocking X-Robots-Tag. Vercel preview/development builds remain blocked; the local server intentionally retains its noindex header. Verified live URL: https://www.crewmindhq.com. Run node scripts/check-public-site.ts for read-only live checks. A DNS query cannot prove mailbox receipt; Google Admin access and an actual incoming-mail test are required after mail routing is repaired.
 
 ## Recovery and archive
 

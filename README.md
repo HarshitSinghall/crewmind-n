@@ -31,7 +31,7 @@ Import this GitHub repository. The repository root is the website; leave Root Di
 - Output directory: dist.
 - Environment variables: none required.
 
-vercel.json defines the build, output directory, trailing slashes, and current noindex response header. No original backend, authentication, tracking, or form submission is enabled. The First Automation request form remains disabled. Publishing the presentation does not activate requests or search indexing.
+vercel.json defines the build, output directory, and trailing slashes. Production builds permit crawling and emit canonical URLs and a sitemap for https://www.crewmindhq.com. Vercel preview/development builds remain blocked through VERCEL_ENV. No original backend, authentication, tracking, or form submission is enabled. The First Automation request form remains disabled.
 
 ## Files
 

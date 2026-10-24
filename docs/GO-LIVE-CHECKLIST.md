@@ -1,5 +1,7 @@
 # Crewmind website: owner inputs and go-live checklist
 
+2026-10-24 release update: HTTPS hosting at https://www.crewmindhq.com is verified. The owner authorized production crawler remediation; preview builds remain blocked. Requests remain closed and mail routing needs repair. See PROGRESS.md and RUNBOOK.md for the current release state. The older unchecked items below remain operational follow-ups rather than a prohibition on the explicitly authorized crawler fix.
+
 Updated: 2026-10-19. Status: prelaunch. Copy improvements do not make the website launch-ready. Check an item only when its acceptance evidence exists. This document does not authorize publishing, collecting data, spending money, or enabling tracking.
 
 ## How to use this list

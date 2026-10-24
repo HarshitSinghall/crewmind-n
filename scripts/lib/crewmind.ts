@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import { siteOrigin, indexable } from './seo.ts';
 import { transformHtml } from './transform.ts';
 import { renderWalkthrough } from './walkthrough.ts';
 import { examples, faqs, pages, principles, processSteps, services } from '../../src/content/crewmind.ts';
@@ -22,11 +23,13 @@ export function renderCrewmind(raw: string, route: string, assets: Record<string
   const templates = $('section').toArray().map(e => $(e).clone());
   const clone = (index: number) => templates[index].clone();
   $('script:not([src]), script[src*="demo.js"], link:not([rel="stylesheet"]), meta').remove();
-  $('head').prepend('<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">');
+  $('head').prepend(`<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="${indexable && route !== '/404/' ? 'index,follow' : 'noindex,nofollow'}">`);
   $('head').append('<link rel="icon" href="/_crew/brand/favicon.ico"><link rel="apple-touch-icon" href="/_crew/brand/crewmind-mark-black-180.png"><meta property="og:image" content="/_crew/brand/crewmind-og-1200x630.png"><link rel="stylesheet" href="/_crew/site.css">');
   $('html').attr('lang', 'en');
   $('body').addClass('cm-site');
   const page = pages.find(p => p.route === route);
+  if (page) $('head').append(`<link rel="canonical" href="${siteOrigin}${route}"><meta property="og:url" content="${siteOrigin}${route}">`);
+  $('meta[property="og:image"]').attr('content', `${siteOrigin}/_crew/brand/crewmind-og-1200x630.png`);
   $('title').text(page?.title || 'Page not found | Crewmind');
   $('head').append(`<meta name="description" content="${esc(page?.description || 'Find your way back to Crewmind.')}"/><meta property="og:title" content="${esc(page?.title || 'Crewmind')}"/><meta property="og:description" content="${esc(page?.description || '')}"/><meta property="og:type" content="website"/>`);
   $('.page-wrap > section, .page-wrap > .popup, .page-wrap > style').remove();

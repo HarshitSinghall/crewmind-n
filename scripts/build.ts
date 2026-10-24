@@ -4,6 +4,7 @@ import { build as bundle } from 'esbuild';
 import { readJson, write, writeJson, within } from './lib/io.ts';
 import type { Manifest } from './lib/types.ts';
 import { renderCrewmind } from './lib/crewmind.ts';
+import { robotsText, sitemap } from './lib/seo.ts';
 import { pages } from '../src/content/crewmind.ts';
 import { images, crops, placements, imageUrl } from '../src/content/imagery.ts';
 import type { ImageId, Crop } from '../src/content/imagery.ts';
@@ -85,6 +86,7 @@ await bundle({ entryPoints: ['src/guard.ts'], outfile: 'dist/_local/guard.js', b
 paths.push( '/_crew/site.css', '/_crew/site.js', '/_local/guard.js');
 await writeJson('dist/_local/routes.json', pages.map(p => p.route));
 await writeJson('dist/_local/redirects.json', {});
-await write('dist/robots.txt', 'User-agent: *\nDisallow: /\n');
+await write('dist/robots.txt', robotsText);
+await write('dist/sitemap.xml', sitemap(pages.map(page => page.route)));
 await writeJson('dist/build-report.json', { builtAt: new Date().toISOString(), pages: pages.length, assets: paths, auditDelivery: 'disabled', sourceSnapshotRetained: true });
 console.log(`Crewmind built: ${pages.length} pages, branded 404, ${paths.length} assets. Audit delivery is disabled.`);

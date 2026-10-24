@@ -2,6 +2,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import * as cheerio from 'cheerio';
 import { readJson, within, writeJson } from './lib/io.ts';
 import { pages } from '../src/content/crewmind.ts';
+import { indexable, siteOrigin, robotsText, sitemap } from './lib/seo.ts';
 
 const errors: string[] = [];
 const report = await readJson<{ assets: string[] }>('dist/build-report.json');
@@ -26,7 +27,9 @@ for (const route of [...pages.map(page => page.route), '/404/']) {
     if (!image.attr('width') || !image.attr('height') || (!image.closest('.banner').length && (!image.attr('srcset') || !image.attr('sizes')))) errors.push(`Missing responsive image metadata on ${route}`);
     if (!image.closest('.banner').length && image.attr('loading') !== 'lazy') errors.push(`Below-fold image not lazy on ${route}`);
   });
-  if ($('meta[name="robots"]').attr('content') !== 'noindex,nofollow') errors.push(`Indexing enabled: ${route}`);
+  const expectedRobots = indexable && route !== '/404/' ? 'index,follow' : 'noindex,nofollow';
+  if ($('meta[name="robots"]').attr('content') !== expectedRobots) errors.push(`Wrong robots metadata: ${route}`);
+  if (route !== '/404/' && $('link[rel="canonical"]').attr('href') !== `${siteOrigin}${route}`) errors.push(`Wrong canonical: ${route}`);
   $('form').each((_, form) => {
     if (!$(form).find('fieldset[disabled]').length || $(form).find('[name]').length) errors.push(`Unconfigured form enabled: ${route}`);
   });
@@ -34,7 +37,7 @@ for (const route of [...pages.map(page => page.route), '/404/']) {
     const node = $(el);
     for (const attribute of ['src', 'href', 'srcset']) {
       const value = node.attr(attribute);
-      if (!value || value.startsWith('#') || node.is('a') && attribute === 'href') continue;
+      if (!value || value.startsWith('#') || node.is('a, link[rel="canonical"]') && attribute === 'href') continue;
       const refs = attribute === 'srcset' ? value.split(',').map(v => v.trim().split(/\s/)[0]) : [value];
       for (const ref of refs) {
         if (/^https?:|^\/\//.test(ref)) errors.push(`External asset on ${route}: ${ref}`);
@@ -65,7 +68,11 @@ for (const asset of report.assets) {
   }
 }
 // Clean output must not retain old routes or recruitment catalogs.
-const allowed = new Set(['index.html', '404.html', 'robots.txt', 'build-report.json', '_crew', '_theme', '_local', 'services', 'examples', 'about', 'audit']);
+if (await readFile('dist/robots.txt', 'utf8') !== robotsText) errors.push('Incorrect robots.txt');
+if (await readFile('dist/sitemap.xml', 'utf8') !== sitemap(pages.map(page => page.route))) errors.push('Incorrect sitemap.xml');
+const deployment = JSON.parse(await readFile('vercel.json', 'utf8'));
+if (deployment.headers?.some((rule: { headers: { key: string; value: string }[] }) => rule.headers.some(header => header.key.toLowerCase() === 'x-robots-tag' && /noindex|nofollow|none/i.test(header.value)))) errors.push('Deployment blocks indexing');
+const allowed = new Set(['index.html', '404.html', 'robots.txt', 'sitemap.xml', 'build-report.json', '_crew', '_theme', '_local', 'services', 'examples', 'about', 'audit']);
 for (const entry of await readdir('dist')) if (!allowed.has(entry)) errors.push(`Unexpected public output: ${entry}`);
 const result = { pages: documents.size, assets: report.assets.length, errors: [...new Set(errors)] };
 await writeJson('artifacts/audit.json', result);

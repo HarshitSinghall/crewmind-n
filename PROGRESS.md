@@ -8,7 +8,9 @@ Production builds now permit crawling. Vercel preview/development builds remain 
 
 Release verification passed: TypeScript, all 10 unit tests, production build, static audit (six HTML documents, 195 assets, zero errors), and all 30 Chromium scenarios. The browser suite ran after the completed build. No visual or form behavior changed.
 
-Outstanding: authoritative DNS lacks Google Workspace MX records, and Vercel browser access is denied by a saved permission setting. Google Admin requires user sign-in. No email records, mailbox settings, application, or support message have been changed. Operator details, a working contact route, and AWS eligibility confirmation for the actual agency business remain open. Crawler repairs do not guarantee approval.
+Commit ba4318f was pushed to main and Vercel reported successful deployment. Live checks confirmed all five content routes return 200 with index,follow HTML, correct canonical URLs, and no blocking X-Robots-Tag. robots.txt permits all crawlers and links to a working XML sitemap. Unknown URLs still return 404 with noindex metadata. Amazonbot and Googlebot user-agent probes return 200. This verifies the public technical fix, not AWS approval.
+
+Outstanding: authoritative DNS lacks Google Workspace MX records, and Vercel browser access is denied by a saved permission setting. Signed-in Google Admin confirms domain ownership is verified and flags MX and DKIM as incorrect and SPF as missing; the existing DKIM selector is google._domainkey. No email records, mailbox settings, application, or support message have been changed. Operator details, a working contact route, and AWS eligibility confirmation for the actual agency business remain open. Crawler repairs do not guarantee approval.
 
 ## Deployment configuration encoding — 2026-10-20
 

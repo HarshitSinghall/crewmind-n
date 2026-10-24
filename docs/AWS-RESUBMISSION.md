@@ -2,10 +2,12 @@
 
 Do not resubmit until the deployed site and business inbox have been checked. The website repair removes the reported crawler barrier; AWS still decides eligibility.
 
+Website status: commit ba4318f is deployed and live crawler checks pass. Google Admin confirms domain ownership is verified but flags incorrect MX/DKIM and missing SPF. DNS repair and an actual email receipt test are still outstanding.
+
 ## Remaining owner/account actions
 
 - Allow browser access to vercel.com so the missing Google Workspace MX record can be repaired. The authoritative DNS provider is Vercel. The root MX destination recommended by Google is smtp.google.com, priority 1, using the provider's default TTL.
-- Sign into Google Admin with the Workspace administrator account. Confirm domain verification, Gmail activation, licensing, and account status. Obtain the actual DKIM selector and public key there. Do not put account details or keys in this document.
+- Google Admin is accessible and domain ownership is verified. Complete Gmail setup after DNS repair; confirm licensing and account status if mail still fails. Use the existing DKIM selector and public key shown there. Do not put account details or keys in this document.
 - Confirm all outbound mail providers before publishing a single combined SPF record. For Google Workspace alone the value is v=spf1 include:_spf.google.com ~all. Configure DMARC after verifying SPF/DKIM alignment.
 - Verify incoming mail and replies using an independent mailbox after DNS propagation. DNS correctness alone is not proof of receipt.
 - Supply the approved public operator identity and contact destination. The website currently accepts no requests. Do not publish invented contact details or imply a working request flow.
